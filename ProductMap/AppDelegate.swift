@@ -25,8 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if FIRAuth.auth()?.currentUser != nil {
             // User is signed in.
-            let vc = ViewController()
+            
+            let vc = MainViewController()
             window?.rootViewController = vc
+            
         } else {
             // No user is signed in.
             let vc = LoginViewController()
@@ -37,9 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func setMainMapViewControllerAsRoot(){
-        let vc = ViewController()
-        
+    func setMainMapViewControllerAsRoot() {
+        let vc = MainViewController()
         window?.rootViewController = vc
     }
 
