@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */; };
-		DD224BE11E9EBA91005B88D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BE01E9EBA91005B88D8 /* ViewController.swift */; };
+		DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BE01E9EBA91005B88D8 /* MainViewController.swift */; };
 		DD224BE41E9EBA91005B88D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD224BE21E9EBA91005B88D8 /* Main.storyboard */; };
 		DD224BE71E9EBA91005B88D8 /* ProductMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD224BE51E9EBA91005B88D8 /* ProductMap.xcdatamodeld */; };
 		DD224BE91E9EBA91005B88D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD224BE81E9EBA91005B88D8 /* Assets.xcassets */; };
@@ -18,6 +18,8 @@
 		DD224C1D1E9F3CEA005B88D8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD224C1C1E9F3CEA005B88D8 /* MapKit.framework */; };
 		DD224C1F1E9F3FF4005B88D8 /* ProductLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */; };
 		DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C221E9F48EB005B88D8 /* MainMapView.swift */; };
+		DD224C251E9FE4A2005B88D8 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C241E9FE4A2005B88D8 /* TopBarView.swift */; };
+		DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,7 @@
 /* Begin PBXFileReference section */
 		DD224BDB1E9EBA91005B88D8 /* ProductMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD224BE01E9EBA91005B88D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DD224BE01E9EBA91005B88D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DD224BE31E9EBA91005B88D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD224BE61E9EBA91005B88D8 /* ProductMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProductMap.xcdatamodel; sourceTree = "<group>"; };
 		DD224BE81E9EBA91005B88D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +57,8 @@
 		DD224C1C1E9F3CEA005B88D8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductLocation.swift; sourceTree = "<group>"; };
 		DD224C221E9F48EB005B88D8 /* MainMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
+		DD224C241E9FE4A2005B88D8 /* TopBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopBarView.swift; path = ../TopBarView.swift; sourceTree = "<group>"; };
+		DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,9 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */,
-				DD224BE01E9EBA91005B88D8 /* ViewController.swift */,
-				DD224C221E9F48EB005B88D8 /* MainMapView.swift */,
-				DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */,
+				DD224C281E9FE509005B88D8 /* View Controllers */,
+				DD224C271E9FE4FE005B88D8 /* Views */,
+				DD224C261E9FE4F7005B88D8 /* Models */,
 				DD224BE21E9EBA91005B88D8 /* Main.storyboard */,
 				DD224BE81E9EBA91005B88D8 /* Assets.xcassets */,
 				DD224BEA1E9EBA91005B88D8 /* LaunchScreen.storyboard */,
@@ -144,6 +148,32 @@
 				DD224C1C1E9F3CEA005B88D8 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD224C261E9FE4F7005B88D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		DD224C271E9FE4FE005B88D8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD224C241E9FE4A2005B88D8 /* TopBarView.swift */,
+				DD224C221E9F48EB005B88D8 /* MainMapView.swift */,
+				DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DD224C281E9FE509005B88D8 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD224BE01E9EBA91005B88D8 /* MainViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,9 +319,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */,
-				DD224BE11E9EBA91005B88D8 /* ViewController.swift in Sources */,
+				DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */,
 				DD224C1F1E9F3FF4005B88D8 /* ProductLocation.swift in Sources */,
 				DD224BE71E9EBA91005B88D8 /* ProductMap.xcdatamodeld in Sources */,
+				DD224C251E9FE4A2005B88D8 /* TopBarView.swift in Sources */,
+				DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */,
 				DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
