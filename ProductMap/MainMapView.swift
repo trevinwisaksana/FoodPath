@@ -15,6 +15,8 @@ class MainMapView: MKMapView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         resetRegion()
+        // Cleans the map
+        showsPointsOfInterest = false
     }
     
     

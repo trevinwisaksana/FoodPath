@@ -9,25 +9,58 @@
 import UIKit
 import MapKit
 
-
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
+    // MARK: - Views
     let mainMapView = MainMapView()
+    let topBarView = TopBarView()
+    let bottomBarView = BottomBarView()
     
     // MARK: Properties and Outlets
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Setup map view
         setupMapView()
+        // Setup topBarView
+        setupTopBarView()
+        // Setup bottomBarView
+        setupBottomBarView()
+    
     }
     
     // MARK: - Map setup
     func setupMapView() {
-        // Setting the size of the map view
-        self.view.addSubview(mainMapView)
+        self.view.addSubview(mainMapView) 
+        
         mainMapView.frame = view.frame
         // Setting the delegate
         mainMapView.delegate = self
+    }
+    
+    // MARK: - Setup topBarView
+    func setupTopBarView() {
+        self.view.addSubview(topBarView)
+    
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        let frame = CGRect(x: 0, y: 0, width: width, height: height * 0.12)
+        topBarView.frame = frame
+    
+    }
+    
+    // MARK: - Setup bottomBarView
+    func setupBottomBarView() {
+        self.view.addSubview(bottomBarView)
+        
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        let frame = CGRect(x: 0,
+                           y: height * 0.85,
+                           width: width,
+                           height: height * 0.5)
+        bottomBarView.frame = frame
+        
     }
     
     
@@ -37,10 +70,13 @@ class ViewController: UIViewController {
     // MARK: - Overlays
     
     
+    // MARK: Life Cycle
+    
+    
 }
 
 
-extension ViewController: MKMapViewDelegate {
+extension MainViewController: MKMapViewDelegate {
     
     // MARK: - Map View Method
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -59,8 +95,6 @@ extension ViewController: MKMapViewDelegate {
         
         return view
     }
-        
-    // MARK: Life Cycle
    
 }
 
