@@ -23,28 +23,13 @@ class MainMapView: MKMapView {
     }
 
     
+    /// Starts the map with a location in Chicago.
+    /// It is sed for testing.
     func resetRegion() {
+        // For testing
+        let chicagoCoordinate = CLLocationCoordinate2DMake(41.8832301, -87.6278121)
         let region = MKCoordinateRegionMakeWithDistance(chicagoCoordinate, 5000, 5000)
         self.setRegion(region, animated: true)
-    }
-    
-    
-    func pinColor(name: String) -> UIColor {
-        // Default color
-        var color = UIColor.blue
-        
-        switch name {
-        case "Connie's Pizza":
-            color = UIColor.blue
-        case "Lou Malnati's":
-            color = UIColor.green
-        case "Giordano's":
-            color = UIColor.yellow
-        default:
-            color = UIColor.orange
-        }
-        
-        return color
     }
     
 }

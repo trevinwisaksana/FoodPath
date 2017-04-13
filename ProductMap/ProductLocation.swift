@@ -18,8 +18,10 @@ class ProductLocation: NSObject, MKAnnotation {
     init(name: String,
          latitude: CLLocationDegrees,
          longitude: CLLocationDegrees) {
+        
         self.title = name
         self.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        
     }
     
 }

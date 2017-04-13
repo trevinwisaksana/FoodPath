@@ -9,12 +9,8 @@
 import UIKit
 import MapKit
 
-// For testing
-let chicagoCoordinate = CLLocationCoordinate2DMake(41.8832301, -87.6278121)
 
 class ViewController: UIViewController {
-    
-    let products = ProductLocationList().products
     
     let mainMapView = MainMapView()
     
@@ -24,8 +20,6 @@ class ViewController: UIViewController {
         // Setup map view
         setupMapView()
         
-        // Testing
-        mainMapView.addAnnotations(products)
     }
     
     // MARK: - Map setup
@@ -53,19 +47,16 @@ extension ViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // View
         var view: MKPinAnnotationView
-        // TODO: Change name to something clearer
-        guard let annotate = annotation as? ProductLocation else { return nil }
-        let id = annotate.identifier
+        guard let annotation = annotation as? ProductLocation else { return nil }
+        let id = annotation.identifier
         
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: id) as? MKPinAnnotationView {
             // Set the view to the dequeued view
             view = dequeuedView
         } else {
             // Make a new view
-            view = MKPinAnnotationView(annotation: annotate, reuseIdentifier: id)
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: id)
         }
-        // Pin tint color
-        view.pinTintColor = mainMapView.pinColor(name: id)
         
         return view
     }
