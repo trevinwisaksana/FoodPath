@@ -63,7 +63,10 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+<<<<<<< HEAD
 
 *.xcuserstate
 
 ProductMap.xcodeproj/project.xcworkspace/xcuserdata/trevinwisaksana.xcuserdatad/UserInterfaceState.xcuserstate
+=======
+>>>>>>> origin/master
