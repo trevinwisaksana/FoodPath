@@ -19,7 +19,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Setup map view
         setupMapView()
-        
     }
     
     // MARK: - Map setup
