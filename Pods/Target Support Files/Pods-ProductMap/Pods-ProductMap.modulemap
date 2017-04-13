@@ -1,0 +1,6 @@
+framework module Pods_ProductMap {
+  umbrella header "Pods-ProductMap-umbrella.h"
+
+  export *
+  module * { export * }
+}
