@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseAuth
 
 
 class ViewController: UIViewController {
@@ -18,6 +19,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setup map view
+        
+//        do {
+//            try FIRAuth.auth()?.signOut()
+//        } catch {
+//            print("error logout")
+//        }
+        
         setupMapView()
     }
     
