@@ -8,16 +8,39 @@
 
 import UIKit
 import CoreData
+import Firebase
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        FIRApp.configure()
+        
+        if FIRAuth.auth()?.currentUser != nil {
+            // User is signed in.
+            let vc = ViewController()
+            window?.rootViewController = vc
+        } else {
+            // No user is signed in.
+            let vc = LoginViewController()
+            
+            window?.rootViewController = vc
+        }
+        
         return true
+    }
+    
+    func setMainMapViewControllerAsRoot(){
+        let vc = ViewController()
+        
+        window?.rootViewController = vc
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
