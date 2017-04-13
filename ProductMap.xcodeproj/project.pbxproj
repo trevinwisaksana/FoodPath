@@ -15,6 +15,9 @@
 		DD224BEC1E9EBA91005B88D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD224BEA1E9EBA91005B88D8 /* LaunchScreen.storyboard */; };
 		DD224BF71E9EBA91005B88D8 /* ProductMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BF61E9EBA91005B88D8 /* ProductMapTests.swift */; };
 		DD224C021E9EBA91005B88D8 /* ProductMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C011E9EBA91005B88D8 /* ProductMapUITests.swift */; };
+		DD224C1D1E9F3CEA005B88D8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD224C1C1E9F3CEA005B88D8 /* MapKit.framework */; };
+		DD224C1F1E9F3FF4005B88D8 /* ProductLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */; };
+		DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C221E9F48EB005B88D8 /* MainMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		DD224BFD1E9EBA91005B88D8 /* ProductMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProductMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD224C011E9EBA91005B88D8 /* ProductMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductMapUITests.swift; sourceTree = "<group>"; };
 		DD224C031E9EBA91005B88D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD224C1C1E9F3CEA005B88D8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductLocation.swift; sourceTree = "<group>"; };
+		DD224C221E9F48EB005B88D8 /* MainMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD224C1D1E9F3CEA005B88D8 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +90,7 @@
 				DD224BF51E9EBA91005B88D8 /* ProductMapTests */,
 				DD224C001E9EBA91005B88D8 /* ProductMapUITests */,
 				DD224BDC1E9EBA91005B88D8 /* Products */,
+				DD224C1B1E9F3CEA005B88D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +109,8 @@
 			children = (
 				DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */,
 				DD224BE01E9EBA91005B88D8 /* ViewController.swift */,
+				DD224C221E9F48EB005B88D8 /* MainMapView.swift */,
+				DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */,
 				DD224BE21E9EBA91005B88D8 /* Main.storyboard */,
 				DD224BE81E9EBA91005B88D8 /* Assets.xcassets */,
 				DD224BEA1E9EBA91005B88D8 /* LaunchScreen.storyboard */,
@@ -126,6 +136,14 @@
 				DD224C031E9EBA91005B88D8 /* Info.plist */,
 			);
 			path = ProductMapUITests;
+			sourceTree = "<group>";
+		};
+		DD224C1B1E9F3CEA005B88D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD224C1C1E9F3CEA005B88D8 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +216,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 9ME882KZTA;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					DD224BF11E9EBA91005B88D8 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -265,7 +288,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */,
 				DD224BE11E9EBA91005B88D8 /* ViewController.swift in Sources */,
+				DD224C1F1E9F3FF4005B88D8 /* ProductLocation.swift in Sources */,
 				DD224BE71E9EBA91005B88D8 /* ProductMap.xcdatamodeld in Sources */,
 				DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */,
 			);
@@ -516,6 +541,7 @@
 				DD224C081E9EBA91005B88D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DD224C091E9EBA91005B88D8 /* Build configuration list for PBXNativeTarget "ProductMapTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +550,7 @@
 				DD224C0B1E9EBA91005B88D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DD224C0C1E9EBA91005B88D8 /* Build configuration list for PBXNativeTarget "ProductMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +559,7 @@
 				DD224C0E1E9EBA91005B88D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
