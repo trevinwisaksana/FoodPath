@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
     
     // MARK: - Map setup
     func setupMapView() {
-        self.view.addSubview(mainMapView) 
+        self.view.addSubview(mainMapView)
         
         mainMapView.frame = view.frame
         // Setting the delegate
