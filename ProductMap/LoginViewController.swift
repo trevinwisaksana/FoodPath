@@ -12,13 +12,16 @@ import FirebaseAuth
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var signInButton: UIButton = {
+        
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
+        
         button.layer.cornerRadius = 25
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.blue.cgColor
         button.setTitleColor(UIColor.blue, for: .normal)
         button.backgroundColor = UIColor.white
+        
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
@@ -26,12 +29,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
+        
         button.layer.cornerRadius = 25
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.blue.cgColor
         button.setTitleColor(UIColor.blue, for: .normal)
         button.backgroundColor = UIColor.white
-        button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
+        button.addTarget(self,
+                         action: #selector(handleSignup),
+                         for: .touchUpInside)
         return button
     }()
     
@@ -110,8 +116,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print(error)
                 return
             }
+            
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.setMainMapViewControllerAsRoot()
+            
         }
     }
     

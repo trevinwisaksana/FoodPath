@@ -26,7 +26,7 @@ class MainMapView: MKMapView {
 
     
     /// Starts the map with a location in Chicago.
-    /// It is sed for testing.
+    /// It is set for testing.
     func resetRegion() {
         // For testing
         let chicagoCoordinate = CLLocationCoordinate2DMake(41.8832301, -87.6278121)

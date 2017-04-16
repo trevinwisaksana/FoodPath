@@ -10,6 +10,11 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseAuth
+import IQKeyboardManagerSwift
+import XCGLogger
+
+// Global log variable to give verbose log information in console
+let log = XCGLogger.default
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,23 +23,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        log.setup(level: .debug,
+                  showThreadName: true,
+                  showLevel: true,
+                  showFileNames: true,
+                  showLineNumbers: true,
+                  writeToFile: "path/to/file",
+                  fileLevel: .debug)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
         FIRApp.configure()
         
+        IQKeyboardManager.sharedManager().enable = true
+        
+        window?.rootViewController = MainViewController()
+        
+        /*
         if FIRAuth.auth()?.currentUser != nil {
             // User is signed in.
-            
-            let vc = MainViewController()
-            window?.rootViewController = vc
-            
+            let viewController = MainViewController()
+            window?.rootViewController = viewController
         } else {
             // No user is signed in.
-            let vc = LoginViewController()
-            
-            window?.rootViewController = vc
+            let viewController = LoginViewController()
+            window?.rootViewController = viewController
         }
+        */
         
         return true
     }
