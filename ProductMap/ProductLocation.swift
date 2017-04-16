@@ -11,7 +11,7 @@ import MapKit
 
 class ProductLocation: NSObject, MKAnnotation {
     
-    var identifier = "Product location"
+    var identifier = "Product Location"
     var title: String?
     var coordinate: CLLocationCoordinate2D
     var pinCustomImageName: String?

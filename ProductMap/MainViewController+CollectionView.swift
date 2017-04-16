@@ -19,19 +19,22 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let reuseIdentifier = "CategoryCell"
+        guard let collectionView = collectionView as? CategoriesCollectionView else {
+            fatalError("Collection View does not exist")
+        }
+        
+        let id = collectionView.reusableCellID
+        let category = listOfCategories[indexPath.row]
         
         collectionView.register(
             CategoryCell.self,
-            forCellWithReuseIdentifier: reuseIdentifier
+            forCellWithReuseIdentifier: id
         )
         
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: reuseIdentifier,
+            withReuseIdentifier: id,
             for: indexPath) as! CategoryCell
-        
-        let category = listOfCategories[indexPath.row]
-        
+    
         // Configure the cell
         cell.configure(with: category)
         

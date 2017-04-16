@@ -48,8 +48,6 @@ class MainViewController: UIViewController {
         mainMapView.frame = self.view.frame
         // Setting the delegate
         mainMapView.delegate = self
-        // Setting user location
-        mainMapView.showsUserLocation = true
     }
     
     // MARK: - Setup topBarView

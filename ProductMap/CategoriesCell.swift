@@ -14,7 +14,6 @@ class CategoryCell: UICollectionViewCell {
     
     @IBOutlet weak var icon: UIImage?
     
-    
     func configure(with category: Category) {
         
         self.title?.text = category.title

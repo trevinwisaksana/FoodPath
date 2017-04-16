@@ -11,11 +11,12 @@ import MapKit
 
 extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
+    
     // MARK: - Map View Method
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         // View
-        var view: MKPinAnnotationView
+        var annotationView: MKPinAnnotationView
         guard let annotation = annotation as? ProductLocation else {
             return nil
         }
@@ -24,17 +25,27 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: id) as? MKPinAnnotationView {
             // Set the view to the dequeued view
-            view = dequeuedView
+            annotationView = dequeuedView
         } else {
             // Make a new view
-            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: id)
+            annotationView = MKPinAnnotationView(
+                annotation: annotation,
+                reuseIdentifier: id
+            )
+            annotationView.canShowCallout = true
         }
         
-        return view
+        // Miscellaneous setup
+        annotationView.animatesDrop = true
+        // let customAnnotationView = annotation as? CustomPointAnnotation
+        
+        
+        return annotationView
     }
     
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        // Dragging states
         switch newState {
         case .starting:
             view.dragState = .dragging
@@ -43,6 +54,20 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         default:
             break
         }
+    }
+    
+    
+    // MARK: - CLLocationManager
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        
+        
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // Print the error
+        log.verbose(error)
     }
     
 }

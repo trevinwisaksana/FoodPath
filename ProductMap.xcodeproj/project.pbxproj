@@ -28,6 +28,8 @@
 		DD4B19381EA2A6B700DC0F00 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19371EA2A6B700DC0F00 /* Category.swift */; };
 		DD4B193A1EA2F7F700DC0F00 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19391EA2F7F700DC0F00 /* SearchTextField.swift */; };
 		DD4B193C1EA33AB900DC0F00 /* MainViewController+MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B193B1EA33AB900DC0F00 /* MainViewController+MapView.swift */; };
+		DD4B193E1EA3C57D00DC0F00 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B193D1EA3C57D00DC0F00 /* CustomPointAnnotation.swift */; };
+		DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B193F1EA3C73000DC0F00 /* Constants.swift */; };
 		DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */; };
 		DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */; };
 		DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED21EA03B3700925A43 /* SignInButton.swift */; };
@@ -86,6 +88,8 @@
 		DD4B19371EA2A6B700DC0F00 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		DD4B19391EA2F7F700DC0F00 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		DD4B193B1EA33AB900DC0F00 /* MainViewController+MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+MapView.swift"; sourceTree = "<group>"; };
+		DD4B193D1EA3C57D00DC0F00 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		DD4B193F1EA3C73000DC0F00 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		DD9D8ECD1EA02F4B00925A43 /* ProductMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProductMap.entitlements; sourceTree = "<group>"; };
 		DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 			children = (
 				DD9D8ECD1EA02F4B00925A43 /* ProductMap.entitlements */,
 				DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */,
+				DD4B193F1EA3C73000DC0F00 /* Constants.swift */,
 				DD224C281E9FE509005B88D8 /* View Controllers */,
 				DD9D8ED11EA03B1E00925A43 /* UIElements */,
 				DD224C271E9FE4FE005B88D8 /* Views */,
@@ -198,6 +203,7 @@
 				DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */,
 				C4BD023D1E9FF1D00025FE76 /* User.swift */,
 				DD4B19371EA2A6B700DC0F00 /* Category.swift */,
+				DD4B193D1EA3C57D00DC0F00 /* CustomPointAnnotation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -565,6 +571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD9D8EDA1EA03F0A00925A43 /* CategoriesCell.swift in Sources */,
+				DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */,
 				C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */,
 				DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */,
 				C4BD023C1E9FEDBF0025FE76 /* SignUpViewController.swift in Sources */,
@@ -580,6 +587,7 @@
 				DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */,
 				DD4B193C1EA33AB900DC0F00 /* MainViewController+MapView.swift in Sources */,
 				DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */,
+				DD4B193E1EA3C57D00DC0F00 /* CustomPointAnnotation.swift in Sources */,
 				DD4B193A1EA2F7F700DC0F00 /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
