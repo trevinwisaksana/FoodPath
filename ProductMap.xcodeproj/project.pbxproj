@@ -30,6 +30,8 @@
 		DD4B193C1EA33AB900DC0F00 /* MainViewController+MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B193B1EA33AB900DC0F00 /* MainViewController+MapView.swift */; };
 		DD4B193E1EA3C57D00DC0F00 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B193D1EA3C57D00DC0F00 /* CustomPointAnnotation.swift */; };
 		DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B193F1EA3C73000DC0F00 /* Constants.swift */; };
+		DD4B19421EA3D77900DC0F00 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19411EA3D77900DC0F00 /* AnnotationView.swift */; };
+		DD4B19461EA3E13200DC0F00 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19451EA3E13200DC0F00 /* CustomCalloutView.swift */; };
 		DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */; };
 		DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */; };
 		DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED21EA03B3700925A43 /* SignInButton.swift */; };
@@ -90,6 +92,8 @@
 		DD4B193B1EA33AB900DC0F00 /* MainViewController+MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+MapView.swift"; sourceTree = "<group>"; };
 		DD4B193D1EA3C57D00DC0F00 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		DD4B193F1EA3C73000DC0F00 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DD4B19411EA3D77900DC0F00 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		DD4B19451EA3E13200DC0F00 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		DD9D8ECD1EA02F4B00925A43 /* ProductMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProductMap.entitlements; sourceTree = "<group>"; };
 		DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
@@ -200,10 +204,9 @@
 		DD224C261E9FE4F7005B88D8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */,
 				C4BD023D1E9FF1D00025FE76 /* User.swift */,
 				DD4B19371EA2A6B700DC0F00 /* Category.swift */,
-				DD4B193D1EA3C57D00DC0F00 /* CustomPointAnnotation.swift */,
+				DD4B19431EA3DAEA00DC0F00 /* MapView Models */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -214,8 +217,8 @@
 				DD9D8ED01EA0391500925A43 /* CollectionViews */,
 				DD9D8EDB1EA042C500925A43 /* CollectionViewCells */,
 				DD224C241E9FE4A2005B88D8 /* TopBarView.swift */,
-				DD224C221E9F48EB005B88D8 /* MainMapView.swift */,
 				DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */,
+				DD4B19441EA3DDA800DC0F00 /* Map Views */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -228,6 +231,25 @@
 				DD9D8ED41EA03E0D00925A43 /* MainViewController */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		DD4B19431EA3DAEA00DC0F00 /* MapView Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */,
+				DD4B193D1EA3C57D00DC0F00 /* CustomPointAnnotation.swift */,
+			);
+			name = "MapView Models";
+			sourceTree = "<group>";
+		};
+		DD4B19441EA3DDA800DC0F00 /* Map Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD224C221E9F48EB005B88D8 /* MainMapView.swift */,
+				DD4B19411EA3D77900DC0F00 /* AnnotationView.swift */,
+				DD4B19451EA3E13200DC0F00 /* CustomCalloutView.swift */,
+			);
+			name = "Map Views";
 			sourceTree = "<group>";
 		};
 		DD9D8ED01EA0391500925A43 /* CollectionViews */ = {
@@ -579,6 +601,7 @@
 				DD224C1F1E9F3FF4005B88D8 /* ProductLocation.swift in Sources */,
 				DD4B19381EA2A6B700DC0F00 /* Category.swift in Sources */,
 				DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */,
+				DD4B19461EA3E13200DC0F00 /* CustomCalloutView.swift in Sources */,
 				C4BD023E1E9FF1D00025FE76 /* User.swift in Sources */,
 				DD224BE71E9EBA91005B88D8 /* ProductMap.xcdatamodeld in Sources */,
 				DD9D8ED81EA03E7000925A43 /* MainViewController+CollectionView.swift in Sources */,
@@ -587,6 +610,7 @@
 				DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */,
 				DD4B193C1EA33AB900DC0F00 /* MainViewController+MapView.swift in Sources */,
 				DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */,
+				DD4B19421EA3D77900DC0F00 /* AnnotationView.swift in Sources */,
 				DD4B193E1EA3C57D00DC0F00 /* CustomPointAnnotation.swift in Sources */,
 				DD4B193A1EA2F7F700DC0F00 /* SearchTextField.swift in Sources */,
 			);

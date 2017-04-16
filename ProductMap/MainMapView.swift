@@ -60,7 +60,10 @@ class MainMapView: MKMapView {
         
         let touchPoint = gestureRecognizer.location(in: self)
         // Converts the touch point to a coordinate
-        let touchMapCoordinate = self.convert(touchPoint, toCoordinateFrom: self)
+        let touchMapCoordinate = self.convert(
+            touchPoint,
+            toCoordinateFrom: self
+        )
         let latitude = touchMapCoordinate.latitude
         let longitude = touchMapCoordinate.longitude
         
@@ -71,6 +74,7 @@ class MainMapView: MKMapView {
         )
         
         // Adds the notation
+        // TODO: Make a network request to Firebase
         self.addAnnotation(productLocation)
     }
     

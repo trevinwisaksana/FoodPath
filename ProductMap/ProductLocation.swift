@@ -14,7 +14,8 @@ class ProductLocation: NSObject, MKAnnotation {
     var identifier = "Product Location"
     var title: String?
     var coordinate: CLLocationCoordinate2D
-    var pinCustomImageName: String?
+    var address: String?
+    var icon: UIImage?
     
     init(name: String,
          latitude: CLLocationDegrees,
