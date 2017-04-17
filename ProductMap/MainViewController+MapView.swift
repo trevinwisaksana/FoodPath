@@ -89,6 +89,7 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         if view.isKind(of: AnnotationView.self) {
             for subview in self.view.subviews {
                 if subview.isKind(of: CustomCalloutView.self) {
+                    
                     // Animating the removal of the calloutView
                     UIView.animate(withDuration: 0.2, animations: {
                         subview.frame.origin.y = calloutViewYPosition
@@ -97,6 +98,7 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
                         subview.removeFromSuperview()
                     })
                 }
+                
             }
             
         }
