@@ -2,9 +2,6 @@
 //  APIClient.swift
 //  ProductMap
 //
-//  Created by Bob De Kort on 4/16/17.
-//  Copyright © 2017 Trevin Wisaksana. All rights reserved.
-//
 
 import Foundation
 import FirebaseDatabase
@@ -23,6 +20,41 @@ class APIClient {
         productRef.setValue(product.toJson())
     }
     
+    public func firebaseSignUp(email: String, password: String, completion: (() -> Void)?) {
+        
+        FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
+            
+            guard error == nil else {
+                // TODO: Show please try again later
+                return
+            }
+            
+        }
+        
+    }
     
+    
+    public func firebaseSignIn(email: String, password: String, completion: (() -> Void)?) {
+        
+        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+            guard error == nil else {
+                // TODO: Show UIAlert
+                return
+            }
+        }
+        
+    }
+    
+    
+    public func firebaseCreateProduct(title: String, image: UIImage?, coordinates: CLLocationCoordinate2D) {
+        let latitude = coordinates.latitude 
+        let longitude = coordinates.longitude 
+        let json: [String : Any] = [
+            "title": title,
+            "coordinates" : ["latitude" : latitude, "longitude" : longitude]
+        ]
+        
+        reference.child("Products").childByAutoId().setValue(json)
+    }
 }
 

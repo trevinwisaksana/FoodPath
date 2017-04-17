@@ -7,13 +7,42 @@
 //
 
 import UIKit
+import MapKit
+import Firebase
+
+protocol AddProductViewDelegate: class {
+    
+    /// Resizes the MainMapView
+    func resizeMapView()
+    
+    /// Sends a Firebase request to create a Product model
+    ///
+    /// - Parameters:
+    ///   - title: A String that stores the product name
+    ///   - image: An image of the product
+    func createProduct(
+        title: String,
+        image: UIImage?
+    )
+}
 
 class AddProductView: UIView {
     
+    private let productNameTextField = UITextField()
+    private let cancelButton = UIButton()
+    private let addProductButton = UIButton()
+    weak var delegate: AddProductViewDelegate!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        
+        // Setup
+        setupProductNameTextField()
+        setupCancelButton()
+        setupAddProductButton()
+    
+        // Miscellaneaous setup
+        backgroundColor = .white
+        layer.cornerRadius = 20
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -21,4 +50,129 @@ class AddProductView: UIView {
     }
     
     
+    fileprivate func setupProductNameTextField() {
+        self.addSubview(productNameTextField)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.05,
+            y: frame.height * 0.15,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        productNameTextField.frame = labelFrame
+        productNameTextField.layer.cornerRadius = 10
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: 25
+        )
+        productNameTextField.font = font
+        productNameTextField.placeholder = "  Product name"
+        
+        productNameTextField.backgroundColor = .blue
+        
+    }
+    
+    
+    fileprivate func setupCancelButton() {
+        self.addSubview(cancelButton)
+        
+        let labelFrame = CGRect(
+            x: frame.width * 0.05,
+            y: frame.height * 0.04,
+            width: frame.size.width * 0.1,
+            height: frame.size.width * 0.1
+        )
+        cancelButton.frame = labelFrame
+        cancelButton.layer.cornerRadius = 10
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: 14
+        )
+        cancelButton.titleLabel?.font = font
+        cancelButton.titleLabel?.text = "Cancel"
+        
+        cancelButton.backgroundColor = .blue
+        cancelButton.isUserInteractionEnabled = true
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(cancelTapGestureHandler)
+        )
+        cancelButton.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    
+    @objc fileprivate func cancelTapGestureHandler() {
+        // Dismiss the Add Product View
+        dismissAddProductView()
+    }
+    
+    
+    fileprivate func setupAddProductButton() {
+        self.addSubview(addProductButton)
+        // Frame setup
+        let frame = CGRect(
+            x: self.frame.width * 0.05,
+            y: self.frame.height * 0.45,
+            width: self.frame.size.width * 0.9,
+            height: self.frame.size.height * 0.15
+        )
+        addProductButton.frame = frame
+        addProductButton.layer.cornerRadius = 10
+        // Font setup
+        let font = UIFont(
+            name: "Avenir",
+            size: 14
+        )
+        addProductButton.titleLabel?.font = font
+        addProductButton.titleLabel?.text = "Add product"
+        
+        // Custom tap gesture setup
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(addProductButtonHandler)
+        )
+        addProductButton.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Miscellaneous setup
+        addProductButton.backgroundColor = .blue
+        addProductButton.isUserInteractionEnabled = true
+        
+    }
+    
+    
+    @objc fileprivate func addProductButtonHandler() {
+        // Dismiss the view
+        dismissAddProductView()
+        // TODO: - Firebase request
+        guard let productTitle = productNameTextField.text else {
+            return
+        }
+        // Sends this information to the MainMapView
+        delegate.createProduct(title: productTitle, image: nil)
+    }
+    
+    
+    /// Dismisses the Add Product View and removes it from the superview
+    fileprivate func dismissAddProductView() {
+    
+        guard let keyWindow = keyWindow else {
+            return
+        }
+    
+        UIView.animate(withDuration: 0.2, animations: {
+            // Move the view downwards
+            self.frame.origin.y = keyWindow.frame.height
+            // Resize the MapView
+            self.delegate.resizeMapView()
+            
+        }) { (_) in
+            self.removeFromSuperview()
+        }
+    
+    }
+
 }

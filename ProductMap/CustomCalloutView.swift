@@ -28,7 +28,7 @@ class CustomCalloutView: UIView {
         setupTapGesture()
         
         // Miscellaneous setup
-        backgroundColor = .white
+        backgroundColor = .blue
         layer.cornerRadius = 15
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class SignupViewController: UIViewController {
+class SignUpViewController: UIViewController {
     
     var signupButton: UIButton = {
         let button = UIButton(type: .system)
@@ -128,17 +128,10 @@ class SignupViewController: UIViewController {
         //Check if Fields are valid:
         guard let password = passwordTextField.text, !password.isEmpty, let email = emailTextField.text, !email.isEmpty else { return }
         
-        //TODO: Signup User
-        FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
-            guard error == nil else {
-                print(error)
-                // TODO: Show please try again later
-                return
-            }
-            
-            print(user)
+        APIClient.sharedInstance.firebaseSignUp(email: email, password: password) {
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.setMainMapViewControllerAsRoot()
         }
+        
     }
 }

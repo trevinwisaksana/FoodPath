@@ -11,7 +11,9 @@ import UIKit
 import MapKit
 import Firebase
 
-class MainMapView: MKMapView {
+class MainMapView: MKMapView, AddProductViewDelegate {
+    
+    private var productCoordinate: CLLocationCoordinate2D?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,6 +67,9 @@ class MainMapView: MKMapView {
             touchPoint,
             toCoordinateFrom: self
         )
+        
+        productCoordinate = touchMapCoordinate
+        
         let latitude = touchMapCoordinate.latitude
         let longitude = touchMapCoordinate.longitude
         
@@ -76,7 +81,71 @@ class MainMapView: MKMapView {
         
         // Adds the notation
         // TODO: Make a network request to Firebase
+        self.setCenter(touchMapCoordinate, animated: true)
         self.addAnnotation(productLocation)
+        self.isUserInteractionEnabled = false
+        // Show view to insert product information
+        showAddProductView()
     }
     
+    
+    fileprivate func showAddProductView() {
+        
+        guard let keyWindow = keyWindow else {
+            return
+        }
+        
+        let width = keyWindow.frame.width
+        let height = keyWindow.frame.height
+        
+        let frame = CGRect(
+            x: 0,
+            y: keyWindow.frame.maxY,
+            width: width,
+            height: height * 0.8
+        )
+        let addProductView = AddProductView(frame: frame)
+        
+        addProductView.delegate = self
+        
+        guard let mainViewController = keyWindow.rootViewController else {
+            return
+        }
+        
+        mainViewController.view.addSubview(addProductView)
+        
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            addProductView.frame.origin.y = height * 0.5
+            self.frame.size.height = keyWindow.frame.height * 0.55
+        })
+        
+    }
+    
+    
+    func resizeMapView() {
+        guard let keyWindow = keyWindow else {
+            return
+        }
+        
+        UIView.animate(withDuration: 0.2, animations: { 
+            self.frame.size.height = keyWindow.frame.height
+
+        }) { (_) in
+            self.isUserInteractionEnabled = true
+        }
+    }
+    
+    
+    func createProduct(title: String, image: UIImage?) {
+        
+        guard let productCoordinate = self.productCoordinate else {
+            return
+        }
+        
+        APIClient.sharedInstance.firebaseCreateProduct(
+            title: title,
+            image: image,
+            coordinates: productCoordinate
+        )
+    }
 }

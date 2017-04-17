@@ -109,23 +109,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func handleLogin() {
         //Check if Username Field & Password Field are valid:
         guard let email = usernameTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else { return }
-        
-        //TODO: Login User
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-            guard error == nil else {
-                print(error)
-                return
-            }
-            
+      
+        APIClient.sharedInstance.firebaseSignIn(email: email, password: password) { 
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.setMainMapViewControllerAsRoot()
-            
         }
     }
     
     func handleSignup() {
-        let signUpVC = SignupViewController()
-        present(signUpVC, animated: true, completion: nil)
+        present(SignUpViewController(), animated: true, completion: nil)
     }
     
     func returnTextField() {
