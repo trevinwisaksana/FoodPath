@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: Use this to call the SignInButton
 class SignInButton: UIButton {
     
     override init(frame: CGRect) {

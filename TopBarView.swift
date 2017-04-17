@@ -15,6 +15,7 @@ import MapKit
 class TopBarView: UIView {
     
     private let searchTextField = SearchTextField()
+    private let searchView = SearchView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,6 +42,21 @@ class TopBarView: UIView {
         
         searchTextField.frame = textFieldFrame
         searchTextField.backgroundColor = UIColor.white
+    }
+    
+    
+    func setupSearchView() {
+        self.addSubview(searchView)
+        
+        
+    }
+    
+    func showSearchView() {
+        // If the user has tapped the search text field
+        if searchTextField.isEditing {
+            
+        }
+        
     }
     
 }
