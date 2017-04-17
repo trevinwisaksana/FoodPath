@@ -29,6 +29,7 @@ protocol AddProductViewDelegate: class {
 class AddProductView: UIView {
     
     private let productNameTextField = UITextField()
+    private let productDescriptionTextField = UITextField()
     private let cancelButton = UIButton()
     private let addProductButton = UIButton()
     weak var delegate: AddProductViewDelegate!
@@ -37,6 +38,7 @@ class AddProductView: UIView {
         super.init(frame: frame)
         // Setup
         setupProductNameTextField()
+        setupProductDescriptionTextField()
         setupCancelButton()
         setupAddProductButton()
     
@@ -71,6 +73,31 @@ class AddProductView: UIView {
         productNameTextField.placeholder = "  Product name"
         
         productNameTextField.backgroundColor = .blue
+        
+    }
+    
+    
+    fileprivate func setupProductDescriptionTextField() {
+        self.addSubview(productDescriptionTextField)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.05,
+            y: frame.height * 0.3,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        productDescriptionTextField.frame = labelFrame
+        productDescriptionTextField.layer.cornerRadius = 10
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: 25
+        )
+        productDescriptionTextField.font = font
+        productDescriptionTextField.placeholder = "  Product description"
+        
+        productDescriptionTextField.backgroundColor = .blue
         
     }
     
