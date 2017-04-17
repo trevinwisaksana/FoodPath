@@ -6,8 +6,10 @@
 //  Copyright © 2017 Trevin Wisaksana. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class User {
+    
     static var currentUser: User?
+    
 }

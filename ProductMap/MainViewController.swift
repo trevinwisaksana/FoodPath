@@ -8,67 +8,129 @@
 
 import UIKit
 import MapKit
-import FirebaseAuth
+import Firebase
 
 class MainViewController: UIViewController {
     
+    // MARK: - List of Categories
+    var listOfCategories: [Category] = []
+    
     // MARK: - Views
-    let mainMapView = MainMapView()
-    let topBarView = TopBarView()
-    let bottomBarView = BottomBarView()
+    private let mainMapView = MainMapView()
+    private let topBarView = TopBarView()
+    private let bottomBarView = BottomBarView()
+    private var categoriesCollectionView: CategoriesCollectionView!
+    private let locationManager = CLLocationManager()
     
     // MARK: Properties and Outlets
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Setup map view
-        
-//        do {
-//            try FIRAuth.auth()?.signOut()
-//        } catch {
-//            print("error logout")
-//        }
-        
         setupMapView()
         // Setup topBarView
         setupTopBarView()
         // Setup bottomBarView
         setupBottomBarView()
-    
+        // Setup categories collection view
+        setupCategoryCollectionView()
+        // Setup the hardcoded categories
+        setupCategories()
+        // Setup search text field
+        topBarView.setupSearchTextField()
+        // Setup for location manager
+        setupLocationManager()
     }
     
     // MARK: - Map setup
-    func setupMapView() {
+    fileprivate func setupMapView() {
         self.view.addSubview(mainMapView)
         
-        mainMapView.frame = view.frame
+        mainMapView.frame = self.view.frame
         // Setting the delegate
         mainMapView.delegate = self
     }
     
     // MARK: - Setup topBarView
-    func setupTopBarView() {
+    fileprivate func setupTopBarView() {
         self.view.addSubview(topBarView)
     
         let width = self.view.frame.width
         let height = self.view.frame.height
-        let frame = CGRect(x: 0, y: 0, width: width, height: height * 0.12)
+        let frame = CGRect(x: 0,
+                           y: 0,
+                           width: width,
+                           height: height * 0.12)
         topBarView.frame = frame
     
     }
     
     // MARK: - Setup bottomBarView
-    func setupBottomBarView() {
+    fileprivate func setupBottomBarView() {
         self.view.addSubview(bottomBarView)
         
         let width = self.view.frame.width
         let height = self.view.frame.height
         let frame = CGRect(x: 0,
-                           y: height * 0.85,
+                           y: height * 0.87,
                            width: width,
-                           height: height * 0.5)
+                           height: height * 0.8)
         bottomBarView.frame = frame
         
+    }
+    
+    // MARK: - Setup Collection View
+    fileprivate func setupCategoryCollectionView() {
+        // Getting the frame of the bottom bar view
+        let frame = CGRect(x: 0,
+                           y: 0,
+                           width: bottomBarView.frame.width,
+                           height: bottomBarView.frame.height)
+        // Getting an instance of a layout
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.sectionInset = UIEdgeInsets(
+            top: 20,
+            left: 12,
+            bottom: 10,
+            right: 10
+        )
+        
+        layout.itemSize = CGSize(
+            width: 60,
+            height: 60
+        )
+ 
+        
+        // Instantiating the categories collection view
+        categoriesCollectionView = CategoriesCollectionView(
+            frame: frame,
+            collectionViewLayout: layout
+        )
+        
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.dataSource = self
+        
+        bottomBarView.addSubview(categoriesCollectionView)
+    }
+    
+    
+    fileprivate func setupCategories() {
+        // Adding built in categories
+        self.listOfCategories = ["Food","Fashion", "Fun", "Gadgets", "Services"].map {
+            return Category(title: $0)!
+        }
+        print(listOfCategories.count)
+        // Refresh collection view
+        categoriesCollectionView.reloadData()
+    }
+    
+    
+    fileprivate func setupLocationManager() {
+        // MARK: - Authorization
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     
@@ -82,30 +144,6 @@ class MainViewController: UIViewController {
     
     
 }
-
-
-extension MainViewController: MKMapViewDelegate {
-    
-    // MARK: - Map View Method
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        // View
-        var view: MKPinAnnotationView
-        guard let annotation = annotation as? ProductLocation else { return nil }
-        let id = annotation.identifier
-        
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: id) as? MKPinAnnotationView {
-            // Set the view to the dequeued view
-            view = dequeuedView
-        } else {
-            // Make a new view
-            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: id)
-        }
-        
-        return view
-    }
-   
-}
-
 
 
 
