@@ -14,7 +14,7 @@ import MapKit
 /// TopBarView contains the search bar along with the search collection view
 class TopBarView: UIView {
     
-    let searchTextField = SearchTextField()
+    private let searchTextField = SearchTextField()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,9 +34,9 @@ class TopBarView: UIView {
         // SearchTextField setup
         let textFieldFrame = CGRect(
             x: frame.width * 0.05,
-            y: frame.height * 0.3,
+            y: frame.height * 0.35,
             width: frame.width * 0.9,
-            height: frame.height * 0.8
+            height: frame.height * 0.6
         )
         
         searchTextField.frame = textFieldFrame

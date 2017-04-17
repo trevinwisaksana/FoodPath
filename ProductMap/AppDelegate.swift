@@ -14,7 +14,8 @@ import IQKeyboardManagerSwift
 import XCGLogger
 
 // Global log variable to give verbose log information in console
-let log = XCGLogger.default
+public let log = XCGLogger.default
+public let keyWindow = UIApplication.shared.keyWindow
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
