@@ -34,6 +34,8 @@
 		DD4B19461EA3E13200DC0F00 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19451EA3E13200DC0F00 /* CustomCalloutView.swift */; };
 		DD4B19481EA42BAC00DC0F00 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19471EA42BAC00DC0F00 /* ProductViewController.swift */; };
 		DD4B194B1EA43E3700DC0F00 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */; };
+		DD4B194D1EA46B7600DC0F00 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194C1EA46B7600DC0F00 /* SearchView.swift */; };
+		DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */; };
 		DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */; };
 		DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */; };
 		DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED21EA03B3700925A43 /* SignInButton.swift */; };
@@ -98,6 +100,8 @@
 		DD4B19451EA3E13200DC0F00 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		DD4B19471EA42BAC00DC0F00 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
+		DD4B194C1EA46B7600DC0F00 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionView.swift; sourceTree = "<group>"; };
 		DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		DD9D8ECD1EA02F4B00925A43 /* ProductMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProductMap.entitlements; sourceTree = "<group>"; };
 		DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				DD9D8ED01EA0391500925A43 /* CollectionViews */,
 				DD9D8EDB1EA042C500925A43 /* CollectionViewCells */,
 				DD224C241E9FE4A2005B88D8 /* TopBarView.swift */,
+				DD4B194C1EA46B7600DC0F00 /* SearchView.swift */,
 				DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */,
 				DD4B19441EA3DDA800DC0F00 /* Map Views */,
 			);
@@ -269,6 +274,7 @@
 		DD9D8ED01EA0391500925A43 /* CollectionViews */ = {
 			isa = PBXGroup;
 			children = (
+				DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */,
 				DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */,
 			);
 			name = CollectionViews;
@@ -610,6 +616,7 @@
 				DD9D8EDA1EA03F0A00925A43 /* CategoriesCell.swift in Sources */,
 				DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */,
 				C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */,
+				DD4B194D1EA46B7600DC0F00 /* SearchView.swift in Sources */,
 				DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */,
 				C4BD023C1E9FEDBF0025FE76 /* SignUpViewController.swift in Sources */,
 				DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */,
@@ -622,6 +629,7 @@
 				DD9D8ED81EA03E7000925A43 /* MainViewController+CollectionView.swift in Sources */,
 				DD224C251E9FE4A2005B88D8 /* TopBarView.swift in Sources */,
 				DD4B19481EA42BAC00DC0F00 /* ProductViewController.swift in Sources */,
+				DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */,
 				DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */,
 				DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */,
 				DD4B193C1EA33AB900DC0F00 /* MainViewController+MapView.swift in Sources */,

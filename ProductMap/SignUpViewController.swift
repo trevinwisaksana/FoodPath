@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class SignupViewController: UIViewController {
+class SignUpViewController: UIViewController {
     
     var signupButton: UIButton = {
         let button = UIButton(type: .system)

@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
     let topBarView = TopBarView()
     let bottomBarView = BottomBarView()
     var categoriesCollectionView: CategoriesCollectionView!
+    var searchCollectionView: SearchCollectionView!
     let locationManager = CLLocationManager()
     
     // MARK: - Logic
@@ -104,7 +105,6 @@ class MainViewController: UIViewController {
             height: self.view.frame.width / 4.9
         )
  
-        
         // Instantiating the categories collection view
         categoriesCollectionView = CategoriesCollectionView(
             frame: frame,

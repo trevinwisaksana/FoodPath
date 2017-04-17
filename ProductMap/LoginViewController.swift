@@ -124,8 +124,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func handleSignup() {
-        let signUpVC = SignupViewController()
-        present(signUpVC, animated: true, completion: nil)
+        present(SignUpViewController(), animated: true, completion: nil)
     }
     
     func returnTextField() {
