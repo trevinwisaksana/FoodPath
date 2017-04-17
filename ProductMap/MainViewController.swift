@@ -16,11 +16,15 @@ class MainViewController: UIViewController {
     var listOfCategories: [Category] = []
     
     // MARK: - Views
-    private let mainMapView = MainMapView()
-    private let topBarView = TopBarView()
-    private let bottomBarView = BottomBarView()
-    private var categoriesCollectionView: CategoriesCollectionView!
-    private let locationManager = CLLocationManager()
+    let mainMapView = MainMapView()
+    let topBarView = TopBarView()
+    let bottomBarView = BottomBarView()
+    var categoriesCollectionView: CategoriesCollectionView!
+    let locationManager = CLLocationManager()
+    let calloutView = CustomCalloutView()
+    
+    // MARK: - Logic
+    var calloutViewIsVisible = false
     
     // MARK: Properties and Outlets
     override func viewDidLoad() {
@@ -71,7 +75,7 @@ class MainViewController: UIViewController {
         let width = self.view.frame.width
         let height = self.view.frame.height
         let frame = CGRect(x: 0,
-                           y: height * 0.87,
+                           y: height * 0.84,
                            width: width,
                            height: height * 0.8)
         bottomBarView.frame = frame
@@ -85,7 +89,7 @@ class MainViewController: UIViewController {
                            y: 0,
                            width: bottomBarView.frame.width,
                            height: bottomBarView.frame.height)
-        // Getting an instance of a layout
+        // Creating an instance of a layout
         let layout = UICollectionViewFlowLayout()
         
         layout.sectionInset = UIEdgeInsets(
@@ -95,9 +99,10 @@ class MainViewController: UIViewController {
             right: 10
         )
         
+        // Makes the height and width equal
         layout.itemSize = CGSize(
-            width: 60,
-            height: 60
+            width: self.view.frame.width / 4.9,
+            height: self.view.frame.width / 4.9
         )
  
         
@@ -116,7 +121,7 @@ class MainViewController: UIViewController {
     
     fileprivate func setupCategories() {
         // Adding built in categories
-        self.listOfCategories = ["Food","Fashion", "Fun", "Gadgets", "Services"].map {
+        self.listOfCategories = ["Food","Fashion", "Fun", "Gadgets"].map {
             return Category(title: $0)!
         }
         print(listOfCategories.count)

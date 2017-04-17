@@ -54,39 +54,68 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             return
         }
         
-        let productAnnotation = view.annotation as? ProductLocation
-        
-        guard let coordinate = view.annotation?.coordinate else {
-            return
+        // TODO: Fix the calloutView
+        // Prevents having two calloutView's appearing on top of each other
+        if calloutViewIsVisible == true {
+            calloutView.removeFromSuperview()
         }
         
-        let calloutView = CustomCalloutView()
-        calloutView.title = productAnnotation?.title
-        calloutView.address = productAnnotation?.address
+        // let productAnnotation = view.annotation as? ProductLocation
+        
+        // TODO: Add in constants file
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        let calloutViewHeight = self.view.frame.height * 0.2
+        
+        // Setup calloutView
         calloutView.frame = CGRect(
             x: 0,
-            y: 0,
-            width: 100,
-            height: 100
+            y: height,
+            width: width,
+            height: calloutViewHeight
         )
-        calloutView.center = CGPoint(
-            x: view.bounds.size.width / 2,
-            y: -calloutView.bounds.size.height * 0.52
-        )
-        
+        // Animates the entry of the calloutView
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            // Animating the calloutView
+            self.calloutView.frame = CGRect(
+                x: 0,
+                y: height * 0.84,
+                width: width,
+                height: calloutViewHeight
+            )
+        })  { (_) in
+            self.calloutViewIsVisible = true
+        }
+    
         // Adding the calloutView to the Map View
-        view.addSubview(calloutView)
-        mapView.setCenter(coordinate, animated: true)
+        self.view.addSubview(calloutView)
     }
     
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        
+        // TODO: Not DRY, add in constants file
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        let calloutViewHeight = self.view.frame.height * 0.2
+        
         // If the view is type AnnotationView
         if view.isKind(of: AnnotationView.self) {
-            // Remove all the subviews
-            for subview in view.subviews {
-                subview.removeFromSuperview()
-            }
+            // Animating the removal of the calloutView
+            UIView.animate(withDuration: 0.2, animations: { 
+                self.calloutView.frame = CGRect(
+                    x: 0,
+                    y: height,
+                    width: width,
+                    height: calloutViewHeight
+                )
+            }, completion: { (_) in
+                // Remove the calloutView
+                self.calloutView.removeFromSuperview()
+                // Reset the Bool
+                self.calloutViewIsVisible = false
+            })
+            
         }
     }
     

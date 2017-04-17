@@ -9,6 +9,7 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 class MainMapView: MKMapView {
     
