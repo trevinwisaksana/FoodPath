@@ -22,5 +22,7 @@ class APIClient {
         
         productRef.setValue(product.toJson())
     }
+    
+    
 }
 
