@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		23F4159D22F46FCAD1D727D5 /* Pods_ProductMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F68B0874A37A7586B96F1B /* Pods_ProductMap.framework */; };
 		86221DB5D06CC287A88B9F27 /* Pods_ProductMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E5CBC08CC7BC273EF80BA2 /* Pods_ProductMapUITests.framework */; };
+		C42C6DCF1EA4428F008A4500 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42C6DCE1EA4428F008A4500 /* APIClient.swift */; };
 		C4BD02381E9FE9DB0025FE76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4BD02371E9FE9DB0025FE76 /* GoogleService-Info.plist */; };
 		C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD02391E9FEDB50025FE76 /* LoginViewController.swift */; };
 		C4BD023C1E9FEDBF0025FE76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD023B1E9FEDBF0025FE76 /* SignUpViewController.swift */; };
 		C4BD023E1E9FF1D00025FE76 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD023D1E9FF1D00025FE76 /* User.swift */; };
+		C4E7AAA61EA544AC00518FD6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E7AAA51EA544AC00518FD6 /* Product.swift */; };
 		DB8948F811262E6826D263CD /* Pods_ProductMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DC14E0590687E3A5F33BB /* Pods_ProductMapTests.framework */; };
 		DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */; };
 		DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BE01E9EBA91005B88D8 /* MainViewController.swift */; };
@@ -67,10 +69,12 @@
 		749DC14E0590687E3A5F33BB /* Pods_ProductMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProductMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F872CBA9AA12D01C77DE3E /* Pods-ProductMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProductMapUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProductMapUITests/Pods-ProductMapUITests.release.xcconfig"; sourceTree = "<group>"; };
 		98E5CBC08CC7BC273EF80BA2 /* Pods_ProductMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProductMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C42C6DCE1EA4428F008A4500 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		C4BD02371E9FE9DB0025FE76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4BD02391E9FEDB50025FE76 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4BD023B1E9FEDBF0025FE76 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C4BD023D1E9FF1D00025FE76 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C4E7AAA51EA544AC00518FD6 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		D8F68B0874A37A7586B96F1B /* Pods_ProductMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProductMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD224BDB1E9EBA91005B88D8 /* ProductMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 				DD9D8ECD1EA02F4B00925A43 /* ProductMap.entitlements */,
 				DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */,
 				DD4B193F1EA3C73000DC0F00 /* Constants.swift */,
+				C42C6DCE1EA4428F008A4500 /* APIClient.swift */,
 				DD224C281E9FE509005B88D8 /* View Controllers */,
 				DD9D8ED11EA03B1E00925A43 /* UIElements */,
 				DD224C271E9FE4FE005B88D8 /* Views */,
@@ -210,6 +215,7 @@
 			children = (
 				C4BD023D1E9FF1D00025FE76 /* User.swift */,
 				DD4B19371EA2A6B700DC0F00 /* Category.swift */,
+				C4E7AAA51EA544AC00518FD6 /* Product.swift */,
 				DD4B19431EA3DAEA00DC0F00 /* MapView Models */,
 			);
 			name = Models;
@@ -613,10 +619,12 @@
 				DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */,
 				C4BD023C1E9FEDBF0025FE76 /* SignUpViewController.swift in Sources */,
 				DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */,
+				C4E7AAA61EA544AC00518FD6 /* Product.swift in Sources */,
 				DD224C1F1E9F3FF4005B88D8 /* ProductLocation.swift in Sources */,
 				DD4B19381EA2A6B700DC0F00 /* Category.swift in Sources */,
 				DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */,
 				DD4B19461EA3E13200DC0F00 /* CustomCalloutView.swift in Sources */,
+				C42C6DCF1EA4428F008A4500 /* APIClient.swift in Sources */,
 				C4BD023E1E9FF1D00025FE76 /* User.swift in Sources */,
 				DD224BE71E9EBA91005B88D8 /* ProductMap.xcdatamodeld in Sources */,
 				DD9D8ED81EA03E7000925A43 /* MainViewController+CollectionView.swift in Sources */,
