@@ -77,6 +77,28 @@ class MainMapView: MKMapView {
         // Adds the notation
         // TODO: Make a network request to Firebase
         self.addAnnotation(productLocation)
+        // Show view to insert product information
+        showAddProductView()
+    }
+    
+    fileprivate func showAddProductView() {
+        
+        guard let width = keyWindow?.frame.width, let height = keyWindow?.frame.height else {
+            return
+        }
+        
+        let frame = CGRect(
+            x: 0,
+            y: height * 0.5,
+            width: width,
+            height: height * 0.8
+        )
+        let addProductView = AddProductView(frame: frame)
+        
+        guard let mainViewController = keyWindow?.rootViewController else {
+            return
+        }
+        mainViewController.view.addSubview(addProductView)
     }
     
 }
