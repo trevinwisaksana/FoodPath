@@ -13,6 +13,7 @@
 		C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD02391E9FEDB50025FE76 /* LoginViewController.swift */; };
 		C4BD023C1E9FEDBF0025FE76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD023B1E9FEDBF0025FE76 /* SignUpViewController.swift */; };
 		C4BD023E1E9FF1D00025FE76 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD023D1E9FF1D00025FE76 /* User.swift */; };
+		C4E7AAA61EA544AC00518FD6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E7AAA51EA544AC00518FD6 /* Product.swift */; };
 		DB8948F811262E6826D263CD /* Pods_ProductMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DC14E0590687E3A5F33BB /* Pods_ProductMapTests.framework */; };
 		DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */; };
 		DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BE01E9EBA91005B88D8 /* MainViewController.swift */; };
@@ -36,8 +37,8 @@
 		DD4B194B1EA43E3700DC0F00 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */; };
 		DD4B194D1EA46B7600DC0F00 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194C1EA46B7600DC0F00 /* SearchView.swift */; };
 		DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */; };
-		DD4B19511EA536BE00DC0F00 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19501EA536BE00DC0F00 /* APIClient.swift */; };
 		DD4B19541EA5371800DC0F00 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19531EA5371800DC0F00 /* Router.swift */; };
+		DD4B19561EA547C800DC0F00 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19551EA547C800DC0F00 /* APIClient.swift */; };
 		DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */; };
 		DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */; };
 		DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED21EA03B3700925A43 /* SignInButton.swift */; };
@@ -75,6 +76,7 @@
 		C4BD02391E9FEDB50025FE76 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4BD023B1E9FEDBF0025FE76 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C4BD023D1E9FF1D00025FE76 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C4E7AAA51EA544AC00518FD6 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		D8F68B0874A37A7586B96F1B /* Pods_ProductMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProductMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD224BDB1E9EBA91005B88D8 /* ProductMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,8 +106,8 @@
 		DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		DD4B194C1EA46B7600DC0F00 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionView.swift; sourceTree = "<group>"; };
-		DD4B19501EA536BE00DC0F00 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		DD4B19531EA5371800DC0F00 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		DD4B19551EA547C800DC0F00 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		DD9D8ECD1EA02F4B00925A43 /* ProductMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProductMap.entitlements; sourceTree = "<group>"; };
 		DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			children = (
 				C4BD023D1E9FF1D00025FE76 /* User.swift */,
 				DD4B19371EA2A6B700DC0F00 /* Category.swift */,
+				C4E7AAA51EA544AC00518FD6 /* Product.swift */,
 				DD4B19431EA3DAEA00DC0F00 /* MapView Models */,
 			);
 			name = Models;
@@ -279,7 +282,7 @@
 		DD4B19521EA536C300DC0F00 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				DD4B19501EA536BE00DC0F00 /* APIClient.swift */,
+				DD4B19551EA547C800DC0F00 /* APIClient.swift */,
 				DD4B19531EA5371800DC0F00 /* Router.swift */,
 			);
 			name = Network;
@@ -631,12 +634,13 @@
 				DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */,
 				C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */,
 				DD4B19541EA5371800DC0F00 /* Router.swift in Sources */,
+				DD4B19561EA547C800DC0F00 /* APIClient.swift in Sources */,
 				DD4B194D1EA46B7600DC0F00 /* SearchView.swift in Sources */,
 				DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */,
 				C4BD023C1E9FEDBF0025FE76 /* SignUpViewController.swift in Sources */,
 				DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */,
+				C4E7AAA61EA544AC00518FD6 /* Product.swift in Sources */,
 				DD224C1F1E9F3FF4005B88D8 /* ProductLocation.swift in Sources */,
-				DD4B19511EA536BE00DC0F00 /* APIClient.swift in Sources */,
 				DD4B19381EA2A6B700DC0F00 /* Category.swift in Sources */,
 				DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */,
 				DD4B19461EA3E13200DC0F00 /* CustomCalloutView.swift in Sources */,
