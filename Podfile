@@ -10,7 +10,7 @@ target 'ProductMap' do
   pod ‘Firebase/Auth’
   pod ‘Firebase/Database’
   pod 'IQKeyboardManagerSwift'
-  pod 'XCGLogger', '~> 5.0.1' 
+  pod 'XCGLogger'
 
   target 'ProductMapTests' do
     inherit! :search_paths

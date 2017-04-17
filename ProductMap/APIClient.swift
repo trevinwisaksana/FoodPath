@@ -2,18 +2,24 @@
 //  APIClient.swift
 //  ProductMap
 //
-//  Created by Trevin Wisaksana on 4/17/17.
-//  Copyright © 2017 Trevin Wisaksana. All rights reserved.
-//
 
-import UIKit
-import Firebase
-import MapKit
-
+import Foundation
+import FirebaseDatabase
+import CoreLocation
 
 class APIClient {
-    static let sharedInstance = APIClient()
     
+    static var sharedInstance = APIClient()
+    
+    static let rootRef = FIRDatabase.database().reference()
+    static let productRef = rootRef.child("Products")
+    
+    func makeNewProduct(product: Product){
+        let productRef = APIClient.productRef.childByAutoId()
+        
+        productRef.setValue(product.toJson())
+    }
+  
     let reference = FIRDatabase.database().reference()
     
     
@@ -56,3 +62,4 @@ class APIClient {
     
     
 }
+
