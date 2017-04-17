@@ -13,7 +13,9 @@ class AddProductView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
+        // Miscellaneaous setup
+        backgroundColor = .clear
+        layer.cornerRadius = 20
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -81,24 +81,42 @@ class MainMapView: MKMapView {
         showAddProductView()
     }
     
+    
     fileprivate func showAddProductView() {
         
-        guard let width = keyWindow?.frame.width, let height = keyWindow?.frame.height else {
+        guard let keyWindow = keyWindow else {
             return
         }
         
+        let width = keyWindow.frame.width
+        let height = keyWindow.frame.height
+        
         let frame = CGRect(
             x: 0,
-            y: height * 0.5,
+            y: keyWindow.frame.maxY,
             width: width,
             height: height * 0.8
         )
         let addProductView = AddProductView(frame: frame)
         
-        guard let mainViewController = keyWindow?.rootViewController else {
+        guard let mainViewController = keyWindow.rootViewController else {
             return
         }
+        
         mainViewController.view.addSubview(addProductView)
+        
+        // TODO: Move the map scroll
+        /*
+        // Move the map upwards
+        UIView.animate(withDuration: 0.2) {
+            let targetYPosition = keyWindow.frame.origin.y
+            let difference = keyWindow.frame.width / 2
+            self.frame.origin.y = targetYPosition - difference
+        }
+        */
+        UIView.animate(withDuration: 0.2) {
+            addProductView.frame.origin.y = height * 0.5
+        }
+        
     }
-    
 }

@@ -21,7 +21,6 @@ class MainViewController: UIViewController {
     let bottomBarView = BottomBarView()
     var categoriesCollectionView: CategoriesCollectionView!
     let locationManager = CLLocationManager()
-    let calloutView = CustomCalloutView()
     
     // MARK: - Logic
     var calloutViewIsVisible = false
