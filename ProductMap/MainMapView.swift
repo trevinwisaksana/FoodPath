@@ -145,10 +145,11 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         let product = Product(
             title: title,
             description: description,
+            city: "Test",
             coordinates: productCoordinate
         )
         
-        APIClient.sharedInstance.createProduct(with: product)
+        APIClient.sharedInstance.createProduct(product: product)
         
     }
 }
