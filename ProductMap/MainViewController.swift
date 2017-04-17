@@ -43,14 +43,14 @@ class MainViewController: UIViewController {
         topBarView.setupSearchTextField()
         // Setup for location manager
         setupLocationManager()
-        
-        testData()
+        // Testing with artificial data
+        // testData()
     }
     
     func testData(){
         let chicagoCoordinate = CLLocationCoordinate2DMake(41.8832301, -87.6278121)
         let product = Product(title: "Best Taco", description: "Amazing authentic taco", coordinates: chicagoCoordinate)
-        APIClient.sharedInstance.makeNewProduct(product: product)
+        APIClient.sharedInstance.createNewProduct(product: product)
     }
     
     // MARK: - Map setup

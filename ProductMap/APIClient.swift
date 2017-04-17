@@ -3,24 +3,16 @@
 //  ProductMap
 //
 
-import Foundation
-import FirebaseDatabase
+import UIKit
+import Firebase
 import CoreLocation
 
 class APIClient {
     
     static var sharedInstance = APIClient()
     
-    static let rootRef = FIRDatabase.database().reference()
-    static let productRef = rootRef.child("Products")
-    
-    func makeNewProduct(product: Product){
-        let productRef = APIClient.productRef.childByAutoId()
-        
-        productRef.setValue(product.toJson())
-    }
-  
-    let reference = FIRDatabase.database().reference()
+    static let reference = FIRDatabase.database().reference()
+    static let productRef = reference.child("Products")
     
     
     public func firebaseSignUp(email: String, password: String, completion: (() -> Void)?) {
@@ -57,7 +49,13 @@ class APIClient {
             "coordinates" : ["latitude" : latitude, "longitude" : longitude]
         ]
         
-        reference.child("Products").childByAutoId().setValue(json)
+        APIClient.reference.child("Products").childByAutoId().setValue(json)
+    }
+    
+    
+    public func createNewProduct(product: Product){
+        let productRef = APIClient.productRef.childByAutoId()
+        productRef.setValue(product.toJson())
     }
     
     
