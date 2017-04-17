@@ -52,7 +52,8 @@ class APIClient {
     }
     
     
-    public func createNewProduct(product: Product){
+
+    public func createProduct(product: Product){
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
         productRef.setValue(product.toJson())
     }
@@ -80,5 +81,6 @@ class APIClient {
             }
         })
     }
+
 }
 

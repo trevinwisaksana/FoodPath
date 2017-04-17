@@ -53,11 +53,18 @@ class MainViewController: UIViewController {
 //        }
     }
     
+    /*
     func testData(){
         let chicagoCoordinate = CLLocationCoordinate2DMake(41.8832301, -87.6278121)
+
+        let product = Product(title: "Best Taco", description: "Amazing authentic taco", coordinates: chicagoCoordinate)
+        APIClient.sharedInstance.createProduct(product: product)
+
         let product = Product(title: "Best Taco", description: "Amazing authentic taco", city: "San Francisco", coordinates: chicagoCoordinate)
         APIClient.sharedInstance.createNewProduct(product: product)
+
     }
+    */
     
     // MARK: - Map setup
     fileprivate func setupMapView() {

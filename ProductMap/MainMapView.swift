@@ -136,16 +136,20 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     }
     
     
-    func createProduct(title: String, image: UIImage?) {
+    func createProduct(title: String, description: String, image: UIImage?) {
         
         guard let productCoordinate = self.productCoordinate else {
             return
         }
         
-        APIClient.sharedInstance.firebaseCreateProduct(
+        let product = Product(
             title: title,
-            image: image,
+            description: description,
+            city: "Test",
             coordinates: productCoordinate
         )
+        
+        APIClient.sharedInstance.createProduct(product: product)
+        
     }
 }

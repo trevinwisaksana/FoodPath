@@ -22,6 +22,7 @@ protocol AddProductViewDelegate: class {
     ///   - image: An image of the product
     func createProduct(
         title: String,
+        description: String,
         image: UIImage?
     )
 }
@@ -38,6 +39,7 @@ class AddProductView: UIView {
         super.init(frame: frame)
         // Setup
         setupProductNameTextField()
+        setupProductDescriptionTextField()
         setupCancelButton()
         setupAddProductButton()
     
@@ -72,6 +74,31 @@ class AddProductView: UIView {
         productNameTextField.placeholder = "  Product name"
         
         productNameTextField.backgroundColor = .blue
+        
+    }
+    
+    
+    fileprivate func setupProductDescriptionTextField() {
+        self.addSubview(productDescriptionTextField)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.05,
+            y: frame.height * 0.29,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        productDescriptionTextField.frame = labelFrame
+        productDescriptionTextField.layer.cornerRadius = 10
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: 25
+        )
+        productDescriptionTextField.font = font
+        productDescriptionTextField.placeholder = "  Product description"
+        
+        productDescriptionTextField.backgroundColor = .blue
         
     }
     
@@ -152,8 +179,17 @@ class AddProductView: UIView {
         guard let productTitle = productNameTextField.text else {
             return
         }
+        
+        guard let productDescription = productDescriptionTextField.text else {
+            return
+        }
+        
         // Sends this information to the MainMapView
-        delegate.createProduct(title: productTitle, image: nil)
+        delegate.createProduct(
+            title: productTitle,
+            description: productDescription,
+            image: nil
+        )
     }
     
     
