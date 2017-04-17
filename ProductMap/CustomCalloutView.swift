@@ -13,14 +13,8 @@ class CustomCalloutView: UIView {
     var title: String?
     var address: String?
     
-    // Product Name Label
-    var productNameLabel: UILabel = {
-        let label = UILabel()
-        
-        
-        
-        return label
-    }()
+    // UIElements
+    var productNameLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
