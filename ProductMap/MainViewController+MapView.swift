@@ -11,6 +11,7 @@ import MapKit
 
 extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
+    
     // MARK: - Map View Method
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -122,13 +123,11 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     // MARK: - CLLocationManager
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        
-        
+        print("Used")
     }
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Print the error
         log.verbose(error)
     }
     

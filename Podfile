@@ -11,6 +11,7 @@ target 'ProductMap' do
   pod ‘Firebase/Database’
   pod 'IQKeyboardManagerSwift'
   pod 'XCGLogger'
+  pod 'SwiftyJSON'
 
   target 'ProductMapTests' do
     inherit! :search_paths

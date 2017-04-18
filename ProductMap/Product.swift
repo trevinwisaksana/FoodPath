@@ -15,7 +15,7 @@ class Product {
     var city: String
     var coordinates: CLLocationCoordinate2D
     
-    init(title: String, description: String, city: String, coordinates: CLLocationCoordinate2D) {
+    init?(title: String, description: String, city: String, coordinates: CLLocationCoordinate2D) {
         self.title = title
         self.description = description
         self.city = city

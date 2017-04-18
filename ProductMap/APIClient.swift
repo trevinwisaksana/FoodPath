@@ -6,9 +6,9 @@
 import UIKit
 import Firebase
 import CoreLocation
+import SwiftyJSON
 
 class APIClient {
-    
     static var sharedInstance = APIClient()
     
     static let reference = FIRDatabase.database().reference()
@@ -52,26 +52,31 @@ class APIClient {
     
     
 
-    public func createProduct(product: Product){
+    public func createProduct(product: Product) {
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
         productRef.setValue(product.toJson())
     }
     
     public func getProductsByCity(city: String, completionHandler: @escaping ([Product]) -> Void){
+        
         APIClient.productRef.child(city).observe(.value, with: { (snapshot) in
             if snapshot.exists() {
+                
                 if let data = snapshot.value as? [String: AnyObject] {
-                    print(data)
+                    
                     var products: [Product] = []
+                    
                     for i in data {
                         if let value = i.value as? [String: AnyObject] {
                             let product = Product(json: value, city: city)
-                            if let product = product{
+                            if let product = product {
                                 products.append(product)
                             }
                         }
                     }
+                    
                     completionHandler(products)
+                    
                 }
             } else {
                 // TODO: Handel no snapshot

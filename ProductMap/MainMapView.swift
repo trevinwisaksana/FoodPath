@@ -26,6 +26,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         mapType = MKMapType.standard
         // Setup gesture recognizer
         setupLongTapGesture()
+        
     }
     
     
@@ -88,7 +89,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         showAddProductView()
     }
     
-    
     fileprivate func showAddProductView() {
         
         guard let keyWindow = keyWindow else {
@@ -114,7 +114,14 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         mainViewController.view.addSubview(addProductView)
         
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0,
+            usingSpringWithDamping: 0.6,
+            initialSpringVelocity: 1,
+            options: .curveEaseIn,
+            animations: {
+            // Animate Product View
             addProductView.frame.origin.y = height * 0.5
             self.frame.size.height = keyWindow.frame.height * 0.55
         })
@@ -142,12 +149,12 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
-        let product = Product(
+        guard let product = Product(
             title: title,
             description: description,
             city: "Test",
             coordinates: productCoordinate
-        )
+        ) else { return }
         
         APIClient.sharedInstance.createProduct(product: product)
         

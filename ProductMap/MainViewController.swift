@@ -44,14 +44,32 @@ class MainViewController: UIViewController {
         // Setup for location manager
         setupLocationManager()
         
-        
         // Testing with artificial data
-//         testData()
-        // Testing getting products
-//        APIClient.sharedInstance.getProductsByCity(city: "San Francisco") { (products) in
-//            print("Testing \(products)")
-//        }
+        APIClient.sharedInstance.getProductsByCity(city: "Test") { (products) in
+            
+            let annotations = products.map { product -> MKPointAnnotation in
+                let annotation = MKPointAnnotation()
+                annotation.title = product.title
+                annotation.coordinate = product.coordinates
+                // Testing to see where the coordinate actually is
+                self.mainMapView.setCenter(
+                    product.coordinates,
+                    animated: true
+                )
+                return annotation
+            }
+            
+            self.mainMapView.addAnnotations(annotations)
+            
+        }
     }
+    
+    
+    func reloadMapView(annotations: [MKAnnotation]) {
+        self.mainMapView.removeAnnotations(annotations)
+        self.mainMapView.addAnnotations(annotations)
+    }
+    
     
     /*
     func testData(){
@@ -65,6 +83,7 @@ class MainViewController: UIViewController {
 
     }
     */
+    
     
     // MARK: - Map setup
     fileprivate func setupMapView() {

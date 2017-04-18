@@ -37,6 +37,7 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - SwiftyJSON (3.1.4)
   - XCGLogger (5.0.1):
     - XCGLogger/Core (= 5.0.1)
   - XCGLogger/Core (5.0.1):
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - IQKeyboardManagerSwift
+  - SwiftyJSON
   - XCGLogger
 
 SPEC CHECKSUMS:
@@ -60,8 +62,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: 5a13f1c82b2527ab920a357e73a3af2a663925d1
+PODFILE CHECKSUM: 489f4133821bfb49b99c3aef8f70f3cb36e786a5
 
 COCOAPODS: 1.2.1
