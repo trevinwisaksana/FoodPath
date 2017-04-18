@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreLocation
 import MapKit
 
 class Product: NSObject, MKAnnotation {

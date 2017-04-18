@@ -10,17 +10,22 @@
 import UIKit
 import MapKit
 
+protocol SearchProductDelegate {
+    func retrieveUserLocation()
+}
+
 
 /// TopBarView contains the search bar along with the search collection view
-class TopBarView: UIView {
+class TopBarView: UIView, UITextFieldDelegate {
     
-    private let searchTextField = SearchTextField()
-    private let searchView = SearchView()
+    private var searchTextField = SearchTextField()
+    let searchView = SearchView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         // Setup
+        searchTextField.delegate = self
         backgroundColor = .clear
     }
     
@@ -48,20 +53,71 @@ class TopBarView: UIView {
     func setupSearchView() {
         self.addSubview(searchView)
         
+        // SearchTextField setup
+        let viewFrame = CGRect(
+            x: searchTextField.frame.origin.x,
+            y: searchTextField.frame.origin.y,
+            width: searchTextField.frame.width,
+            height: 0
+        )
+        
+        searchView.frame = viewFrame
+        searchView.layer.cornerRadius = 10
+        searchView.backgroundColor = UIColor.white
+    }
+    
+    
+    // If the user has tapped the search text field
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        showSearchView()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if text == "\n" {
+            textField.resignFirstResponder()
+            return false
+        }
+        
+        let filteredDataSet = Set<Product>()
+        
+        APIClient.sharedInstance.searchForProduct(searchString: string, city: "San Francisco") { (products) in
+            
+        }
         
     }
     
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        dismissSearchView()
+    }
+    
+    
     func showSearchView() {
-        // If the user has tapped the search text field
-        if searchTextField.isEditing {
-            
-            UIView.animate(withDuration: 0.2, animations: { 
-                
-            }, completion: { (_) in
-                
-            })
-            
+        self.setupSearchView()
+        
+        guard let keyWindow = keyWindow?.frame else {
+            return
         }
+            
+        UIView.animate(withDuration: 0.4, animations: {
+            // Create search view when editting
+            self.searchView.frame.size.height = keyWindow.height * 0.6
+        }, completion: { (_) in
+            self.sendSubview(toBack: self.searchView)
+        })
+        
+    }
+    
+    
+    func dismissSearchView() {
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            // Create search view when editting
+            self.searchView.frame.size.height = 0
+        }, completion: { (_) in
+            self.searchView.removeFromSuperview()
+        })
         
     }
     

@@ -59,6 +59,11 @@ class MainViewController: UIViewController {
         mainMapView.frame = self.view.frame
         // Setting the delegate
         mainMapView.delegate = self
+        // User location
+        mainMapView.showsUserLocation = true
+        // Allow user tracking
+        mainMapView.userTrackingMode = MKUserTrackingMode.follow
+        
     }
     
     // MARK: - Setup topBarView
@@ -149,7 +154,7 @@ class MainViewController: UIViewController {
         )
         
         // Instantiating the categories collection view
-        searchCollectionView = searchCollectionView(
+        searchCollectionView = SearchCollectionView(
             frame: frame,
             collectionViewLayout: layout
         )
@@ -157,8 +162,7 @@ class MainViewController: UIViewController {
         searchCollectionView.delegate = self
         searchCollectionView.dataSource = self
         
-        topBarView.addSubview(searchCollectionView)
-        
+        topBarView.searchView.addSubview(searchCollectionView)
     }
     
     
@@ -167,7 +171,6 @@ class MainViewController: UIViewController {
         self.listOfCategories = ["Food","Fashion", "Fun", "Gadgets"].map {
             return Category(title: $0)!
         }
-        print(listOfCategories.count)
         // Refresh collection view
         categoriesCollectionView.reloadData()
     }
@@ -176,7 +179,7 @@ class MainViewController: UIViewController {
     fileprivate func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     

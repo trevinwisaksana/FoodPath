@@ -79,10 +79,35 @@ class APIClient {
                     
                 }
             } else {
-                // TODO: Handel no snapshot
+                // TODO: Handle no snapshot
             }
         })
     }
+    
+    
+    public func searchForProduct(searchString: String, city: String, completion: @escaping ([Product]) -> Void){
+        
+        let query = APIClient.productRef.child(city).queryOrdered(byChild: "title")
+        query.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                if let data = snapshot.value as? [String: AnyObject] {
+                    var products: [Product] = []
+                    
+                    for i in data {
+                        if let value = i.value as? [String: AnyObject] {
+                            let product = Product(json: value, city: city)
+                            if let product = product {
+                                products.append(product)
+                            }
+                        }
+                    }
+                    
+                    completionHandler(products)
+                }
+            }
+        })
+    }
+    
 
 }
 
