@@ -174,7 +174,6 @@
 				DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */,
 				DD4B193F1EA3C73000DC0F00 /* Constants.swift */,
 				DD224C281E9FE509005B88D8 /* View Controllers */,
-				DD9D8ED11EA03B1E00925A43 /* UIElements */,
 				DD224C271E9FE4FE005B88D8 /* Views */,
 				DD224C261E9FE4F7005B88D8 /* Models */,
 				DD4B19521EA536C300DC0F00 /* Network */,
@@ -321,13 +320,6 @@
 				DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */,
 			);
 			name = CollectionViews;
-			sourceTree = "<group>";
-		};
-		DD9D8ED11EA03B1E00925A43 /* UIElements */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = UIElements;
 			sourceTree = "<group>";
 		};
 		DD9D8ED41EA03E0D00925A43 /* MainViewController */ = {

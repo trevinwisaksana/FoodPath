@@ -55,6 +55,12 @@ class TopBarView: UIView {
         // If the user has tapped the search text field
         if searchTextField.isEditing {
             
+            UIView.animate(withDuration: 0.2, animations: { 
+                
+            }, completion: { (_) in
+                
+            })
+            
         }
         
     }

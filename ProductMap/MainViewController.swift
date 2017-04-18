@@ -47,43 +47,10 @@ class MainViewController: UIViewController {
         // Testing with artificial data
         APIClient.sharedInstance.getProductsByCity(city: "Test") { (products) in
             
-            let annotations = products.map { product -> MKPointAnnotation in
-                let annotation = MKPointAnnotation()
-                annotation.title = product.title
-                annotation.coordinate = product.coordinates
-                // Testing to see where the coordinate actually is
-                self.mainMapView.setCenter(
-                    product.coordinates,
-                    animated: true
-                )
-                return annotation
-            }
-            
-            self.mainMapView.addAnnotations(annotations)
+            self.mainMapView.addAnnotations(products)
             
         }
     }
-    
-    
-    func reloadMapView(annotations: [MKAnnotation]) {
-        self.mainMapView.removeAnnotations(annotations)
-        self.mainMapView.addAnnotations(annotations)
-    }
-    
-    
-    /*
-    func testData(){
-        let chicagoCoordinate = CLLocationCoordinate2DMake(41.8832301, -87.6278121)
-
-        let product = Product(title: "Best Taco", description: "Amazing authentic taco", coordinates: chicagoCoordinate)
-        APIClient.sharedInstance.createProduct(product: product)
-
-        let product = Product(title: "Best Taco", description: "Amazing authentic taco", city: "San Francisco", coordinates: chicagoCoordinate)
-        APIClient.sharedInstance.createNewProduct(product: product)
-
-    }
-    */
-    
     
     // MARK: - Map setup
     fileprivate func setupMapView() {
@@ -97,7 +64,7 @@ class MainViewController: UIViewController {
     // MARK: - Setup topBarView
     fileprivate func setupTopBarView() {
         self.view.addSubview(topBarView)
-    
+        
         let width = self.view.frame.width
         let height = self.view.frame.height
         let frame = CGRect(x: 0,
@@ -105,7 +72,7 @@ class MainViewController: UIViewController {
                            width: width,
                            height: height * 0.12)
         topBarView.frame = frame
-    
+        
     }
     
     // MARK: - Setup bottomBarView
@@ -144,7 +111,7 @@ class MainViewController: UIViewController {
             width: self.view.frame.width / 4.9,
             height: self.view.frame.width / 4.9
         )
- 
+        
         // Instantiating the categories collection view
         categoriesCollectionView = CategoriesCollectionView(
             frame: frame,
@@ -155,6 +122,43 @@ class MainViewController: UIViewController {
         categoriesCollectionView.dataSource = self
         
         bottomBarView.addSubview(categoriesCollectionView)
+    }
+    
+    
+    fileprivate func setupSearchCollectionView() {
+        
+        // Getting the frame of the bottom bar view
+        let frame = CGRect(x: 0,
+                           y: 0,
+                           width: topBarView.frame.width,
+                           height: topBarView.frame.height)
+        // Creating an instance of a layout
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.sectionInset = UIEdgeInsets(
+            top: 20,
+            left: 12,
+            bottom: 10,
+            right: 10
+        )
+        
+        // Makes the height and width equal
+        layout.itemSize = CGSize(
+            width: self.view.frame.width / 4.9,
+            height: self.view.frame.width / 4.9
+        )
+        
+        // Instantiating the categories collection view
+        searchCollectionView = searchCollectionView(
+            frame: frame,
+            collectionViewLayout: layout
+        )
+        
+        searchCollectionView.delegate = self
+        searchCollectionView.dataSource = self
+        
+        topBarView.addSubview(searchCollectionView)
+        
     }
     
     
@@ -170,7 +174,6 @@ class MainViewController: UIViewController {
     
     
     fileprivate func setupLocationManager() {
-        // MARK: - Authorization
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()

@@ -21,7 +21,7 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         
         // View
         var annotationView: MKPinAnnotationView
-        guard let annotation = annotation as? ProductLocation else {
+        guard let annotation = annotation as? Product else {
             return nil
         }
         
@@ -39,10 +39,9 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             annotationView.canShowCallout = false
         }
         
+    
         // Miscellaneous setup
         annotationView.animatesDrop = true
-        // let customAnnotationView = annotation as? CustomPointAnnotation
-        
         
         return annotationView
     }
@@ -64,7 +63,13 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         
         // Custom callout view
         let calloutView = CustomCalloutView()
+        // Custom annotation
+        guard let productAnnotation = view.annotation as? Product else {
+            return
+        }
         // Setup calloutView
+        calloutView.configure(with: productAnnotation)
+        // Setup frame
         calloutView.frame = CGRect(
             x: 0,
             y: height,

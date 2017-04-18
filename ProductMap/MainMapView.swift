@@ -71,14 +71,11 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         productCoordinate = touchMapCoordinate
         
-        let latitude = touchMapCoordinate.latitude
-        let longitude = touchMapCoordinate.longitude
-        
-        let productLocation = ProductLocation(
-            name: "Product",
-            latitude: latitude,
-            longitude: longitude
-        )
+        guard let productLocation = Product(
+            title: "Test",
+            description: "Testing",
+            city: "Testong",
+            coordinate: touchMapCoordinate) else { return }
         
         // Adds the notation
         // TODO: Make a network request to Firebase
@@ -153,7 +150,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             title: title,
             description: description,
             city: "Test",
-            coordinates: productCoordinate
+            coordinate: productCoordinate
         ) else { return }
         
         APIClient.sharedInstance.createProduct(product: product)
