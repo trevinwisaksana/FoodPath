@@ -16,6 +16,7 @@ class MainViewController: UIViewController, SearchProductDelegate {
     var listOfCategories: [Category] = []
     // List of Products
     var listOfProducts: [Product] = []
+    var listOfFilteredProducts: [Product] = []
     
     // MARK: - Views
     let mainMapView = MainMapView()
