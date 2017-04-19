@@ -102,7 +102,7 @@ class APIClient {
                         }
                     }
                     
-                    completionHandler(products)
+                    completion(products)
                 }
             }
         })

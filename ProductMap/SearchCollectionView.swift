@@ -26,8 +26,7 @@ class SearchCollectionView: UICollectionView {
     
     func setupSearchCollectionView() {
         
-        
-        
+
     }
     
 }

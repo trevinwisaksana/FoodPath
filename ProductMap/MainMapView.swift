@@ -21,6 +21,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         showsPointsOfInterest = true
         // Setting user location
         showsUserLocation = true
+        // Disabling compass
+        showsCompass = false
         // Map type
         mapType = MKMapType.standard
         // Setup gesture recognizer

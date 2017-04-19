@@ -10,8 +10,12 @@
 import UIKit
 import MapKit
 
-protocol SearchProductDelegate {
-    func retrieveUserLocation()
+protocol SearchProductDelegate: class {
+    
+    /// Updates the Search Collection View by passing the products array
+    ///
+    /// - Parameter products: An array of products 
+    func updateSearchCollectionView(products: [Product])
 }
 
 
@@ -20,6 +24,7 @@ class TopBarView: UIView, UITextFieldDelegate {
     
     private var searchTextField = SearchTextField()
     let searchView = SearchView()
+    weak var delegate: SearchProductDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,17 +79,16 @@ class TopBarView: UIView, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if text == "\n" {
+        if string == "\n" {
             textField.resignFirstResponder()
             return false
         }
         
-        let filteredDataSet = Set<Product>()
-        
         APIClient.sharedInstance.searchForProduct(searchString: string, city: "San Francisco") { (products) in
-            
+            self.delegate?.updateSearchCollectionView(products: products)
         }
         
+        return true
     }
     
     
@@ -99,11 +103,10 @@ class TopBarView: UIView, UITextFieldDelegate {
         guard let keyWindow = keyWindow?.frame else {
             return
         }
-            
-        UIView.animate(withDuration: 0.4, animations: {
-            // Create search view when editting
+        
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseIn, animations: { 
+            // Show search view when editting
             self.searchView.frame.size.height = keyWindow.height * 0.6
-        }, completion: { (_) in
             self.sendSubview(toBack: self.searchView)
         })
         
@@ -111,7 +114,6 @@ class TopBarView: UIView, UITextFieldDelegate {
     
     
     func dismissSearchView() {
-        
         UIView.animate(withDuration: 0.4, animations: {
             // Create search view when editting
             self.searchView.frame.size.height = 0

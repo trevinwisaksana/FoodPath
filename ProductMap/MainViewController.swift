@@ -10,10 +10,12 @@ import UIKit
 import MapKit
 import Firebase
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, SearchProductDelegate {
     
     // MARK: - List of Categories
     var listOfCategories: [Category] = []
+    // List of Products
+    var listOfProducts: [Product] = []
     
     // MARK: - Views
     let mainMapView = MainMapView()
@@ -43,6 +45,8 @@ class MainViewController: UIViewController {
         topBarView.setupSearchTextField()
         // Setup for location manager
         setupLocationManager()
+        // Setup search collectoion view
+        setupSearchCollectionView()
         
         // Testing with artificial data
         APIClient.sharedInstance.getProductsByCity(city: "Test") { (products) in
@@ -78,6 +82,8 @@ class MainViewController: UIViewController {
                            height: height * 0.12)
         topBarView.frame = frame
         
+        // Setup delegate
+        topBarView.delegate = self
     }
     
     // MARK: - Setup bottomBarView
@@ -131,12 +137,12 @@ class MainViewController: UIViewController {
     
     
     fileprivate func setupSearchCollectionView() {
-        
+
         // Getting the frame of the bottom bar view
         let frame = CGRect(x: 0,
-                           y: 0,
-                           width: topBarView.frame.width,
-                           height: topBarView.frame.height)
+                           y: topBarView.frame.height * 0.5,
+                           width: self.view.frame.width * 0.9,
+                           height: self.view.frame.height * 0.6)
         // Creating an instance of a layout
         let layout = UICollectionViewFlowLayout()
         
