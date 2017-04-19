@@ -85,6 +85,7 @@ class TopBarView: UIView, UITextFieldDelegate {
         }
         
         APIClient.sharedInstance.searchForProduct(searchString: string, city: "San Francisco") { (products) in
+            
             self.delegate?.updateSearchCollectionView(products: products)
         }
         

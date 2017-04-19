@@ -82,7 +82,9 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     
     func updateSearchCollectionView(products: [Product]) {
-        listOfProducts.append(contentsOf: products)
+        // Append the products downloaded
+        listOfProducts = products
+        // Refresh the collection view
         searchCollectionView.reloadData()
     }
     
