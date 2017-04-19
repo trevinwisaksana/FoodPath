@@ -11,6 +11,7 @@ import MapKit
 
 extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
+    
     // MARK: - Map View Method
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -20,7 +21,7 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         
         // View
         var annotationView: MKPinAnnotationView
-        guard let annotation = annotation as? ProductLocation else {
+        guard let annotation = annotation as? Product else {
             return nil
         }
         
@@ -38,10 +39,9 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             annotationView.canShowCallout = false
         }
         
+    
         // Miscellaneous setup
         annotationView.animatesDrop = true
-        // let customAnnotationView = annotation as? CustomPointAnnotation
-        
         
         return annotationView
     }
@@ -63,7 +63,13 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         
         // Custom callout view
         let calloutView = CustomCalloutView()
+        // Custom annotation
+        guard let productAnnotation = view.annotation as? Product else {
+            return
+        }
         // Setup calloutView
+        calloutView.configure(with: productAnnotation)
+        // Setup frame
         calloutView.frame = CGRect(
             x: 0,
             y: height,
@@ -123,12 +129,27 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         
-        
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        // Getting user location
+        guard let currentLocation = manager.location?.coordinate else {
+            return
+        }
+        // Setting the center of the map to the user location
+        mainMapView.setCenter(currentLocation, animated: false)
+        // Getting the region to focus
+        let region = MKCoordinateRegionMakeWithDistance(
+            currentLocation,
+            5000,
+            5000
+        )
+        self.mainMapView.setRegion(region, animated: false)
     }
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Print the error
         log.verbose(error)
     }
     

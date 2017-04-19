@@ -7,42 +7,51 @@
 //
 
 import Foundation
-import CoreLocation
+import MapKit
 
-class Product {
-    var title: String
-    var description: String
-    var city: String
-    var coordinates: CLLocationCoordinate2D
+class Product: NSObject, MKAnnotation {
     
-    init(title: String, description: String, city: String, coordinates: CLLocationCoordinate2D) {
+    var identifier = "Product Location"
+    var title: String?
+    var productDescription: String?
+    var city: String
+    var coordinate: CLLocationCoordinate2D
+    
+    init?(title: String, description: String, city: String, coordinate: CLLocationCoordinate2D) {
         self.title = title
-        self.description = description
+        self.productDescription = description
         self.city = city
-        self.coordinates = coordinates
+        self.coordinate = coordinate
     }
     
-    func toJson() -> [String: Any]{
+    
+    func toJson() -> [String: Any] {
         return [
-            "title": title,
+            "title": title!,
             "description": description,
             "coordinates": [
-                "longitude": coordinates.longitude,
-                "latitude": coordinates.latitude]
+                "longitude": coordinate.longitude,
+                "latitude": coordinate.latitude]
         ]
     }
+    
     
     convenience init?(json: [String: AnyObject], city: String) {
         
         guard let title = json["title"] as? String,
             let description = json["description"] as? String,
             let coordinates = json["coordinates"] as? [String: AnyObject],
-            let long = coordinates["longitude"] as? Double,
-            let lat = coordinates["latitude"] as? Double
+            let longitude = coordinates["longitude"] as? Double,
+            let latitude = coordinates["latitude"] as? Double
             else {
                 return nil
         }
 
-        self.init(title: title, description: description, city: city, coordinates: CLLocationCoordinate2DMake(long, lat))
+        self.init(
+            title: title,
+            description:
+            description, city: city, coordinate: CLLocationCoordinate2DMake(latitude, longitude)
+        )
     }
+    
 }

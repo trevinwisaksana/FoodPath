@@ -50,7 +50,7 @@ class BottomBarView: UIView {
         
         let positionToMove = keyWindow.frame.midY * 0.8
         
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             // Move bottom bar upwards and downwards
             if self.hasExpanded == false {
                 self.frame.origin.y = positionToMove
@@ -60,7 +60,8 @@ class BottomBarView: UIView {
                 self.frame.origin.y = positionToMove * 2.11
                 self.hasExpanded = false
             }
-            
+        }) { (_) in
+            // Maybe add something later
         }
     }
 }

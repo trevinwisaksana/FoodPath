@@ -10,9 +10,6 @@ import UIKit
 
 class CustomCalloutView: UIView {
     
-    var title: String?
-    var address: String?
-    
     // UIElements
     var productNameLabel = UILabel()
     
@@ -20,6 +17,8 @@ class CustomCalloutView: UIView {
         super.init(frame: frame)
         // Setup tap gesture to present ProductViewController
         setupTapGesture()
+        // Setup productNameLabel
+        setupProductNameLabel()
         
         // Miscellaneous setup
         backgroundColor = .blue
@@ -51,6 +50,41 @@ class CustomCalloutView: UIView {
             animated: true,
             completion: nil
         )
+        
+    }
+    
+    
+    fileprivate func setupProductNameLabel() {
+        self.addSubview(productNameLabel)
+        
+        guard let keyWindow = keyWindow?.frame else {
+            return
+        }
+        
+        let labelFrame = CGRect(
+            x: keyWindow.width * 0.05,
+            y: keyWindow.width * 0.05,
+            width: keyWindow.width * 0.6,
+            height: keyWindow.height * 0.06
+        )
+        let labelFont = UIFont(
+            name: "Avenir",
+            size: 35
+        )
+        productNameLabel.frame = labelFrame
+        productNameLabel.font = labelFont
+        productNameLabel.backgroundColor = .green
+        
+    }
+    
+    
+    /// Encapsulates the CustomCalloutView UIElements to be configured
+    ///
+    /// - Parameter product: A custom Product model
+    public func configure(with product: Product) {
+        // Assigning properties
+        productNameLabel.text = product.title
+        
         
     }
     

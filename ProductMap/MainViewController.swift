@@ -10,10 +10,12 @@ import UIKit
 import MapKit
 import Firebase
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, SearchProductDelegate {
     
     // MARK: - List of Categories
     var listOfCategories: [Category] = []
+    // List of Products
+    var listOfProducts: [Product] = []
     
     // MARK: - Views
     let mainMapView = MainMapView()
@@ -43,28 +45,16 @@ class MainViewController: UIViewController {
         topBarView.setupSearchTextField()
         // Setup for location manager
         setupLocationManager()
-        
+        // Setup search collectoion view
+        setupSearchCollectionView()
         
         // Testing with artificial data
-//         testData()
-        // Testing getting products
-//        APIClient.sharedInstance.getProductsByCity(city: "San Francisco") { (products) in
-//            print("Testing \(products)")
-//        }
+        APIClient.sharedInstance.getProductsByCity(city: "Test") { (products) in
+            
+            self.mainMapView.addAnnotations(products)
+            
+        }
     }
-    
-    /*
-    func testData(){
-        let chicagoCoordinate = CLLocationCoordinate2DMake(41.8832301, -87.6278121)
-
-        let product = Product(title: "Best Taco", description: "Amazing authentic taco", coordinates: chicagoCoordinate)
-        APIClient.sharedInstance.createProduct(product: product)
-
-        let product = Product(title: "Best Taco", description: "Amazing authentic taco", city: "San Francisco", coordinates: chicagoCoordinate)
-        APIClient.sharedInstance.createNewProduct(product: product)
-
-    }
-    */
     
     // MARK: - Map setup
     fileprivate func setupMapView() {
@@ -73,12 +63,17 @@ class MainViewController: UIViewController {
         mainMapView.frame = self.view.frame
         // Setting the delegate
         mainMapView.delegate = self
+        // User location
+        mainMapView.showsUserLocation = true
+        // Allow user tracking
+        mainMapView.userTrackingMode = MKUserTrackingMode.follow
+        
     }
     
     // MARK: - Setup topBarView
     fileprivate func setupTopBarView() {
         self.view.addSubview(topBarView)
-    
+        
         let width = self.view.frame.width
         let height = self.view.frame.height
         let frame = CGRect(x: 0,
@@ -86,7 +81,9 @@ class MainViewController: UIViewController {
                            width: width,
                            height: height * 0.12)
         topBarView.frame = frame
-    
+        
+        // Setup delegate
+        topBarView.delegate = self
     }
     
     // MARK: - Setup bottomBarView
@@ -125,7 +122,7 @@ class MainViewController: UIViewController {
             width: self.view.frame.width / 4.9,
             height: self.view.frame.width / 4.9
         )
- 
+        
         // Instantiating the categories collection view
         categoriesCollectionView = CategoriesCollectionView(
             frame: frame,
@@ -139,22 +136,56 @@ class MainViewController: UIViewController {
     }
     
     
+    fileprivate func setupSearchCollectionView() {
+
+        // Getting the frame of the bottom bar view
+        let frame = CGRect(x: 0,
+                           y: topBarView.frame.height * 0.5,
+                           width: self.view.frame.width * 0.9,
+                           height: self.view.frame.height * 0.6)
+        // Creating an instance of a layout
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.sectionInset = UIEdgeInsets(
+            top: 20,
+            left: 12,
+            bottom: 10,
+            right: 10
+        )
+        
+        // Makes the height and width equal
+        layout.itemSize = CGSize(
+            width: self.view.frame.width / 4.9,
+            height: self.view.frame.width / 4.9
+        )
+        
+        // Instantiating the categories collection view
+        searchCollectionView = SearchCollectionView(
+            frame: frame,
+            collectionViewLayout: layout
+        )
+        
+        searchCollectionView.delegate = self
+        searchCollectionView.dataSource = self
+        
+        topBarView.searchView.addSubview(searchCollectionView)
+    }
+    
+    
     fileprivate func setupCategories() {
         // Adding built in categories
         self.listOfCategories = ["Food","Fashion", "Fun", "Gadgets"].map {
             return Category(title: $0)!
         }
-        print(listOfCategories.count)
         // Refresh collection view
         categoriesCollectionView.reloadData()
     }
     
     
     fileprivate func setupLocationManager() {
-        // MARK: - Authorization
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     

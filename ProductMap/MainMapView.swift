@@ -17,30 +17,23 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        resetRegion()
         // Cleans the map
-        showsPointsOfInterest = false
+        showsPointsOfInterest = true
         // Setting user location
         showsUserLocation = true
+        // Disabling compass
+        showsCompass = false
         // Map type
         mapType = MKMapType.standard
         // Setup gesture recognizer
         setupLongTapGesture()
+
+        
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    
-    /// Starts the map with a location in Chicago.
-    /// It is set for testing.
-    func resetRegion() {
-        // For testing
-        let chicagoCoordinate = CLLocationCoordinate2DMake(41.8832301, -87.6278121)
-        let region = MKCoordinateRegionMakeWithDistance(chicagoCoordinate, 5000, 5000)
-        self.setRegion(region, animated: true)
     }
     
     
@@ -70,14 +63,11 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         productCoordinate = touchMapCoordinate
         
-        let latitude = touchMapCoordinate.latitude
-        let longitude = touchMapCoordinate.longitude
-        
-        let productLocation = ProductLocation(
-            name: "Product",
-            latitude: latitude,
-            longitude: longitude
-        )
+        guard let productLocation = Product(
+            title: "Test",
+            description: "Testing",
+            city: "Testong",
+            coordinate: touchMapCoordinate) else { return }
         
         // Adds the notation
         // TODO: Make a network request to Firebase
@@ -87,7 +77,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         // Show view to insert product information
         showAddProductView()
     }
-    
     
     fileprivate func showAddProductView() {
         
@@ -114,7 +103,14 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         mainViewController.view.addSubview(addProductView)
         
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0,
+            usingSpringWithDamping: 0.6,
+            initialSpringVelocity: 1,
+            options: .curveEaseIn,
+            animations: {
+            // Animate Product View
             addProductView.frame.origin.y = height * 0.5
             self.frame.size.height = keyWindow.frame.height * 0.55
         })
@@ -142,12 +138,12 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
-        let product = Product(
+        guard let product = Product(
             title: title,
             description: description,
             city: "Test",
-            coordinates: productCoordinate
-        )
+            coordinate: productCoordinate
+        ) else { return }
         
         APIClient.sharedInstance.createProduct(product: product)
         
