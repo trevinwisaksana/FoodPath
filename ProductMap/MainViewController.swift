@@ -10,10 +10,13 @@ import UIKit
 import MapKit
 import Firebase
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, SearchProductDelegate {
     
     // MARK: - List of Categories
     var listOfCategories: [Category] = []
+    // List of Products
+    var listOfProducts: [Product] = []
+    var listOfFilteredProducts = Set<Product>()
     
     // MARK: - Views
     let mainMapView = MainMapView()
@@ -43,6 +46,8 @@ class MainViewController: UIViewController {
         topBarView.setupSearchTextField()
         // Setup for location manager
         setupLocationManager()
+        // Setup search collectoion view
+        setupSearchCollectionView()
         
         // Testing with artificial data
         APIClient.sharedInstance.getProductsByCity(city: "Test") { (products) in
@@ -69,6 +74,11 @@ class MainViewController: UIViewController {
         mainMapView.frame = self.view.frame
         // Setting the delegate
         mainMapView.delegate = self
+        // User location
+        mainMapView.showsUserLocation = true
+        // Allow user tracking
+        mainMapView.userTrackingMode = MKUserTrackingMode.follow
+        
     }
     
     // MARK: - Setup topBarView
@@ -83,6 +93,8 @@ class MainViewController: UIViewController {
                            height: height * 0.12)
         topBarView.frame = frame
         
+        // Setup delegate
+        topBarView.delegate = self
     }
     
     // MARK: - Setup bottomBarView
@@ -136,12 +148,12 @@ class MainViewController: UIViewController {
     
     
     fileprivate func setupSearchCollectionView() {
-        
+
         // Getting the frame of the bottom bar view
         let frame = CGRect(x: 0,
-                           y: 0,
-                           width: topBarView.frame.width,
-                           height: topBarView.frame.height)
+                           y: topBarView.frame.height * 0.5,
+                           width: self.view.frame.width * 0.9,
+                           height: self.view.frame.height * 0.6)
         // Creating an instance of a layout
         let layout = UICollectionViewFlowLayout()
         
@@ -167,8 +179,7 @@ class MainViewController: UIViewController {
         searchCollectionView.delegate = self
         searchCollectionView.dataSource = self
         
-        topBarView.addSubview(searchCollectionView)
-        
+        topBarView.searchView.addSubview(searchCollectionView)
     }
     
     
@@ -177,7 +188,6 @@ class MainViewController: UIViewController {
         self.listOfCategories = ["Food","Fashion", "Fun", "Gadgets"].map {
             return Category(title: $0)!
         }
-        print(listOfCategories.count)
         // Refresh collection view
         categoriesCollectionView.reloadData()
     }
@@ -186,7 +196,7 @@ class MainViewController: UIViewController {
     fileprivate func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
     

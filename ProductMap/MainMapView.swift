@@ -17,31 +17,23 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        resetRegion()
         // Cleans the map
-        showsPointsOfInterest = false
+        showsPointsOfInterest = true
         // Setting user location
         showsUserLocation = true
+        // Disabling compass
+        showsCompass = false
         // Map type
         mapType = MKMapType.standard
         // Setup gesture recognizer
         setupLongTapGesture()
+
         
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    
-    /// Starts the map with a location in Chicago.
-    /// It is set for testing.
-    func resetRegion() {
-        // For testing
-        let chicagoCoordinate = CLLocationCoordinate2DMake(41.8832301, -87.6278121)
-        let region = MKCoordinateRegionMakeWithDistance(chicagoCoordinate, 5000, 5000)
-        self.setRegion(region, animated: true)
     }
     
     
