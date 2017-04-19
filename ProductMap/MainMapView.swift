@@ -75,7 +75,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             title: "Test",
             description: "Testing",
             city: "Testong",
-            coordinate: touchMapCoordinate) else { return }
+            coordinate: touchMapCoordinate
+            ) else { return }
         
         // Adds the notation
         // TODO: Make a network request to Firebase

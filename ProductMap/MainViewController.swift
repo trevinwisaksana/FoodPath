@@ -50,6 +50,16 @@ class MainViewController: UIViewController {
             self.mainMapView.addAnnotations(products)
             
         }
+        
+//        APIClient.sharedInstance.searchForProduct(searchString: "taco", city: "San Francisco") { (products) in
+//            print(products)
+//        }
+        let product = Product(title: "best buritto", description: "testing", city: "San Francisco", coordinate: CLLocationCoordinate2DMake(41.8832301, -87.6278121))
+        let product1 = Product(title: "best taco", description: "testing", city: "San Francisco", coordinate: CLLocationCoordinate2DMake(41.8832301, -87.6278121))
+        let product2 = Product(title: "best massage", description: "testing", city: "San Francisco", coordinate: CLLocationCoordinate2DMake(41.8832301, -87.6278121))
+        APIClient.sharedInstance.createProduct(product: product!)
+        APIClient.sharedInstance.createProduct(product: product1!)
+        APIClient.sharedInstance.createProduct(product: product2!)
     }
     
     // MARK: - Map setup
@@ -149,7 +159,7 @@ class MainViewController: UIViewController {
         )
         
         // Instantiating the categories collection view
-        searchCollectionView = searchCollectionView(
+        searchCollectionView = SearchCollectionView(
             frame: frame,
             collectionViewLayout: layout
         )

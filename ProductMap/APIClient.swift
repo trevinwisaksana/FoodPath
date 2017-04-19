@@ -83,6 +83,18 @@ class APIClient {
             }
         })
     }
+    
+    public func searchForProduct(searchString: String, city: String, completion: @escaping ([Product]) -> Void){
+        
+        let query = APIClient.productRef.child(city).queryOrdered(byChild: "title")
+        query.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                if let data = snapshot.value as? [String: AnyObject] {
+                    
+                }
+            }
+        })
+    }
 
 }
 

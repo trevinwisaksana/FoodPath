@@ -14,7 +14,7 @@ class Product: NSObject, MKAnnotation {
     
     var identifier = "Product Location"
     var title: String?
-    var productDescription: String?
+    var productDescription: String
     var city: String
     var coordinate: CLLocationCoordinate2D
     
@@ -29,7 +29,7 @@ class Product: NSObject, MKAnnotation {
     func toJson() -> [String: Any] {
         return [
             "title": title!,
-            "description": description,
+            "description": productDescription,
             "coordinates": [
                 "longitude": coordinate.longitude,
                 "latitude": coordinate.latitude]
@@ -50,9 +50,8 @@ class Product: NSObject, MKAnnotation {
 
         self.init(
             title: title,
-            description:
-            description, city: city, coordinate: CLLocationCoordinate2DMake(latitude, longitude)
-        )
+            description: description,
+            city: city,
+            coordinate: CLLocationCoordinate2DMake(latitude, longitude))
     }
-    
 }
