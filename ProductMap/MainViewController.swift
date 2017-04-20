@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import Firebase
 
+
 class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewDelegate {
     
     // MARK: - Lists
@@ -144,10 +145,10 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         
         // SearchTextField setup
         let textFieldFrame = CGRect(
-            x: self.view.frame.width * 0.05,
-            y: self.view.frame.height * 0.05,
-            width: self.view.frame.width * 0.9,
-            height: self.view.frame.height * 0.07
+            x: self.view.frame.width * 0.15,
+            y: self.view.frame.height * 0.04,
+            width: self.view.frame.width * 0.7,
+            height: self.view.frame.height * 0.06
         )
         
         searchTextField.frame = textFieldFrame

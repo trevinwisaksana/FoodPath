@@ -175,6 +175,8 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         self.view.bringSubview(toFront: bottomBarView)
         // Enable map view
         mainMapView.isUserInteractionEnabled = true
+        // Hide keyboard
+        searchTextField.resignFirstResponder()
     }
     
 }
