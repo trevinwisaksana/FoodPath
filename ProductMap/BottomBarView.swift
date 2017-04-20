@@ -19,8 +19,9 @@ class BottomBarView: UIView {
         super.init(frame: frame)
         // Setup
         backgroundColor = .white
-        clipsToBounds = true
         layer.cornerRadius = 15
+        layer.shadowOpacity = 0.15
+        layer.shadowOffset = CGSize(width: 0, height: 2)
         
         // Sets up tap gesture
         setupTapGesture()
