@@ -71,7 +71,7 @@ class APIClient {
                     
                     for i in data {
                         if let value = i.value as? [String: AnyObject] {
-                            let product = Product(json: value, city: city)
+                            let product = Product(json: value, city: city, id: i.key)
                             if let product = product {
                                 products.append(product)
                             }
@@ -99,7 +99,7 @@ class APIClient {
                     for i in data {
                         if let value = i.value as? [String: AnyObject] {
                             
-                            guard let product = Product(json: value, city: city) else {
+                            guard let product = Product(json: value, city: city, id: i.key) else {
                                 return
                             }
                             

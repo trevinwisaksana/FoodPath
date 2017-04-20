@@ -63,8 +63,9 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         )
         
         productCoordinate = touchMapCoordinate
-        
-        productLocation = Product(
+      
+        guard let productLocation = Product(
+            id: nil,
             title: "Test",
             description: "Testing",
             city: "Testong",
@@ -149,6 +150,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         }
         
         guard let product = Product(
+            id: nil,
             title: title,
             description: description,
             city: "Test",

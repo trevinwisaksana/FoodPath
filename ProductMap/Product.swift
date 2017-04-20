@@ -11,6 +11,7 @@ import MapKit
 
 class Product: NSObject, MKAnnotation {
     
+    var id: String?
     var identifier = "Product Location"
     var title: String?
     var productDescription: String
@@ -20,11 +21,12 @@ class Product: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
 
     
-    init?(title: String, description: String, city: String, coordinate: CLLocationCoordinate2D) {
+    init?(id: String?, title: String, description: String, city: String, coordinate: CLLocationCoordinate2D) {
         self.title = title
         self.productDescription = description
         self.city = city
         self.coordinate = coordinate
+        self.id = id
     }
     
     
@@ -39,7 +41,7 @@ class Product: NSObject, MKAnnotation {
     }
     
     
-    convenience init?(json: [String: AnyObject], city: String) {
+    convenience init?(json: [String: AnyObject], city: String, id: String) {
         
         guard let title = json["title"] as? String,
             let description = json["description"] as? String,
@@ -51,6 +53,7 @@ class Product: NSObject, MKAnnotation {
         }
 
         self.init(
+            id: id,
             title: title,
             description: description,
             city: city,
