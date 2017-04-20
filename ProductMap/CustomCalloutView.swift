@@ -12,6 +12,8 @@ class CustomCalloutView: UIView {
     
     // UIElements
     var productNameLabel = UILabel()
+    // Button for upvoting
+    var upvoteButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,6 +86,19 @@ class CustomCalloutView: UIView {
     public func configure(with product: Product) {
         // Assigning properties
         productNameLabel.text = product.title
+        
+        
+    }
+    
+    
+    fileprivate func setupUpvoteButton() {
+        
+        
+        upvoteButton.target(forAction: #selector(upvoteButtonHandler), withSender: self)
+    }
+    
+    
+    @objc fileprivate func upvoteButtonHandler() {
         
         
     }

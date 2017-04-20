@@ -10,6 +10,8 @@
 import UIKit
 
 protocol SearchViewDelegate: class {
+    
+    /// Dismisses the searchView when the cancel button is pressed
     func dismissSearchView()
 }
 
