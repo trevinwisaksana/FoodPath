@@ -10,9 +10,10 @@ import UIKit
 import MapKit
 import Firebase
 
-class MainViewController: UIViewController, SearchProductDelegate {
+
+class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewDelegate {
     
-    // MARK: - List of Categories
+    // MARK: - Lists
     var listOfCategories: [Category] = []
     // List of Products
     var listOfProducts: [Product] = []
@@ -20,22 +21,25 @@ class MainViewController: UIViewController, SearchProductDelegate {
     
     // MARK: - Views
     let mainMapView = MainMapView()
-    let topBarView = TopBarView()
+    let searchView = SearchView()
     let bottomBarView = BottomBarView()
+    var searchTextField = SearchTextField()
     var categoriesCollectionView: CategoriesCollectionView!
     var searchCollectionView: SearchCollectionView!
     let locationManager = CLLocationManager()
     
+    
     // MARK: - Logic
     var calloutViewIsVisible = false
+    
     
     // MARK: Properties and Outlets
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setup map view
         setupMapView()
-        // Setup topBarView
-        setupTopBarView()
+        // Setup searchView
+        setupSearchView()
         // Setup bottomBarView
         setupBottomBarView()
         // Setup categories collection view
@@ -43,7 +47,7 @@ class MainViewController: UIViewController, SearchProductDelegate {
         // Setup the hardcoded categories
         setupCategories()
         // Setup search text field
-        topBarView.setupSearchTextField()
+        setupSearchTextField()
         // Setup for location manager
         setupLocationManager()
         // Setup search collectoion view
@@ -71,20 +75,18 @@ class MainViewController: UIViewController, SearchProductDelegate {
         
     }
     
-    // MARK: - Setup topBarView
-    fileprivate func setupTopBarView() {
-        self.view.addSubview(topBarView)
+    // MARK: - Setup searchView
+    fileprivate func setupSearchView() {
+        self.view.addSubview(searchView)
         
         let width = self.view.frame.width
-        let height = self.view.frame.height
-        let frame = CGRect(x: 0,
-                           y: 0,
+        let frame = CGRect(x: self.view.frame.origin.x,
+                           y: self.view.frame.origin.y,
                            width: width,
-                           height: height * 0.12)
-        topBarView.frame = frame
+                           height: 0)
+        searchView.frame = frame
         
-        // Setup delegate
-        topBarView.delegate = self
+        searchView.searchViewDelegate = self
     }
     
     // MARK: - Setup bottomBarView
@@ -98,7 +100,6 @@ class MainViewController: UIViewController, SearchProductDelegate {
                            width: width,
                            height: height * 0.8)
         bottomBarView.frame = frame
-        
     }
     
     // MARK: - Setup Collection View
@@ -137,13 +138,32 @@ class MainViewController: UIViewController, SearchProductDelegate {
     }
     
     
+    fileprivate func setupSearchTextField() {
+        self.view.addSubview(searchTextField)
+        // Using this update products
+        searchTextField.searchTextFieldDelegate = self
+        
+        // SearchTextField setup
+        let textFieldFrame = CGRect(
+            x: self.view.frame.width * 0.15,
+            y: self.view.frame.height * 0.04,
+            width: self.view.frame.width * 0.7,
+            height: self.view.frame.height * 0.06
+        )
+        
+        searchTextField.frame = textFieldFrame
+    }
+    
+    
     fileprivate func setupSearchCollectionView() {
 
         // Getting the frame of the bottom bar view
-        let frame = CGRect(x: 0,
-                           y: topBarView.frame.height * 0.5,
-                           width: self.view.frame.width * 0.9,
-                           height: self.view.frame.height * 0.6)
+        let frame = CGRect(
+            x: 0,
+            y: self.view.frame.height * 0.12,
+            width: self.view.frame.width,
+            height: 0
+        )
         // Creating an instance of a layout
         let layout = UICollectionViewFlowLayout()
         
@@ -156,8 +176,8 @@ class MainViewController: UIViewController, SearchProductDelegate {
         
         // Makes the height and width equal
         layout.itemSize = CGSize(
-            width: self.view.frame.width / 4.9,
-            height: self.view.frame.width / 4.9
+            width: self.view.frame.width * 0.8,
+            height: self.view.frame.width * 0.2
         )
         
         // Instantiating the categories collection view
@@ -168,8 +188,9 @@ class MainViewController: UIViewController, SearchProductDelegate {
         
         searchCollectionView.delegate = self
         searchCollectionView.dataSource = self
+        searchCollectionView.alwaysBounceVertical = true
         
-        topBarView.searchView.addSubview(searchCollectionView)
+        searchView.addSubview(searchCollectionView)
     }
     
     
@@ -189,6 +210,7 @@ class MainViewController: UIViewController, SearchProductDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
+    
     
     
     // MARK: - Annotations

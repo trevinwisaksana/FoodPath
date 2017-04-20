@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_ProductMapUITestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_ProductMapUITestsVersionString[];
+FOUNDATION_EXPORT double IHKeyboardAvoidingVersionNumber;
+FOUNDATION_EXPORT const unsigned char IHKeyboardAvoidingVersionString[];
 

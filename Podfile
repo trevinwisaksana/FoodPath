@@ -9,7 +9,7 @@ target 'ProductMap' do
   pod ‘Firebase/Core’
   pod ‘Firebase/Auth’
   pod ‘Firebase/Database’
-  pod 'IQKeyboardManagerSwift'
+  pod 'IHKeyboardAvoiding'
   pod 'XCGLogger'
   pod 'SwiftyJSON'
   pod 'SDWebImage'

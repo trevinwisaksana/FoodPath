@@ -153,4 +153,30 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         log.verbose(error)
     }
     
+    
+    func revealSearchView() {
+        // Display searchView
+        searchView.showSearchView()
+        // Display the searchCollectionView
+        searchCollectionView.showSearchCollectionView()
+        // Place the Bottom Bar View at the back
+        self.view.sendSubview(toBack: bottomBarView)
+        // Disable the map from being scrollable
+        mainMapView.isUserInteractionEnabled = false
+    }
+    
+    
+    func dismissSearchView() {
+        // Dismiss searchView
+        searchView.dismissSearchView()
+        // Hide the searchCollectionView
+        searchCollectionView.dismissSearchCollectionView()
+        // Place the Bottom Bar View at the back
+        self.view.bringSubview(toFront: bottomBarView)
+        // Enable map view
+        mainMapView.isUserInteractionEnabled = true
+        // Hide keyboard
+        searchTextField.resignFirstResponder()
+    }
+    
 }

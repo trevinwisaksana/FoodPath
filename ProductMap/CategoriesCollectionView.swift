@@ -20,6 +20,7 @@ class CategoriesCollectionView: UICollectionView {
         
         // Default background
         backgroundColor = .white
+        layer.cornerRadius = 15
     }
     
     required init?(coder aDecoder: NSCoder) {

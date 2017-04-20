@@ -23,6 +23,7 @@ class CategoryCell: UICollectionViewCell {
         backgroundColor = .green
         layer.cornerRadius = frame.size.width / 2
         layer.masksToBounds = true
+        isUserInteractionEnabled = true
     }
 
 }
