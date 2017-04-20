@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseAuth
-import IQKeyboardManagerSwift
 import XCGLogger
 
 // Global log variable to give verbose log information in console
@@ -36,8 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         FIRApp.configure()
-        
-        IQKeyboardManager.sharedManager().enable = true
         
         window?.rootViewController = MainViewController()
         

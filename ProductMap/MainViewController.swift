@@ -10,9 +10,9 @@ import UIKit
 import MapKit
 import Firebase
 
-class MainViewController: UIViewController, SearchProductDelegate {
+class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewDelegate {
     
-    // MARK: - List of Categories
+    // MARK: - Lists
     var listOfCategories: [Category] = []
     // List of Products
     var listOfProducts: [Product] = []
@@ -30,6 +30,7 @@ class MainViewController: UIViewController, SearchProductDelegate {
     
     // MARK: - Logic
     var calloutViewIsVisible = false
+    
     
     // MARK: Properties and Outlets
     override func viewDidLoad() {
@@ -84,6 +85,7 @@ class MainViewController: UIViewController, SearchProductDelegate {
                            height: 0)
         searchView.frame = frame
         
+        searchView.searchViewDelegate = self
     }
     
     // MARK: - Setup bottomBarView
@@ -139,7 +141,7 @@ class MainViewController: UIViewController, SearchProductDelegate {
     fileprivate func setupSearchTextField() {
         self.view.addSubview(searchTextField)
         // Using this update products
-        searchTextField.searchProductDelegate = self
+        searchTextField.searchTextFieldDelegate = self
         
         // SearchTextField setup
         let textFieldFrame = CGRect(
@@ -150,7 +152,6 @@ class MainViewController: UIViewController, SearchProductDelegate {
         )
         
         searchTextField.frame = textFieldFrame
-        searchTextField.backgroundColor = UIColor.blue
     }
     
     

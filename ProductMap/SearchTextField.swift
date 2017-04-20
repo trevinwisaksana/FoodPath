@@ -8,28 +8,27 @@
 
 import UIKit
 
-protocol SearchProductDelegate: class {
+protocol SearchTextFieldDelegate: class {
     
     /// Updates the Search Collection View by passing the products array
     ///
     /// - Parameter products: An array of products
     func updateSearchCollectionView(products: [Product])
-    func disableMapView()
-    func enableMapView()
+    func revealSearchView()
 }
 
 
 class SearchTextField: UITextField, UITextFieldDelegate {
     
-    weak var searchProductDelegate: SearchProductDelegate?
+    weak var searchTextFieldDelegate: SearchTextFieldDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         // Setting the textFieldDelegate to self
-        self.delegate = self
+        delegate = self
         
         // Setting default placeholder
-        placeholder = "   Search"
+        placeholder = "Search"
         
         // Font
         let font = UIFontDescriptor(
@@ -39,8 +38,9 @@ class SearchTextField: UITextField, UITextFieldDelegate {
         self.font = UIFont(descriptor: font, size: 30)
         
         // Corner radius
-        self.clipsToBounds = true
-        self.layer.cornerRadius = 5
+        clipsToBounds = true
+        layer.cornerRadius = 5
+        backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,7 +51,7 @@ class SearchTextField: UITextField, UITextFieldDelegate {
     // If the user has tapped the search text field
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // Disable map view
-        searchProductDelegate?.disableMapView()
+        searchTextFieldDelegate?.revealSearchView()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -61,9 +61,10 @@ class SearchTextField: UITextField, UITextFieldDelegate {
             return false
         }
         
+        
         APIClient.sharedInstance.searchForProduct(searchString: string, city: "San Francisco") { (products) in
             // Updates the search collection view
-            self.searchProductDelegate?.updateSearchCollectionView(products: products)
+            self.searchTextFieldDelegate?.updateSearchCollectionView(products: products)
         }
         
         return true
@@ -71,9 +72,7 @@ class SearchTextField: UITextField, UITextFieldDelegate {
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        searchProductDelegate?.enableMapView()
+        // searchProductDelegate?.dismissSearchView()
     }
 
-
-    
 }

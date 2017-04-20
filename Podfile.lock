@@ -33,7 +33,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
-  - IQKeyboardManagerSwift (4.0.9)
+  - IHKeyboardAvoiding (3.7)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
@@ -47,7 +47,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
-  - IQKeyboardManagerSwift
+  - IHKeyboardAvoiding
   - SwiftyJSON
   - XCGLogger
 
@@ -60,11 +60,11 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
-  IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
+  IHKeyboardAvoiding: 4c852fae85667469307678c65f14f5cac8a7be92
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: 489f4133821bfb49b99c3aef8f70f3cb36e786a5
+PODFILE CHECKSUM: cda032ecc31f81589e1230b062d2b88e7771852b
 
 COCOAPODS: 1.2.1

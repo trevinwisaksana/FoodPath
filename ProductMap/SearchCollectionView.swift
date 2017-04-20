@@ -26,9 +26,6 @@ class SearchCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("Dipshit")
-    }
     
     func setupSearchCollectionView() {
         

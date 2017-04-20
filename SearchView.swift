@@ -9,8 +9,15 @@
 
 import UIKit
 
+protocol SearchViewDelegate: class {
+    func dismissSearchView()
+}
+
 
 class SearchView: UIView {
+    
+    weak var searchViewDelegate: SearchViewDelegate?
+    var cancelSearchButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,6 +54,23 @@ class SearchView: UIView {
             
         })
         
+    }
+    
+    
+    fileprivate func setupCancelSearchButton() {
+        
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(cancelSearchButtonHandler)
+        )
+        cancelSearchButton.addGestureRecognizer(tapGestureRecognizer)
+        
+    }
+    
+    
+    @objc fileprivate func cancelSearchButtonHandler() {
+        searchViewDelegate?.dismissSearchView()
     }
     
 }

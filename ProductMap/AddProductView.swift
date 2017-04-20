@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import Firebase
+import IHKeyboardAvoiding
+
 
 protocol AddProductViewDelegate: class {
     
@@ -42,6 +44,8 @@ class AddProductView: UIView {
         setupProductDescriptionTextField()
         setupCancelButton()
         setupAddProductButton()
+        
+        KeyboardAvoiding.avoidingView = self
     
         // Miscellaneaous setup
         backgroundColor = .white
