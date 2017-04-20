@@ -146,7 +146,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         // SearchTextField setup
         let textFieldFrame = CGRect(
             x: self.view.frame.width * 0.15,
-            y: self.view.frame.height * 0.04,
+            y: self.view.frame.height * 0.05,
             width: self.view.frame.width * 0.7,
             height: self.view.frame.height * 0.06
         )
