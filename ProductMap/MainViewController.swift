@@ -133,7 +133,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         
-        
         bottomBarView.addSubview(categoriesCollectionView)
     }
     
