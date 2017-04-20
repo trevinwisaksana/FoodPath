@@ -152,6 +152,7 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         log.verbose(error)
     }
+
     
     
     func revealSearchView() {
