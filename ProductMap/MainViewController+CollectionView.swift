@@ -75,6 +75,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // If the collectionView is being scrolled, it resigns the keyboard
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if (offsetY > contentHeight - scrollView.frame.size.height) {
+            searchTextField.resignFirstResponder()
+        }
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Centers the screen on the coordinate
         let product = listOfProducts[indexPath.row]

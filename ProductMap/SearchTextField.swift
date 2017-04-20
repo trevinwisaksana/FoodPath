@@ -28,7 +28,7 @@ class SearchTextField: UITextField, UITextFieldDelegate {
         delegate = self
         
         // Setting default placeholder
-        placeholder = "Search"
+        placeholder = "   Search"
         
         // Font
         let font = UIFontDescriptor(

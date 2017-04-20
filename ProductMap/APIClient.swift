@@ -8,6 +8,7 @@ import Firebase
 import CoreLocation
 import SwiftyJSON
 
+
 class APIClient {
     static var sharedInstance = APIClient()
     
@@ -132,6 +133,14 @@ class APIClient {
                 }
             }
         })
+    }
+    
+    
+    public func upvoteRequest() {
+        
+        
+        
+        
     }
 }
 

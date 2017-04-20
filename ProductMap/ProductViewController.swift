@@ -13,7 +13,7 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
     private var topSpaceView = TopSpaceView()
     
     var product: Product? {
-        didSet{
+        didSet {
             topSpaceView.product = product
         }
     }

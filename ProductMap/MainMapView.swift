@@ -14,6 +14,7 @@ import Firebase
 class MainMapView: MKMapView, AddProductViewDelegate {
     
     private var productCoordinate: CLLocationCoordinate2D?
+    private var productLocation: Product?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,12 +64,16 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         productCoordinate = touchMapCoordinate
         
-        guard let productLocation = Product(
+        productLocation = Product(
             title: "Test",
             description: "Testing",
             city: "Testong",
             coordinate: touchMapCoordinate
-            ) else { return }
+            )
+        
+        guard let productLocation = productLocation else {
+            return
+        }
         
         // Adds the notation
         // TODO: Make a network request to Firebase
@@ -124,9 +129,13 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
+        guard let productLocation = productLocation else {
+            return
+        }
+        
         UIView.animate(withDuration: 0.2, animations: { 
             self.frame.size.height = keyWindow.frame.height
-
+            self.removeAnnotation(productLocation)
         }) { (_) in
             self.isUserInteractionEnabled = true
         }

@@ -12,6 +12,8 @@ class CustomCalloutView: UIView {
     
     // UIElements
     var productNameLabel = UILabel()
+    // Button for upvoting
+    var upvoteButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +21,8 @@ class CustomCalloutView: UIView {
         setupTapGesture()
         // Setup productNameLabel
         setupProductNameLabel()
+        // Setup upvote button
+        setupUpvoteButton()
         
         // Miscellaneous setup
         backgroundColor = .blue
@@ -63,13 +67,13 @@ class CustomCalloutView: UIView {
         
         let labelFrame = CGRect(
             x: keyWindow.width * 0.05,
-            y: keyWindow.width * 0.05,
+            y: keyWindow.width * 0.03,
             width: keyWindow.width * 0.6,
             height: keyWindow.height * 0.06
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 35
+            size: 30
         )
         productNameLabel.frame = labelFrame
         productNameLabel.font = labelFont
@@ -86,6 +90,47 @@ class CustomCalloutView: UIView {
         productNameLabel.text = product.title
         
         
+    }
+    
+    
+    fileprivate func setupUpvoteButton() {
+        self.addSubview(upvoteButton)
+    
+        // Window frame
+        guard let windowFrame = keyWindow?.frame else {
+            return
+        }
+        
+        let buttonFrame = CGRect(
+            x: windowFrame.width * 0.72,
+            y: windowFrame.width * 0.03,
+            width: 80,
+            height: 80
+        )
+        upvoteButton.frame = buttonFrame
+        upvoteButton.backgroundColor = .white
+        upvoteButton.layer.cornerRadius = upvoteButton.frame.width / 2
+        
+        // Button label
+        let buttonFont = UIFont(name: "Avenir", size: 35)
+        upvoteButton.titleLabel?.font = buttonFont
+        upvoteButton.titleLabel?.textColor = .black
+        upvoteButton.titleLabel?.textAlignment = .center
+        upvoteButton.setTitle("0", for: .normal)
+        upvoteButton.setTitleColor(.black, for: .normal)
+        
+        // Button target action
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(upvoteButtonHandler)
+        )
+        upvoteButton.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    
+    @objc fileprivate func upvoteButtonHandler() {
+        // TODO: Firebase request to upvote
+        upvoteButton.setTitle("\(1)", for: .normal)
     }
     
 }
