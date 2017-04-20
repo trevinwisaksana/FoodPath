@@ -25,7 +25,7 @@
 		DD224C1D1E9F3CEA005B88D8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD224C1C1E9F3CEA005B88D8 /* MapKit.framework */; };
 		DD224C1F1E9F3FF4005B88D8 /* ProductLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */; };
 		DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C221E9F48EB005B88D8 /* MainMapView.swift */; };
-		DD224C251E9FE4A2005B88D8 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C241E9FE4A2005B88D8 /* TopBarView.swift */; };
+		DD224C251E9FE4A2005B88D8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224C241E9FE4A2005B88D8 /* SearchView.swift */; };
 		DD4B19381EA2A6B700DC0F00 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19371EA2A6B700DC0F00 /* Category.swift */; };
 		DD4B193A1EA2F7F700DC0F00 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19391EA2F7F700DC0F00 /* SearchTextField.swift */; };
 		DD4B193C1EA33AB900DC0F00 /* MainViewController+MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B193B1EA33AB900DC0F00 /* MainViewController+MapView.swift */; };
@@ -35,7 +35,6 @@
 		DD4B19461EA3E13200DC0F00 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19451EA3E13200DC0F00 /* CustomCalloutView.swift */; };
 		DD4B19481EA42BAC00DC0F00 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19471EA42BAC00DC0F00 /* ProductViewController.swift */; };
 		DD4B194B1EA43E3700DC0F00 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */; };
-		DD4B194D1EA46B7600DC0F00 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194C1EA46B7600DC0F00 /* SearchView.swift */; };
 		DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */; };
 		DD4B19561EA547C800DC0F00 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19551EA547C800DC0F00 /* APIClient.swift */; };
 		DD7370CA1EA59880007511B5 /* TopSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7370C91EA59880007511B5 /* TopSpaceView.swift */; };
@@ -95,7 +94,7 @@
 		DD224C1C1E9F3CEA005B88D8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DD224C1E1E9F3FF4005B88D8 /* ProductLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductLocation.swift; sourceTree = "<group>"; };
 		DD224C221E9F48EB005B88D8 /* MainMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
-		DD224C241E9FE4A2005B88D8 /* TopBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopBarView.swift; path = ../TopBarView.swift; sourceTree = "<group>"; };
+		DD224C241E9FE4A2005B88D8 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchView.swift; path = ../SearchView.swift; sourceTree = "<group>"; };
 		DD4B19371EA2A6B700DC0F00 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		DD4B19391EA2F7F700DC0F00 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		DD4B193B1EA33AB900DC0F00 /* MainViewController+MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+MapView.swift"; sourceTree = "<group>"; };
@@ -105,7 +104,6 @@
 		DD4B19451EA3E13200DC0F00 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		DD4B19471EA42BAC00DC0F00 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
-		DD4B194C1EA46B7600DC0F00 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionView.swift; sourceTree = "<group>"; };
 		DD4B19551EA547C800DC0F00 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		DD7370C91EA59880007511B5 /* TopSpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopSpaceView.swift; sourceTree = "<group>"; };
@@ -288,9 +286,8 @@
 		DD7370C81EA59832007511B5 /* MainViewController Views */ = {
 			isa = PBXGroup;
 			children = (
-				DD224C241E9FE4A2005B88D8 /* TopBarView.swift */,
+				DD224C241E9FE4A2005B88D8 /* SearchView.swift */,
 				DD4B19391EA2F7F700DC0F00 /* SearchTextField.swift */,
-				DD4B194C1EA46B7600DC0F00 /* SearchView.swift */,
 				DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */,
 				DD4B19441EA3DDA800DC0F00 /* Map Views */,
 				DD9D8EDB1EA042C500925A43 /* CollectionViewCells */,
@@ -653,7 +650,6 @@
 				DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */,
 				C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */,
 				DD4B19561EA547C800DC0F00 /* APIClient.swift in Sources */,
-				DD4B194D1EA46B7600DC0F00 /* SearchView.swift in Sources */,
 				DD224C231E9F48EB005B88D8 /* MainMapView.swift in Sources */,
 				C4BD023C1E9FEDBF0025FE76 /* SignUpViewController.swift in Sources */,
 				DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */,
@@ -667,7 +663,7 @@
 				DD7370CA1EA59880007511B5 /* TopSpaceView.swift in Sources */,
 				DD7370D01EA6CD26007511B5 /* SearchCell.swift in Sources */,
 				DD9D8ED81EA03E7000925A43 /* MainViewController+CollectionView.swift in Sources */,
-				DD224C251E9FE4A2005B88D8 /* TopBarView.swift in Sources */,
+				DD224C251E9FE4A2005B88D8 /* SearchView.swift in Sources */,
 				DD4B19481EA42BAC00DC0F00 /* ProductViewController.swift in Sources */,
 				DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */,
 				DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */,

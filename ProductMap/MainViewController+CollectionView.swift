@@ -72,11 +72,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             
         }
         
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+    
         
     }
     
@@ -87,6 +86,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         // Refresh the collection view
         searchCollectionView.reloadData()
     }
-    
+
     
 }
