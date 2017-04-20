@@ -40,6 +40,7 @@ class APIClient {
     }
     
     public func firebaseCreateProduct(title: String, image: UIImage?, coordinates: CLLocationCoordinate2D) {
+        
         let latitude = coordinates.latitude 
         let longitude = coordinates.longitude 
         let json: [String : Any] = [
@@ -56,6 +57,7 @@ class APIClient {
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
         productRef.setValue(product.toJson())
     }
+    
     
     public func getProductsByCity(city: String, completionHandler: @escaping ([Product]) -> Void){
         
@@ -84,30 +86,52 @@ class APIClient {
         })
     }
     
-    
     public func searchForProduct(searchString: String, city: String, completion: @escaping ([Product]) -> Void){
         
         let query = APIClient.productRef.child(city).queryOrdered(byChild: "title")
         query.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 if let data = snapshot.value as? [String: AnyObject] {
-                    var products: [Product] = []
+                    
+                    var filteredProducts = Set<Product>()
                     
                     for i in data {
                         if let value = i.value as? [String: AnyObject] {
-                            let product = Product(json: value, city: city)
-                            if let product = product {
-                                products.append(product)
+                            
+                            guard let product = Product(json: value, city: city) else {
+                                return
                             }
+                            
+                            if product.title?.lowercased().range(of: searchString.lowercased()) != nil {
+                                filteredProducts.insert(product)
+                            }
+                            
+                            /*
+                            if product.city.lowercased().range(of: searchString.lowercased()) != nil {
+                                filteredProducts.insert(product)
+                            }
+                            
+                            if product.productDescription?.lowercased().range(of: searchString.lowercased()) != nil {
+                                filteredProducts.insert(product)
+                            }
+                            */
+                            
                         }
                     }
                     
-                    completion(products)
+                    if searchString.isEmpty {
+                        filteredProducts.removeAll()
+                        completion([])
+                    }
+                    
+                    if filteredProducts.isEmpty {
+                        return
+                    }
+                    
+                    completion(Array(filteredProducts))
                 }
             }
         })
     }
-    
-
 }
 
