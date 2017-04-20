@@ -14,9 +14,11 @@ class Product: NSObject, MKAnnotation {
     var identifier = "Product Location"
     var title: String?
     var productDescription: String
+    var upvoteCount = 0
     var city: String
     var imageUrl: String?
     var coordinate: CLLocationCoordinate2D
+
     
     init?(title: String, description: String, city: String, coordinate: CLLocationCoordinate2D) {
         self.title = title

@@ -45,7 +45,7 @@ class AddProductView: UIView {
         setupCancelButton()
         setupAddProductButton()
         
-        KeyboardAvoiding.avoidingView = self
+        // TODO: Fix keyboard
     
         // Miscellaneaous setup
         backgroundColor = .white

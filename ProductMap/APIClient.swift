@@ -133,5 +133,12 @@ class APIClient {
             }
         })
     }
+    
+    
+    public func upvoteRequest() {
+        
+        
+        
+    }
 }
 
