@@ -28,8 +28,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         mapType = MKMapType.standard
         // Setup gesture recognizer
         setupLongTapGesture()
-
-        
     }
     
     
@@ -63,13 +61,14 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         )
         
         productCoordinate = touchMapCoordinate
-      
+        
         productLocation = Product(
             id: nil,
             title: "Test",
             description: "Testing",
             city: "Testong",
-            coordinate: touchMapCoordinate
+            coordinate: touchMapCoordinate,
+            upvoteCount: 0
             )
         
         guard let productLocation = productLocation else {
@@ -154,7 +153,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             title: title,
             description: description,
             city: "Test",
-            coordinate: productCoordinate
+            coordinate: productCoordinate,
+            upvoteCount: 0
         ) else { return }
         
         APIClient.sharedInstance.createProduct(product: product)

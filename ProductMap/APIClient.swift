@@ -15,31 +15,6 @@ class APIClient {
     static let reference = FIRDatabase.database().reference()
     static let productRef = reference.child("Products")
     
-    public func firebaseSignUp(email: String, password: String, completion: (() -> Void)?) {
-        
-        FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
-            
-            guard error == nil else {
-                // TODO: Show please try again later
-                return
-            }
-            
-        }
-        
-    }
-    
-    
-    public func firebaseSignIn(email: String, password: String, completion: (() -> Void)?) {
-        
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-            guard error == nil else {
-                // TODO: Show UIAlert
-                return
-            }
-        }
-        
-    }
-    
     public func firebaseCreateProduct(title: String, image: UIImage?, coordinates: CLLocationCoordinate2D) {
         
         let latitude = coordinates.latitude 
@@ -106,17 +81,6 @@ class APIClient {
                             if product.title?.lowercased().range(of: searchString.lowercased()) != nil {
                                 filteredProducts.insert(product)
                             }
-                            
-                            /*
-                            if product.city.lowercased().range(of: searchString.lowercased()) != nil {
-                                filteredProducts.insert(product)
-                            }
-                            
-                            if product.productDescription?.lowercased().range(of: searchString.lowercased()) != nil {
-                                filteredProducts.insert(product)
-                            }
-                            */
-                            
                         }
                     }
                     
@@ -135,11 +99,71 @@ class APIClient {
         })
     }
     
+    // MARK: Up and down vote requests
     
-    public func upvoteRequest() {
+    public func downvoteRequest(with id: String, city: String) {
+        getProduct(with: id, city: city) { (product) in
+            if var upvoteCount = product.upvoteCount {
+                if upvoteCount == 0 {
+                    self.updateProductUpvoteCount(id: id, city: city, upvoteCount: 0)
+                } else {
+                    upvoteCount -= 1
+                    self.updateProductUpvoteCount(id: id, city: city, upvoteCount: upvoteCount)
+                }
+            }
+        }
+    }
+    
+    public func upvoteRequest(with id: String, city: String) {
         
+        getProduct(with: id, city: city) { (product) in
+            if var upvoteCount = product.upvoteCount {
+                upvoteCount += 1
+                self.updateProductUpvoteCount(id: id, city: city, upvoteCount: upvoteCount)
+            }
+        }
+    }
+    
+    func updateProductUpvoteCount(id: String, city: String, upvoteCount: Int) {
+        APIClient.productRef.child(city).child(id).child("upvoteCount").setValue(upvoteCount)
+    }
+    
+    func getProduct(with id: String, city: String, completionHandler: @escaping (Product) -> Void) {
+        APIClient.productRef.child(city).child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                if let data = snapshot.value as? [String: AnyObject] {
+                    let product = Product(json: data, city: city, id: id)
+                    if let product = product {
+                        completionHandler(product)
+                    }
+                }
+            }
+        })
+    }
+    
+    // MARK: Login and Signup requests
+    public func firebaseSignUp(email: String, password: String, completion: (() -> Void)?) {
         
+        FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
+            
+            guard error == nil else {
+                // TODO: Show please try again later
+                return
+            }
+            
+        }
         
+    }
+    
+    
+    public func firebaseSignIn(email: String, password: String, completion: (() -> Void)?) {
+        
+        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+            guard error == nil else {
+                // TODO: Show UIAlert
+                return
+            }
+        }
         
     }
 }

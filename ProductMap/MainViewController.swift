@@ -59,6 +59,9 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
             self.mainMapView.addAnnotations(products)
             
         }
+        
+        // Testing Upvote Request
+//        APIClient.sharedInstance.upvoteRequest(with: "-Khxs4lrNc7s9goCOjKL", city: "San Francisco")
     }
     
     // MARK: - Map setup
