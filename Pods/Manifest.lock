@@ -37,6 +37,9 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - SwiftyJSON (3.1.4)
   - XCGLogger (5.0.1):
     - XCGLogger/Core (= 5.0.1)
@@ -48,6 +51,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - IHKeyboardAvoiding
+  - SDWebImage
   - SwiftyJSON
   - XCGLogger
 
@@ -62,9 +66,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   IHKeyboardAvoiding: 4c852fae85667469307678c65f14f5cac8a7be92
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: cda032ecc31f81589e1230b062d2b88e7771852b
+PODFILE CHECKSUM: 100f96216e00fc29329e763c3f9614cbcc3bd0ad
 
 COCOAPODS: 1.2.1

@@ -86,7 +86,6 @@ class APIClient {
         })
     }
     
-    
     public func searchForProduct(searchString: String, city: String, completion: @escaping ([Product]) -> Void){
         
         let query = APIClient.productRef.child(city).queryOrdered(byChild: "title")
@@ -134,7 +133,5 @@ class APIClient {
             }
         })
     }
-    
-
 }
 
