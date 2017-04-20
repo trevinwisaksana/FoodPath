@@ -12,14 +12,28 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
     
     private var topSpaceView = TopSpaceView()
     
+    var product: Product? {
+        didSet{
+            topSpaceView.product = product
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Top space view
         setupTopSpaceView()
         
-        
         // Miscellaneous setup
         self.view.backgroundColor = .white
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
     
     
@@ -27,6 +41,7 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
         self.view.addSubview(topSpaceView)
         topSpaceView.delegate = self
         topSpaceView.setupTopSpaceView()
+        topSpaceView.setupImageView()
         topSpaceView.setupDismissButton()
     }
     
