@@ -54,6 +54,7 @@ class Product: NSObject, MKAnnotation {
             title: title,
             description: description,
             city: city,
-            coordinate: CLLocationCoordinate2DMake(latitude, longitude))
+            coordinate: CLLocationCoordinate2DMake(latitude, longitude)
+        )
     }
 }
