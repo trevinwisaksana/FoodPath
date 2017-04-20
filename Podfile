@@ -12,6 +12,7 @@ target 'ProductMap' do
   pod 'IQKeyboardManagerSwift'
   pod 'XCGLogger'
   pod 'SwiftyJSON'
+  pod 'SDWebImage'
 
   target 'ProductMapTests' do
     inherit! :search_paths
