@@ -10,6 +10,7 @@
 		1693D3E1953615BF9E0173A2 /* Pods_ProductMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A3C08C60E75882BED11518 /* Pods_ProductMapUITests.framework */; };
 		28A5F3CD42CF8694AE97BBFF /* Pods_ProductMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69D235FFAD148F656EEEB87 /* Pods_ProductMapTests.framework */; };
 		A9A9C785561B19D64368CA72 /* Pods_ProductMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E79EAAD5B42041EA3395239 /* Pods_ProductMap.framework */; };
+		C437785D1EA960D9009FEFE8 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437785C1EA960D9009FEFE8 /* HeaderView.swift */; };
 		C4BD02381E9FE9DB0025FE76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4BD02371E9FE9DB0025FE76 /* GoogleService-Info.plist */; };
 		C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD02391E9FEDB50025FE76 /* LoginViewController.swift */; };
 		C4BD023C1E9FEDBF0025FE76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD023B1E9FEDBF0025FE76 /* SignUpViewController.swift */; };
@@ -74,6 +75,7 @@
 		929D76CB0F52CA7C3608034D /* Pods-ProductMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProductMapUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProductMapUITests/Pods-ProductMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9E79EAAD5B42041EA3395239 /* Pods_ProductMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProductMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE139491CA24F3F245638DF3 /* Pods-ProductMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProductMapTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProductMapTests/Pods-ProductMapTests.release.xcconfig"; sourceTree = "<group>"; };
+		C437785C1EA960D9009FEFE8 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C4BD02371E9FE9DB0025FE76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4BD02391E9FEDB50025FE76 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4BD023B1E9FEDBF0025FE76 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 			children = (
 				DD7370C91EA59880007511B5 /* TopSpaceView.swift */,
 				C4CEB3F81EA7E980001722E5 /* GradientView.swift */,
+				C437785C1EA960D9009FEFE8 /* HeaderView.swift */,
 			);
 			name = "ProductViewController Views";
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				DD7370CA1EA59880007511B5 /* TopSpaceView.swift in Sources */,
 				DD7370D01EA6CD26007511B5 /* SearchCell.swift in Sources */,
 				DD9D8ED81EA03E7000925A43 /* MainViewController+CollectionView.swift in Sources */,
+				C437785D1EA960D9009FEFE8 /* HeaderView.swift in Sources */,
 				C4CEB3F91EA7E980001722E5 /* GradientView.swift in Sources */,
 				DD224C251E9FE4A2005B88D8 /* SearchView.swift in Sources */,
 				DD4B19481EA42BAC00DC0F00 /* ProductViewController.swift in Sources */,
