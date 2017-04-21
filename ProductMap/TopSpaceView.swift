@@ -16,8 +16,9 @@ protocol TopSpaceViewDelegate: class {
 class TopSpaceView: UIView {
     
     private let dismissButton = UIButton()
-    weak var delegate: TopSpaceViewDelegate!
     private let imageView = UIImageView()
+    
+    weak var delegate: TopSpaceViewDelegate!
     
     var product: Product?{
         didSet{
@@ -44,6 +45,8 @@ class TopSpaceView: UIView {
     public func setupImageView(){
         addSubview(imageView)
         imageView.frame = self.frame
+        
+        // TODO: Connect to product image url
         let url1 = URL(string: "https://lh5.googleusercontent.com/-4KFXQTbmqco/V6wlexPoNcI/AAAAAAAAUGA/oOCq2NXrbsAOK08hWieIkhylwv0nu0KEwCLIB/w400-k/")
         imageView.sd_setImage(with: url1)
         

@@ -18,6 +18,8 @@ class CustomCalloutView: UIView {
     private var productID: String?
     
     
+    private var productID: String?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         // Setup tap gesture to present ProductViewController
