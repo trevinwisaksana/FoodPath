@@ -136,7 +136,7 @@ class APIClient {
     }
     
     
-    public func upvoteRequest() {
+    public func upvoteRequest(with id: String) {
         
         
         

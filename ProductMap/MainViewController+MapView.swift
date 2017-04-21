@@ -67,6 +67,7 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         guard let productAnnotation = view.annotation as? Product else {
             return
         }
+        
         // Setup calloutView
         calloutView.configure(with: productAnnotation)
         // Setup frame

@@ -195,10 +195,17 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
     
     
     fileprivate func setupCategories() {
-        // Adding built in categories
-        self.listOfCategories = ["Food","Fashion", "Fun", "Gadgets"].map {
-            return Category(title: $0)!
+        
+        guard let knifeAndForkImage = UIImage(named: "knifeAndForkCell") else {
+            return
         }
+        // Adding built in categories
+        guard let knifeAndForkCell = Category(
+            title: "Food",
+            icon: knifeAndForkImage
+            ) else { return }
+        self.listOfCategories.append(knifeAndForkCell)
+        
         // Refresh collection view
         categoriesCollectionView.reloadData()
     }

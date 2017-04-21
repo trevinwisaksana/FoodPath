@@ -38,8 +38,9 @@ class SearchTextField: UITextField, UITextFieldDelegate {
         self.font = UIFont(descriptor: font, size: 30)
         
         // Corner radius
-        clipsToBounds = true
         layer.cornerRadius = 5
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowOpacity = 0.1
         backgroundColor = .white
     }
     

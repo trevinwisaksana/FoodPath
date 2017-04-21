@@ -86,15 +86,22 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Centers the screen on the coordinate
-        let product = listOfProducts[indexPath.row]
-        let productCoordinate = product.coordinate
-        mainMapView.setCenter(
-            productCoordinate,
-            animated: true
-        )
-        // Dismisses the SearchView
-        dismissSearchView()
+        // Check which collectionView is tapped
+        if collectionView == searchCollectionView {
+            // Centers the screen on the coordinate
+            let product = listOfProducts[indexPath.row]
+            let productCoordinate = product.coordinate
+            mainMapView.setCenter(
+                productCoordinate,
+                animated: true
+            )
+            // Dismisses the SearchView
+            dismissSearchView()
+        } else {
+            // let category = listOfCategories[indexPath.row]
+            
+        }
+        
     }
     
     
