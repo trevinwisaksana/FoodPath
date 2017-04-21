@@ -11,6 +11,7 @@ import UIKit
 class ProductViewController: UIViewController, TopSpaceViewDelegate {
     
     private var topSpaceView = TopSpaceView()
+    private var headerView = HeaderView()
     
     var product: Product? {
         didSet {
@@ -22,6 +23,8 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
         super.viewDidLoad()
         // Top space view
         setupTopSpaceView()
+        
+        setupHeaderView()
         
         // Miscellaneous setup
         self.view.backgroundColor = .white
@@ -43,6 +46,12 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
         topSpaceView.setupTopSpaceView()
         topSpaceView.setupImageView()
         topSpaceView.setupDismissButton()
+    }
+    
+    fileprivate func setupHeaderView() {
+        self.view.addSubview(headerView)
+        headerView.setupHeaderView()
+        
     }
     
     

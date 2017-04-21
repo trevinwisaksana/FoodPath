@@ -15,6 +15,8 @@ class CustomCalloutView: UIView {
     // Button for upvoting
     var upvoteButton = UIButton()
     
+    private var productID: String?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         // Setup tap gesture to present ProductViewController
@@ -88,7 +90,7 @@ class CustomCalloutView: UIView {
     public func configure(with product: Product) {
         // Assigning properties
         productNameLabel.text = product.title
-        
+        productID = product.id
         
     }
     
