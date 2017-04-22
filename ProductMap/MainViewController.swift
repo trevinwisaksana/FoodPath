@@ -42,8 +42,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         setupSearchView()
         // Setup bottomBarView
         setupBottomBarView()
-        // Setup categories collection view
-        setupCategoryCollectionView()
         // Setup the hardcoded categories
         setupCategories()
         // Setup search text field
@@ -54,14 +52,12 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         setupSearchCollectionView()
         
         // Testing with artificial data
-        APIClient.sharedInstance.getProductsByCity(city: "Test") { (products) in
+        APIClient.sharedInstance.getProductsByCity(city: "San Francisco") { (products) in
             
             self.mainMapView.addAnnotations(products)
             
         }
         
-        // Testing Upvote Request
-//        APIClient.sharedInstance.upvoteRequest(with: "-Khxs4lrNc7s9goCOjKL", city: "San Francisco")
     }
     
     // MARK: - Map setup
@@ -103,41 +99,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
                            width: width,
                            height: height * 0.8)
         bottomBarView.frame = frame
-    }
-    
-    // MARK: - Setup Collection View
-    fileprivate func setupCategoryCollectionView() {
-        // Getting the frame of the bottom bar view
-        let frame = CGRect(x: 0,
-                           y: 0,
-                           width: bottomBarView.frame.width,
-                           height: bottomBarView.frame.height)
-        // Creating an instance of a layout
-        let layout = UICollectionViewFlowLayout()
-        
-        layout.sectionInset = UIEdgeInsets(
-            top: 20,
-            left: 12,
-            bottom: 10,
-            right: 10
-        )
-        
-        // Makes the height and width equal
-        layout.itemSize = CGSize(
-            width: self.view.frame.width / 4.9,
-            height: self.view.frame.width / 4.9
-        )
-        
-        // Instantiating the categories collection view
-        categoriesCollectionView = CategoriesCollectionView(
-            frame: frame,
-            collectionViewLayout: layout
-        )
-        
-        categoriesCollectionView.delegate = self
-        categoriesCollectionView.dataSource = self
-        
-        bottomBarView.addSubview(categoriesCollectionView)
     }
     
     
@@ -199,18 +160,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
     
     fileprivate func setupCategories() {
         
-        guard let knifeAndForkImage = UIImage(named: "knifeAndForkCell") else {
-            return
-        }
-        // Adding built in categories
-        guard let knifeAndForkCell = Category(
-            title: "Food",
-            icon: knifeAndForkImage
-            ) else { return }
-        self.listOfCategories.append(knifeAndForkCell)
         
-        // Refresh collection view
-        categoriesCollectionView.reloadData()
     }
     
     

@@ -14,11 +14,11 @@ class CustomCalloutView: UIView {
     var productNameLabel = UILabel()
     // Button for upvoting
     var upvoteButton = UIButton()
-    // Selected produc ID
+    // Selected product ID
     private var productID: String?
+    // Product count
+    private var upvoteCount: Int = 0
     
-    
-    private var productID: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -96,6 +96,12 @@ class CustomCalloutView: UIView {
         // Assigning properties
         productNameLabel.text = product.title
         productID = product.id
+        
+        guard let productUpvoteCount = product.upvoteCount else {
+            return
+        }
+        
+        upvoteCount = productUpvoteCount
     }
     
     
@@ -140,8 +146,27 @@ class CustomCalloutView: UIView {
     
     
     @objc fileprivate func upvoteButtonHandler() {
-        // TODO: Firebase request to upvote
-        upvoteButton.setTitle("\(1)", for: .normal)
+        
+        guard let productID = productID else {
+            return
+        }
+        
+        
+        APIClient.sharedInstance.updateProductUpvoteCount(
+            id: productID,
+            city: "San Francisco",
+            upvoteCount: upvoteCount + 1
+        )
+        
+        upvoteCount += 1
+        
+        upvoteButton.setTitle("\(upvoteCount)", for: .normal)
+        
+        APIClient.sharedInstance.upvoteRequest(
+            with: productID,
+            city: "San Francisco"
+        )
+        
     }
     
 }

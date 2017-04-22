@@ -72,15 +72,16 @@ class APIClient {
                     var filteredProducts = Set<Product>()
                     
                     for i in data {
+                        
                         if let value = i.value as? [String: AnyObject] {
                             
-                            guard let product = Product(json: value, city: city, id: i.key) else {
-                                return
+                            if let product = Product(json: value, city: city, id: i.key) {
+                                
+                                if product.title?.lowercased().range(of: searchString.lowercased()) != nil {
+                                    filteredProducts.insert(product)
+                                }
                             }
-                            
-                            if product.title?.lowercased().range(of: searchString.lowercased()) != nil {
-                                filteredProducts.insert(product)
-                            }
+                                
                         }
                     }
                     
@@ -101,7 +102,20 @@ class APIClient {
     
     // MARK: Up and down vote requests
     
-    public func upvoteRequest(with id: String) {
+    public func downvoteRequest(with id: String, city: String) {
+        getProduct(with: id, city: city) { (product) in
+            if var upvoteCount = product.upvoteCount {
+                if upvoteCount == 0 {
+                    self.updateProductUpvoteCount(id: id, city: city, upvoteCount: 0)
+                } else {
+                    upvoteCount -= 1
+                    self.updateProductUpvoteCount(id: id, city: city, upvoteCount: upvoteCount)
+                }
+            }
+        }
+    }
+    
+    public func upvoteRequest(with id: String, city: String) {
         
         getProduct(with: id, city: city) { (product) in
             if var upvoteCount = product.upvoteCount {

@@ -21,13 +21,14 @@ class Product: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
 
     
-    init?(id: String?, title: String, description: String, city: String, coordinate: CLLocationCoordinate2D, upvoteCount: Int?) {
+    init(id: String?, title: String, description: String, city: String, coordinate: CLLocationCoordinate2D, upvoteCount: Int?) {
+        
         self.title = title
         self.productDescription = description
         self.city = city
         self.coordinate = coordinate
         self.id = id
-        self.upvoteCount = upvoteCount ?? 0
+        self.upvoteCount = upvoteCount 
     }
     
     

@@ -23,9 +23,10 @@ class CategoryCell: UICollectionViewCell {
     }
     
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        
+//    }
+ 
  
     
     required init?(coder aDecoder: NSCoder) {

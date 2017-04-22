@@ -62,18 +62,12 @@ class SearchTextField: UITextField, UITextFieldDelegate {
             return false
         }
         
-        
         APIClient.sharedInstance.searchForProduct(searchString: string, city: "San Francisco") { (products) in
             // Updates the search collection view
             self.searchTextFieldDelegate?.updateSearchCollectionView(products: products)
         }
         
         return true
-    }
-    
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // searchProductDelegate?.dismissSearchView()
     }
 
 }

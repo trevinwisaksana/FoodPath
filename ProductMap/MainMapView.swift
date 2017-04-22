@@ -148,14 +148,14 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
-        guard let product = Product(
+        let product = Product(
             id: nil,
             title: title,
             description: description,
             city: "Test",
             coordinate: productCoordinate,
             upvoteCount: 0
-        ) else { return }
+        ) 
         
         APIClient.sharedInstance.createProduct(product: product)
         
