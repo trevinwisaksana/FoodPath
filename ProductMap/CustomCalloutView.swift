@@ -14,8 +14,11 @@ class CustomCalloutView: UIView {
     var productNameLabel = UILabel()
     // Button for upvoting
     var upvoteButton = UIButton()
-    
+    // Selected product ID
     private var productID: String?
+    // Product count
+    private var upvoteCount: Int = 0
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,8 +30,10 @@ class CustomCalloutView: UIView {
         setupUpvoteButton()
         
         // Miscellaneous setup
-        backgroundColor = .blue
+        backgroundColor = .white
         layer.cornerRadius = 15
+        layer.shadowOpacity = 0.15
+        layer.shadowOffset = CGSize(width: 0, height: 2)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -79,7 +84,7 @@ class CustomCalloutView: UIView {
         )
         productNameLabel.frame = labelFrame
         productNameLabel.font = labelFont
-        productNameLabel.backgroundColor = .green
+        productNameLabel.backgroundColor = .white
         
     }
     
@@ -92,6 +97,11 @@ class CustomCalloutView: UIView {
         productNameLabel.text = product.title
         productID = product.id
         
+        guard let productUpvoteCount = product.upvoteCount else {
+            return
+        }
+        
+        upvoteCount = productUpvoteCount
     }
     
     
@@ -110,13 +120,18 @@ class CustomCalloutView: UIView {
             height: 80
         )
         upvoteButton.frame = buttonFrame
-        upvoteButton.backgroundColor = .white
+        upvoteButton.backgroundColor = UIColor(
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
+            alpha: 1
+        )
         upvoteButton.layer.cornerRadius = upvoteButton.frame.width / 2
         
         // Button label
         let buttonFont = UIFont(name: "Avenir", size: 35)
         upvoteButton.titleLabel?.font = buttonFont
-        upvoteButton.titleLabel?.textColor = .black
+        upvoteButton.titleLabel?.textColor = .white
         upvoteButton.titleLabel?.textAlignment = .center
         upvoteButton.setTitle("0", for: .normal)
         upvoteButton.setTitleColor(.black, for: .normal)
@@ -131,8 +146,27 @@ class CustomCalloutView: UIView {
     
     
     @objc fileprivate func upvoteButtonHandler() {
-        // TODO: Firebase request to upvote
-        upvoteButton.setTitle("\(1)", for: .normal)
+        
+        guard let productID = productID else {
+            return
+        }
+        
+        
+        APIClient.sharedInstance.updateProductUpvoteCount(
+            id: productID,
+            city: "San Francisco",
+            upvoteCount: upvoteCount + 1
+        )
+        
+        upvoteCount += 1
+        
+        upvoteButton.setTitle("\(upvoteCount)", for: .normal)
+        
+        APIClient.sharedInstance.upvoteRequest(
+            with: productID,
+            city: "San Francisco"
+        )
+        
     }
     
 }

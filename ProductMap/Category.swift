@@ -17,8 +17,8 @@ struct Category {
      Uses failable initializer to assure each
      category has a title and an icon
      */
-    init?(title: String) {
+    init?(title: String, icon: UIImage) {
         self.title = title
-        
+        self.icon = icon
     }
 }

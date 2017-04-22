@@ -10,20 +10,60 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell {
     
-    @IBOutlet weak var title: UILabel?
+    var title = UILabel()
+    var icon = UIImageView()
     
-    @IBOutlet weak var icon: UIImage?
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        
+        setupIcon()
+        
+        isUserInteractionEnabled = true
+    }
+    
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        
+//    }
+ 
+ 
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func configure(with category: Category) {
         
-        self.title?.text = category.title
-        self.icon = category.icon
+        self.title.text = category.title
+        self.icon.image = category.icon!
         
         // Default background color
         backgroundColor = .green
         layer.cornerRadius = frame.size.width / 2
         layer.masksToBounds = true
         isUserInteractionEnabled = true
+    }
+    
+    
+    fileprivate func setupTitle() {
+        
+        
+    }
+    
+    
+    fileprivate func setupIcon() {
+        self.addSubview(icon)
+        
+        let iconFrame = CGRect(
+            x: -2,
+            y: -1,
+            width: 90,
+            height: 90
+        )
+        icon.frame = iconFrame
+        // icon.center = self.center
+        
     }
 
 }

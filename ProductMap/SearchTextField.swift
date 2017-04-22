@@ -38,8 +38,9 @@ class SearchTextField: UITextField, UITextFieldDelegate {
         self.font = UIFont(descriptor: font, size: 30)
         
         // Corner radius
-        clipsToBounds = true
         layer.cornerRadius = 5
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowOpacity = 0.1
         backgroundColor = .white
     }
     
@@ -61,18 +62,12 @@ class SearchTextField: UITextField, UITextFieldDelegate {
             return false
         }
         
-        
         APIClient.sharedInstance.searchForProduct(searchString: string, city: "San Francisco") { (products) in
             // Updates the search collection view
             self.searchTextFieldDelegate?.updateSearchCollectionView(products: products)
         }
         
         return true
-    }
-    
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // searchProductDelegate?.dismissSearchView()
     }
 
 }

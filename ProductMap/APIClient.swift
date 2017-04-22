@@ -15,22 +15,28 @@ class APIClient {
     static let reference = FIRDatabase.database().reference()
     static let productRef = reference.child("Products")
     
+    // USED FOR TESTING
     public func firebaseCreateProduct(title: String, image: UIImage?, coordinates: CLLocationCoordinate2D) {
         
         let latitude = coordinates.latitude 
-        let longitude = coordinates.longitude 
+        let longitude = coordinates.longitude
+        
         let json: [String : Any] = [
             "title": title,
-            "coordinates" : ["latitude" : latitude, "longitude" : longitude]
+            "id": "",
+            "coordinates" :
+                ["latitude" : latitude,
+                 "longitude" : longitude]
         ]
         
         APIClient.reference.child("Products").childByAutoId().setValue(json)
     }
     
     
-
     public func createProduct(product: Product) {
+        // Retrieving product reference
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
+        // Modify database in Firebase
         productRef.setValue(product.toJson())
     }
     
@@ -72,15 +78,16 @@ class APIClient {
                     var filteredProducts = Set<Product>()
                     
                     for i in data {
+                        
                         if let value = i.value as? [String: AnyObject] {
                             
-                            guard let product = Product(json: value, city: city, id: i.key) else {
-                                return
+                            if let product = Product(json: value, city: city, id: i.key) {
+                                
+                                if product.title?.lowercased().range(of: searchString.lowercased()) != nil {
+                                    filteredProducts.insert(product)
+                                }
                             }
-                            
-                            if product.title?.lowercased().range(of: searchString.lowercased()) != nil {
-                                filteredProducts.insert(product)
-                            }
+                                
                         }
                     }
                     
@@ -100,7 +107,6 @@ class APIClient {
     }
     
     // MARK: Up and down vote requests
-    
     public func downvoteRequest(with id: String, city: String) {
         getProduct(with: id, city: city) { (product) in
             if var upvoteCount = product.upvoteCount {
@@ -113,6 +119,7 @@ class APIClient {
             }
         }
     }
+    
     
     public func upvoteRequest(with id: String, city: String) {
         

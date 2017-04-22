@@ -14,6 +14,7 @@ class BottomBarView: UIView {
     // Used to check whether the UIView has animated or not
     var hasExpanded = false
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         // Setup

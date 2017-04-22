@@ -84,6 +84,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         showAddProductView()
     }
     
+    
     fileprivate func showAddProductView() {
         
         guard let keyWindow = keyWindow else {
@@ -135,7 +136,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         UIView.animate(withDuration: 0.2, animations: { 
             self.frame.size.height = keyWindow.frame.height
-            self.removeAnnotation(productLocation)
+            // self.removeAnnotation(productLocation)
         }) { (_) in
             self.isUserInteractionEnabled = true
         }
@@ -148,14 +149,14 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
-        guard let product = Product(
+        let product = Product(
             id: nil,
             title: title,
             description: description,
-            city: "Test",
+            city: "San Francisco",
             coordinate: productCoordinate,
             upvoteCount: 0
-        ) else { return }
+        ) 
         
         APIClient.sharedInstance.createProduct(product: product)
         
