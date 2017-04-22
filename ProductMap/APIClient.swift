@@ -15,6 +15,7 @@ class APIClient {
     static let reference = FIRDatabase.database().reference()
     static let productRef = reference.child("Products")
     
+    // USED FOR TESTING
     public func firebaseCreateProduct(title: String, image: UIImage?, coordinates: CLLocationCoordinate2D) {
         
         let latitude = coordinates.latitude 
@@ -22,6 +23,7 @@ class APIClient {
         
         let json: [String : Any] = [
             "title": title,
+            "id": "",
             "coordinates" :
                 ["latitude" : latitude,
                  "longitude" : longitude]
@@ -31,18 +33,11 @@ class APIClient {
     }
     
     
-
     public func createProduct(product: Product) {
+        // Retrieving product reference
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
+        // Modify database in Firebase
         productRef.setValue(product.toJson())
-        
-        /*
-        APIClient.sharedInstance.firebaseCreateProduct(
-            title: <#T##String#>,
-            image: <#T##UIImage?#>,
-            coordinates: <#T##CLLocationCoordinate2D#>
-        )
-        */
     }
     
     
@@ -112,7 +107,6 @@ class APIClient {
     }
     
     // MARK: Up and down vote requests
-    
     public func downvoteRequest(with id: String, city: String) {
         getProduct(with: id, city: city) { (product) in
             if var upvoteCount = product.upvoteCount {
@@ -125,6 +119,7 @@ class APIClient {
             }
         }
     }
+    
     
     public func upvoteRequest(with id: String, city: String) {
         

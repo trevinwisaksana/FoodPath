@@ -176,7 +176,6 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     }
 
     
-    
     func revealSearchView() {
         // Display searchView
         searchView.showSearchView()
