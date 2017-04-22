@@ -10,12 +10,16 @@ import UIKit
 import MapKit
 import Firebase
 
+enum addProductViewState {
+    case cancelAdd, addProduct
+}
+
 
 
 protocol AddProductViewDelegate: class {
     
     /// Resizes the MainMapView
-    func resizeMapView()
+    func resizeMapView(for state: addProductViewState)
     
     /// Sends a Firebase request to create a Product model
     ///
@@ -50,6 +54,11 @@ class AddProductView: UIView {
         // Miscellaneaous setup
         backgroundColor = .white
         layer.cornerRadius = 20
+        layer.shadowOpacity = 0.2
+        layer.shadowOffset = CGSize(
+            width: 0,
+            height: 2
+        )
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,7 +86,7 @@ class AddProductView: UIView {
         productNameTextField.font = font
         productNameTextField.placeholder = "  Product name"
         
-        productNameTextField.backgroundColor = .blue
+        productNameTextField.backgroundColor = .white
         
     }
     
@@ -102,7 +111,7 @@ class AddProductView: UIView {
         productDescriptionTextField.font = font
         productDescriptionTextField.placeholder = "  Product description"
         
-        productDescriptionTextField.backgroundColor = .blue
+        productDescriptionTextField.backgroundColor = .white
         
     }
     
@@ -117,17 +126,15 @@ class AddProductView: UIView {
             height: frame.size.width * 0.1
         )
         cancelButton.frame = labelFrame
-        cancelButton.layer.cornerRadius = 10
+        cancelButton.clipsToBounds = false
         
-        let font = UIFont(
-            name: "Avenir",
-            size: 14
+        let image = UIImage(named: "CloseButton")
+        cancelButton.setImage(image, for: .normal)
+        cancelButton.layer.shadowOpacity = 0.2
+        cancelButton.layer.shadowOffset = CGSize(
+            width: 0,
+            height: 0
         )
-        cancelButton.titleLabel?.font = font
-        cancelButton.titleLabel?.text = "Cancel"
-        
-        cancelButton.backgroundColor = .blue
-        cancelButton.isUserInteractionEnabled = true
         
         let tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
@@ -139,7 +146,7 @@ class AddProductView: UIView {
     
     @objc fileprivate func cancelTapGestureHandler() {
         // Dismiss the Add Product View
-        dismissAddProductView()
+        dismissAddProductView(for: .cancelAdd)
     }
     
     
@@ -178,7 +185,7 @@ class AddProductView: UIView {
     
     @objc fileprivate func addProductButtonHandler() {
         // Dismiss the view
-        dismissAddProductView()
+        dismissAddProductView(for: .addProduct)
         guard let productTitle = productNameTextField.text else {
             return
         }
@@ -197,7 +204,7 @@ class AddProductView: UIView {
     
     
     /// Dismisses the Add Product View and removes it from the superview
-    fileprivate func dismissAddProductView() {
+    fileprivate func dismissAddProductView(for state: addProductViewState) {
     
         guard let keyWindow = keyWindow else {
             return
@@ -207,7 +214,7 @@ class AddProductView: UIView {
             // Move the view downwards
             self.frame.origin.y = keyWindow.frame.height
             // Resize the MapView
-            self.delegate.resizeMapView()
+            self.delegate.resizeMapView(for: state)
             
         }) { (_) in
             self.removeFromSuperview()

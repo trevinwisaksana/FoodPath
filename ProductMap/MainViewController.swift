@@ -41,7 +41,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         // Setup searchView
         setupSearchView()
         // Setup bottomBarView
-        setupBottomBarView()
+        // setupBottomBarView()
         // Setup the hardcoded categories
         setupCategories()
         // Setup search text field

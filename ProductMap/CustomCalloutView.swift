@@ -11,9 +11,9 @@ import UIKit
 class CustomCalloutView: UIView {
     
     // UIElements
-    var productNameLabel = UILabel()
+    private var productNameLabel = UILabel()
     // Button for upvoting
-    var upvoteButton = UIButton()
+    private var upvoteButton = UIButton()
     // Selected product ID
     private var productID: String?
     // Product count
@@ -98,10 +98,11 @@ class CustomCalloutView: UIView {
         productID = product.id
         
         guard let productUpvoteCount = product.upvoteCount else {
-            return
+            fatalError()
         }
         
         upvoteCount = productUpvoteCount
+        upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
     }
     
     
@@ -133,7 +134,7 @@ class CustomCalloutView: UIView {
         upvoteButton.titleLabel?.font = buttonFont
         upvoteButton.titleLabel?.textColor = .white
         upvoteButton.titleLabel?.textAlignment = .center
-        upvoteButton.setTitle("0", for: .normal)
+        upvoteButton.setTitle("\(upvoteCount)", for: .normal)
         upvoteButton.setTitleColor(.black, for: .normal)
         
         // Button target action
@@ -150,13 +151,6 @@ class CustomCalloutView: UIView {
         guard let productID = productID else {
             return
         }
-        
-        
-        APIClient.sharedInstance.updateProductUpvoteCount(
-            id: productID,
-            city: "San Francisco",
-            upvoteCount: upvoteCount + 1
-        )
         
         upvoteCount += 1
         

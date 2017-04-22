@@ -74,38 +74,45 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             // Don't proceed with custom callout
             return
         }
-    
-        // let productAnnotation = view.annotation as? ProductLocation
         
         // TODO: Add in constants file
         let width = self.view.frame.width
         let height = self.view.frame.height
         let calloutViewHeight = self.view.frame.height * 0.2
         
-        // Custom callout view
-        let calloutView = CustomCalloutView()
         // Custom annotation
         guard let productAnnotation = view.annotation as? Product else {
             return
         }
         
-        // Setup calloutView
-        calloutView.configure(with: productAnnotation)
-        // Setup frame
-        calloutView.frame = CGRect(
-            x: 0,
-            y: height,
-            width: width,
-            height: calloutViewHeight
-        )
-        // Animates the entry of the calloutView
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-            // Animating the calloutView
-            calloutView.frame.origin.y = height * 0.84
-        }) 
+        APIClient.sharedInstance.getProduct(
+            with: productAnnotation.id!,
+            city: productAnnotation.city) { (product) in
+                
+                // Custom callout view
+                let calloutView = CustomCalloutView()
+                
+                // Setup calloutView
+                calloutView.configure(with: product)
+                
+                // Setup frame
+                calloutView.frame = CGRect(
+                    x: 0,
+                    y: height,
+                    width: width,
+                    height: calloutViewHeight
+                )
+                
+                // Animates the entry of the calloutView
+                UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+                    // Animating the calloutView
+                    calloutView.frame.origin.y = height * 0.84
+                })
+                
+                // Adding the calloutView to the Map View
+                self.view.addSubview(calloutView)
+        }
         
-        // Adding the calloutView to the Map View
-        self.view.addSubview(calloutView)
     }
     
     
