@@ -43,6 +43,8 @@ class HeaderView: UIView {
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         
+        cityLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
+        cityLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
     }
     
     public func setupHeaderView(){

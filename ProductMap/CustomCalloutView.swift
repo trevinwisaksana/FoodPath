@@ -19,6 +19,21 @@ class CustomCalloutView: UIView {
     // Product count
     private var upvoteCount: Int = 0
     
+    private var product: Product? {
+        didSet{
+            if let product = product {
+                productNameLabel.text = product.title
+                productID = product.id
+                
+                guard let productUpvoteCount = product.upvoteCount else {
+                    return
+                }
+                
+                upvoteCount = productUpvoteCount
+                
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,12 +71,15 @@ class CustomCalloutView: UIView {
         
         // Present the ProductViewController modally
         let mainViewController = UIApplication.shared.keyWindow?.rootViewController
+        let vc = ProductViewController()
+        if let product = product {
+            vc.product = product
+        }
         mainViewController?.present(
-            ProductViewController(),
+            vc,
             animated: true,
             completion: nil
         )
-        
     }
     
     
@@ -85,7 +103,6 @@ class CustomCalloutView: UIView {
         productNameLabel.frame = labelFrame
         productNameLabel.font = labelFont
         productNameLabel.backgroundColor = .white
-        
     }
     
     
@@ -94,6 +111,7 @@ class CustomCalloutView: UIView {
     /// - Parameter product: A custom Product model
     public func configure(with product: Product) {
         // Assigning properties
+        self.product = product
         productNameLabel.text = product.title
         productID = product.id
         

@@ -14,12 +14,14 @@ class ProductDescriptionView: UIView {
         let lbl = UILabel()
         lbl.text = "Description"
         lbl.font = UIFont.systemFont(ofSize: 16)
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
     let textView: UITextView = {
         let tv = UITextView()
-        tv.text = ""
+        tv.text = "bla bla bla bla"
+        tv.font = UIFont.systemFont(ofSize: 14)
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.isScrollEnabled = false
         return tv
@@ -28,12 +30,21 @@ class ProductDescriptionView: UIView {
     let dividerLineView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white: 0.4, alpha: 0.4)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    var descriptionString: String? {
+        didSet{
+            textView.text = descriptionString
+            adjustFrameToDescription(description: descriptionString!)
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        
     }
     
     func setupViews() {
@@ -43,19 +54,17 @@ class ProductDescriptionView: UIView {
         
         titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         dividerLineView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        dividerLineView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         dividerLineView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
         dividerLineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         textView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         textView.topAnchor.constraint(equalTo: dividerLineView.bottomAnchor, constant: 5).isActive = true
-        
-//        addConstraintsWithFormat("H:|-14-[v0]-8-|", views: titleLabel)
-//        addConstraintsWithFormat("H:|-14-[v0]-14-|", views: dividerLineView)
-//        addConstraintsWithFormat("H:|-8-[v0]-20-|", views: textView)
-//        
-//        addConstraintsWithFormat("V:|-4-[v0]-4-[v1(1)]-4-[v2]|", views: titleLabel, dividerLineView, textView)
+        textView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
     }
     
     public func setupDescriptionView(){
@@ -69,6 +78,13 @@ class ProductDescriptionView: UIView {
             width: windowFrame.width,
             height: windowFrame.height * 0.3
         )
+        self.frame = frame
+    }
+    
+    fileprivate func adjustFrameToDescription(description: String){
+        let height = description.height(withConstrainedWidth: textView.frame.width, font: UIFont.systemFont(ofSize: 14))
+        var frame = self.frame
+        frame.size.height = 50 + height
         self.frame = frame
     }
     
