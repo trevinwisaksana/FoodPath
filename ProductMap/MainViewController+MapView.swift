@@ -20,14 +20,14 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         }
         
         // View
-        var annotationView: MKPinAnnotationView
+        var annotationView: MKAnnotationView?
         guard let annotation = annotation as? Product else {
             return nil
         }
         
         let id = annotation.identifier
         
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: id) as? MKPinAnnotationView {
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: id) {
             // Set the view to the dequeued view
             annotationView = dequeuedView
         } else {
@@ -36,13 +36,34 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
                 annotation: annotation,
                 reuseIdentifier: id
             )
-            annotationView.canShowCallout = false
+            annotationView?.canShowCallout = false
         }
         
-    
-        // Miscellaneous setup
-        annotationView.animatesDrop = true
-        
+        if let annotationView = annotationView {
+            // Resizing the image because the image.size is a get only property
+            let image = UIImage(named: "pinImage")
+            
+            let size = CGSize(
+                width: 25,
+                height: 72
+            )
+            
+            UIGraphicsBeginImageContext(size)
+            
+            let rectangle = CGRect(
+                x: 0,
+                y: 0,
+                width: size.width,
+                height: size.height
+            )
+            
+            image?.draw(in: rectangle)
+            
+            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            annotationView.image = resizedImage
+        }
+   
         return annotationView
     }
     

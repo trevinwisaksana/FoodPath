@@ -8,6 +8,8 @@
 
 import Foundation
 import MapKit
+// TODO: Use SwiftyJSON
+import SwiftyJSON
 
 class Product: NSObject, MKAnnotation {
     
@@ -35,6 +37,7 @@ class Product: NSObject, MKAnnotation {
     func toJson() -> [String: Any] {
         return [
             "title": title!,
+            "id": "",
             "description": productDescription,
             "upvoteCount": upvoteCount ?? 0,
             "coordinates": [

@@ -179,7 +179,6 @@ class AddProductView: UIView {
     @objc fileprivate func addProductButtonHandler() {
         // Dismiss the view
         dismissAddProductView()
-        // TODO: - Firebase request
         guard let productTitle = productNameTextField.text else {
             return
         }

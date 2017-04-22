@@ -18,10 +18,13 @@ class APIClient {
     public func firebaseCreateProduct(title: String, image: UIImage?, coordinates: CLLocationCoordinate2D) {
         
         let latitude = coordinates.latitude 
-        let longitude = coordinates.longitude 
+        let longitude = coordinates.longitude
+        
         let json: [String : Any] = [
             "title": title,
-            "coordinates" : ["latitude" : latitude, "longitude" : longitude]
+            "coordinates" :
+                ["latitude" : latitude,
+                 "longitude" : longitude]
         ]
         
         APIClient.reference.child("Products").childByAutoId().setValue(json)
@@ -32,6 +35,14 @@ class APIClient {
     public func createProduct(product: Product) {
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
         productRef.setValue(product.toJson())
+        
+        /*
+        APIClient.sharedInstance.firebaseCreateProduct(
+            title: <#T##String#>,
+            image: <#T##UIImage?#>,
+            coordinates: <#T##CLLocationCoordinate2D#>
+        )
+        */
     }
     
     
