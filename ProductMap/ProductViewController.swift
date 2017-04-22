@@ -12,6 +12,7 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
     
     private var topSpaceView = TopSpaceView()
     private var headerView = HeaderView()
+    private var descriptionView = ProductDescriptionView()
     
     var product: Product? {
         didSet {
@@ -24,7 +25,11 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
         // Top space view
         setupTopSpaceView()
         
+        // Title header
         setupHeaderView()
+        
+        // Description View
+        setupDescriptionView()
         
         // Miscellaneous setup
         self.view.backgroundColor = .white
@@ -54,6 +59,10 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
         
     }
     
+    fileprivate func setupDescriptionView(){
+        self.view.addSubview(descriptionView)
+        descriptionView.setupDescriptionView()
+    }
     
     func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
