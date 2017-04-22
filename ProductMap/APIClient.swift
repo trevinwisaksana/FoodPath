@@ -131,9 +131,11 @@ class APIClient {
         }
     }
     
+    
     func updateProductUpvoteCount(id: String, city: String, upvoteCount: Int) {
         APIClient.productRef.child(city).child(id).child("upvoteCount").setValue(upvoteCount)
     }
+    
     
     func getProduct(with id: String, city: String, completionHandler: @escaping (Product) -> Void) {
         APIClient.productRef.child(city).child(id).observeSingleEvent(of: .value, with: { (snapshot) in

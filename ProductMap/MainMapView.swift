@@ -11,6 +11,7 @@ import UIKit
 import MapKit
 import Firebase
 
+
 class MainMapView: MKMapView, AddProductViewDelegate {
     
     private var productCoordinate: CLLocationCoordinate2D?
@@ -125,7 +126,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     }
     
     
-    func resizeMapView() {
+    func resizeMapView(for state: addProductViewState) {
         guard let keyWindow = keyWindow else {
             return
         }
@@ -136,7 +137,14 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         UIView.animate(withDuration: 0.2, animations: { 
             self.frame.size.height = keyWindow.frame.height
-            // self.removeAnnotation(productLocation)
+            
+            switch state {
+            case .addProduct:
+                break
+            case .cancelAdd:
+                self.removeAnnotation(productLocation)
+            }
+            
         }) { (_) in
             self.isUserInteractionEnabled = true
         }
