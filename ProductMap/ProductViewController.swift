@@ -12,10 +12,16 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
     
     private var topSpaceView = TopSpaceView()
     private var headerView = HeaderView()
+    private var descriptionView = ProductDescriptionView()
     
-    var product: Product? {
-        didSet {
-            topSpaceView.product = product
+    var product: Product?{
+        didSet{
+            if let product = product {
+                topSpaceView.product = product
+                headerView.titleLabel.text = product.title
+                headerView.cityLabel.text = product.city
+                descriptionView.descriptionString = product.productDescription
+            }
         }
     }
     
@@ -24,7 +30,11 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
         // Top space view
         setupTopSpaceView()
         
+        // Title header
         setupHeaderView()
+        
+        // Description View
+        setupDescriptionView()
         
         // Miscellaneous setup
         self.view.backgroundColor = .white
@@ -39,7 +49,6 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
     
-    
     fileprivate func setupTopSpaceView() {
         self.view.addSubview(topSpaceView)
         topSpaceView.delegate = self
@@ -51,9 +60,12 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
     fileprivate func setupHeaderView() {
         self.view.addSubview(headerView)
         headerView.setupHeaderView()
-        
     }
     
+    fileprivate func setupDescriptionView(){
+        self.view.addSubview(descriptionView)
+        descriptionView.setupDescriptionView()
+    }
     
     func dismissViewController() {
         self.dismiss(animated: true, completion: nil)

@@ -23,6 +23,29 @@ class CustomCalloutView: UIView {
     // Product count
     private var upvoteCount: Int = 0
     
+    private var product: Product? {
+        didSet{
+            if let product = product {
+                // Update UI elements
+                productNameLabel.text = product.title
+                productCityLabel.text = product.city
+                productID = product.id
+                
+                guard let productUpvoteCount = product.upvoteCount else {
+                    fatalError()
+                }
+                
+                upvoteCount = productUpvoteCount
+                upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
+                
+                if upvoteCount > 1 {
+                    upvoteTitleLabel.text = "Upvotes"
+                } else {
+                    upvoteTitleLabel.text = "Upvote"
+                }
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,14 +88,19 @@ class CustomCalloutView: UIView {
         
         // Present the ProductViewController modally
         let mainViewController = UIApplication.shared.keyWindow?.rootViewController
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        let vc = ProductDetailController(collectionViewLayout: layout)
+        if let product = product {
+            vc.product = product
+        }
         mainViewController?.present(
-            ProductViewController(),
+            vc,
             animated: true,
             completion: nil
         )
-        
     }
-    
     
     fileprivate func setupProductNameLabel() {
         self.addSubview(productNameLabel)
@@ -94,10 +122,18 @@ class CustomCalloutView: UIView {
         productNameLabel.frame = labelFrame
         productNameLabel.font = labelFont
         productNameLabel.backgroundColor = .white
-        
     }
     
     
+
+    /// Encapsulates the CustomCalloutView UIElements to be configured
+    ///
+    /// - Parameter product: A custom Product model
+    public func configure(with product: Product) {
+        // Assigning properties
+        self.product = product
+    }
+
     fileprivate func setupProductCityLabel() {
         self.addSubview(productCityLabel)
     
@@ -184,33 +220,6 @@ class CustomCalloutView: UIView {
         )
         upvoteButton.addGestureRecognizer(tapGestureRecognizer)
     }
-    
-    
-    /// Encapsulates the CustomCalloutView UIElements to be configured
-    ///
-    /// - Parameter product: A custom Product model
-    public func configure(with product: Product) {
-        // Assigning properties
-        productNameLabel.text = product.title
-        productCityLabel.text = product.city
-        productID = product.id
-        
-        guard let productUpvoteCount = product.upvoteCount else {
-            fatalError()
-        }
-        
-        upvoteCount = productUpvoteCount
-        upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
-        
-        if upvoteCount > 1 {
-            upvoteTitleLabel.text = "Upvotes"
-        } else {
-            upvoteTitleLabel.text = "Upvote"
-        }
-    }
-    
-    
-    
     
     @objc fileprivate func upvoteButtonHandler() {
         
