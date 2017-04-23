@@ -15,7 +15,6 @@ enum addProductViewState {
 }
 
 
-
 protocol AddProductViewDelegate: class {
     
     /// Resizes the MainMapView
@@ -204,7 +203,7 @@ class AddProductView: UIView {
     
     
     /// Dismisses the Add Product View and removes it from the superview
-    fileprivate func dismissAddProductView(for state: addProductViewState) {
+    func dismissAddProductView(for state: addProductViewState) {
     
         guard let keyWindow = keyWindow else {
             return

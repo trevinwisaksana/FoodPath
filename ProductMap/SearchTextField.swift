@@ -31,17 +31,12 @@ class SearchTextField: UITextField, UITextFieldDelegate {
         placeholder = "Search"
         
         // Font
-        let font = UIFontDescriptor(
-            name: "Avenir",
-            size: 30
-        )
-        self.font = UIFont(descriptor: font, size: 30)
+        font = UIFont(name: "Avenir", size: 25)
         
-        // Corner radius
-        layer.cornerRadius = 5
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 0.1
         backgroundColor = .white
+        textAlignment = .center
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,11 +44,35 @@ class SearchTextField: UITextField, UITextFieldDelegate {
     }
     
     
+    public func setupSearchTextField(_ viewController: UIViewController, _ superview: UIView) {
+        superview.addSubview(self)
+        
+        // Using this update products
+        self.searchTextFieldDelegate = viewController as? SearchTextFieldDelegate
+        
+        // SearchTextField setup
+        let textFieldFrame = CGRect(
+            x: 0,
+            y: 0,
+            width: superview.frame.width,
+            height: superview.frame.height
+        )
+        
+        self.frame = textFieldFrame
+        
+        // Corner radius
+        layer.cornerRadius = superview.layer.cornerRadius
+    }
+    
+    
     // If the user has tapped the search text field
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Clear the text field
+        textField.text = ""
         // Disable map view
         searchTextFieldDelegate?.revealSearchView()
     }
+    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         

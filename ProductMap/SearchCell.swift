@@ -13,6 +13,7 @@ class SearchCell: UICollectionViewCell {
     // UIElements
     private var productTitleLabel = UILabel()
     private var productCityLabel = UILabel()
+    private var productUpvoteLabel = UILabel()
     
     
     override init(frame: CGRect) {
@@ -21,6 +22,8 @@ class SearchCell: UICollectionViewCell {
         setupProductTitleLabel()
         // Setup product city label
         setupProductCityLabel()
+        // Setup label
+        setupProductUpvoteLabel()
         // Setup itself
         setupCell()
     }
@@ -43,6 +46,11 @@ class SearchCell: UICollectionViewCell {
         productCityLabel.text = product.city
         productTitleLabel.text = product.title
         
+        
+        guard let upvoteCount = product.upvoteCount else {
+            return
+        }
+        productUpvoteLabel.text = "\(upvoteCount)"
     }
     
     
@@ -77,7 +85,7 @@ class SearchCell: UICollectionViewCell {
         
         let labelFrame = CGRect(
             x: 20,
-            y: 40,
+            y: 50,
             width: windowFrame.width * 0.6,
             height: windowFrame.height * 0.03
         )
@@ -87,6 +95,28 @@ class SearchCell: UICollectionViewCell {
         )
         productCityLabel.frame = labelFrame
         productCityLabel.font = labelFont
+    }
+    
+    
+    fileprivate func setupProductUpvoteLabel() {
+        self.addSubview(productUpvoteLabel)
+        
+        guard let windowFrame = keyWindow?.frame else {
+            return
+        }
+        
+        let labelFrame = CGRect(
+            x: 280,
+            y: 30,
+            width: windowFrame.width * 0.6,
+            height: windowFrame.height * 0.03
+        )
+        let labelFont = UIFont(
+            name: "Avenir",
+            size: 30
+        )
+        productUpvoteLabel.frame = labelFrame
+        productUpvoteLabel.font = labelFont
     }
     
 }

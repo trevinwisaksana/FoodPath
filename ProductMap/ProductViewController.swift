@@ -8,14 +8,15 @@
 
 import UIKit
 
+
 class ProductViewController: UIViewController, TopSpaceViewDelegate {
     
     private var topSpaceView = TopSpaceView()
     private var headerView = HeaderView()
     private var descriptionView = ProductDescriptionView()
     
-    var product: Product?{
-        didSet{
+    var product: Product? {
+        didSet {
             if let product = product {
                 topSpaceView.product = product
                 headerView.titleLabel.text = product.title
@@ -24,6 +25,7 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
             }
         }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,7 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
     
+    
     fileprivate func setupTopSpaceView() {
         self.view.addSubview(topSpaceView)
         topSpaceView.delegate = self
@@ -57,15 +60,18 @@ class ProductViewController: UIViewController, TopSpaceViewDelegate {
         topSpaceView.setupDismissButton()
     }
     
+    
     fileprivate func setupHeaderView() {
         self.view.addSubview(headerView)
         headerView.setupHeaderView()
     }
     
+    
     fileprivate func setupDescriptionView(){
         self.view.addSubview(descriptionView)
         descriptionView.setupDescriptionView()
     }
+    
     
     func dismissViewController() {
         self.dismiss(animated: true, completion: nil)

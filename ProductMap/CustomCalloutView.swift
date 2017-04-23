@@ -124,7 +124,6 @@ class CustomCalloutView: UIView {
         productNameLabel.backgroundColor = .white
     }
     
-    
 
     /// Encapsulates the CustomCalloutView UIElements to be configured
     ///

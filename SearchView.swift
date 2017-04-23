@@ -9,17 +9,9 @@
 
 import UIKit
 
-protocol SearchViewDelegate: class {
-    
-    /// Dismisses the searchView when the cancel button is pressed
-    func dismissSearchView()
-}
-
 
 class SearchView: UIView {
     
-    weak var searchViewDelegate: SearchViewDelegate?
-    var cancelSearchButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +25,7 @@ class SearchView: UIView {
             alpha: 1
         )
         */
+        
         backgroundColor = .white
         isUserInteractionEnabled = true
     }
@@ -53,13 +46,10 @@ class SearchView: UIView {
                            height: 0)
         self.frame = frame
         
-        searchViewDelegate = viewController as? SearchViewDelegate
     }
     
     
-    func showSearchView() {
-        // Setup button
-        setupCancelSearchButton()
+    public func showSearchView() {
         
         guard let keyWindow = keyWindow?.frame else {
             return
@@ -73,58 +63,11 @@ class SearchView: UIView {
     }
     
     
-    func dismissSearchView() {
+    public func dismissSearchView() {
         UIView.animate(withDuration: 0.3, animations: {
-            // Create search view when editting
+            // Change the height to 0
             self.frame.size.height = 0
-            // Hide cancel button
-            self.cancelSearchButton.removeFromSuperview()
         })
-        
     }
-    
-    
-    fileprivate func setupCancelSearchButton() {
-        self.addSubview(cancelSearchButton)
-        
-        guard let windowFrame = keyWindow?.frame else {
-            return
-        }
-        
-        let buttonFrame = CGRect(
-            x: windowFrame.width * 0.001,
-            y: windowFrame.width * 0.03,
-            width: windowFrame.size.width * 0.2,
-            height: windowFrame.size.width * 0.2
-        )
-        cancelSearchButton.frame = buttonFrame
-        
-        cancelSearchButton.layer.shadowOffset = CGSize(
-            width: 0,
-            height: 0
-        )
-        cancelSearchButton.layer.shadowRadius = 1
-        cancelSearchButton.layer.shadowOpacity = 0.2
-        cancelSearchButton.clipsToBounds = false
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(cancelSearchButtonHandler)
-        )
-        cancelSearchButton.addGestureRecognizer(tapGestureRecognizer)
-        cancelSearchButton.setImage(
-            UIImage(named: "CloseButton"),
-            for: .normal
-        )
-        
-    }
-    
-    
-    @objc fileprivate func cancelSearchButtonHandler() {
-        searchViewDelegate?.dismissSearchView()
-    }
-    
-    
-    
     
 }
