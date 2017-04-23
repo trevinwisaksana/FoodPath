@@ -10,8 +10,12 @@ import UIKit
 
 class CustomCalloutView: UIView {
     
-    // UIElements
+    // MARK: - UIElements
     private var productNameLabel = UILabel()
+    // Label for city
+    private var productCityLabel = UILabel()
+    // Upvote label
+    private var upvoteTitleLabel = UILabel()
     // Button for upvoting
     private var upvoteButton = UIButton()
     // Selected product ID
@@ -28,6 +32,10 @@ class CustomCalloutView: UIView {
         setupProductNameLabel()
         // Setup upvote button
         setupUpvoteButton()
+        // Setup product city label
+        setupProductCityLabel()
+        // Setup upvote title label
+        setupUpvoteTitleLabel()
         
         // Miscellaneous setup
         backgroundColor = .white
@@ -35,6 +43,7 @@ class CustomCalloutView: UIView {
         layer.shadowOpacity = 0.15
         layer.shadowOffset = CGSize(width: 0, height: 2)
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -89,26 +98,57 @@ class CustomCalloutView: UIView {
     }
     
     
-    /// Encapsulates the CustomCalloutView UIElements to be configured
-    ///
-    /// - Parameter product: A custom Product model
-    public func configure(with product: Product) {
-        // Assigning properties
-        productNameLabel.text = product.title
-        productID = product.id
-        
-        guard let productUpvoteCount = product.upvoteCount else {
-            fatalError()
+    fileprivate func setupProductCityLabel() {
+        self.addSubview(productCityLabel)
+    
+        guard let keyWindow = keyWindow?.frame else {
+            return
         }
         
-        upvoteCount = productUpvoteCount
-        upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
+        let labelFrame = CGRect(
+            x: keyWindow.width * 0.05,
+            y: keyWindow.width * 0.15,
+            width: keyWindow.width * 0.6,
+            height: keyWindow.height * 0.06
+        )
+        let labelFont = UIFont(
+            name: "Avenir",
+            size: 20
+        )
+        productCityLabel.frame = labelFrame
+        productCityLabel.font = labelFont
+        productCityLabel.backgroundColor = .white
+        
+    }
+    
+    
+    fileprivate func setupUpvoteTitleLabel() {
+        self.addSubview(upvoteTitleLabel)
+        
+        guard let windowFrame = keyWindow?.frame else {
+            return
+        }
+        
+        let labelFrame = CGRect(
+            x: windowFrame.width * 0.75,
+            y: windowFrame.width * 0.225,
+            width: windowFrame.width * 0.6,
+            height: windowFrame.height * 0.03
+        )
+        let labelFont = UIFont(
+            name: "Avenir",
+            size: 15
+        )
+        upvoteTitleLabel.frame = labelFrame
+        upvoteTitleLabel.font = labelFont
+        upvoteTitleLabel.backgroundColor = .white
+        
     }
     
     
     fileprivate func setupUpvoteButton() {
         self.addSubview(upvoteButton)
-    
+        
         // Window frame
         guard let windowFrame = keyWindow?.frame else {
             return
@@ -144,6 +184,32 @@ class CustomCalloutView: UIView {
         )
         upvoteButton.addGestureRecognizer(tapGestureRecognizer)
     }
+    
+    
+    /// Encapsulates the CustomCalloutView UIElements to be configured
+    ///
+    /// - Parameter product: A custom Product model
+    public func configure(with product: Product) {
+        // Assigning properties
+        productNameLabel.text = product.title
+        productCityLabel.text = product.city
+        productID = product.id
+        
+        guard let productUpvoteCount = product.upvoteCount else {
+            fatalError()
+        }
+        
+        upvoteCount = productUpvoteCount
+        upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
+        
+        if upvoteCount > 1 {
+            upvoteTitleLabel.text = "Upvotes"
+        } else {
+            upvoteTitleLabel.text = "Upvote"
+        }
+    }
+    
+    
     
     
     @objc fileprivate func upvoteButtonHandler() {

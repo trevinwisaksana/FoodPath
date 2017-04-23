@@ -37,6 +37,21 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     }
     
     
+    // MARK: - Map setup
+    func setupMapView(_ viewController: UIViewController) {
+        viewController.view.addSubview(self)
+        
+        frame = viewController.view.frame
+        // Setting the delegate
+        delegate = viewController as? MKMapViewDelegate
+        // User location
+        showsUserLocation = true
+        // Allow user tracking
+        userTrackingMode = MKUserTrackingMode.follow
+        
+    }
+    
+    
     fileprivate func setupLongTapGesture() {
         let longPressGestureRecognizer = UILongPressGestureRecognizer(
             target: self,

@@ -42,6 +42,21 @@ class SearchView: UIView {
     }
     
     
+    // MARK: - Setup searchView
+    public func setupSearchView(_ viewController: UIViewController) {
+        viewController.view.addSubview(self)
+        
+        let width = viewController.view.frame.width
+        let frame = CGRect(x: viewController.view.frame.origin.x,
+                           y: viewController.view.frame.origin.y,
+                           width: width,
+                           height: 0)
+        self.frame = frame
+        
+        searchViewDelegate = viewController as? SearchViewDelegate
+    }
+    
+    
     func showSearchView() {
         // Setup button
         setupCancelSearchButton()
@@ -108,5 +123,8 @@ class SearchView: UIView {
     @objc fileprivate func cancelSearchButtonHandler() {
         searchViewDelegate?.dismissSearchView()
     }
+    
+    
+    
     
 }

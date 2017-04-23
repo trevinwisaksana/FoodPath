@@ -37,13 +37,9 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setup map view
-        setupMapView()
+        mainMapView.setupMapView(self)
         // Setup searchView
-        setupSearchView()
-        // Setup bottomBarView
-        // setupBottomBarView()
-        // Setup the hardcoded categories
-        setupCategories()
+        searchView.setupSearchView(self)
         // Setup search text field
         setupSearchTextField()
         // Setup for location manager
@@ -59,34 +55,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         }
         
     }
-    
-    // MARK: - Map setup
-    fileprivate func setupMapView() {
-        self.view.addSubview(mainMapView)
-        
-        mainMapView.frame = self.view.frame
-        // Setting the delegate
-        mainMapView.delegate = self
-        // User location
-        mainMapView.showsUserLocation = true
-        // Allow user tracking
-        mainMapView.userTrackingMode = MKUserTrackingMode.follow
-        
-    }
-    
-    // MARK: - Setup searchView
-    fileprivate func setupSearchView() {
-        self.view.addSubview(searchView)
-        
-        let width = self.view.frame.width
-        let frame = CGRect(x: self.view.frame.origin.x,
-                           y: self.view.frame.origin.y,
-                           width: width,
-                           height: 0)
-        searchView.frame = frame
-        
-        searchView.searchViewDelegate = self
-    }
+
     
     // MARK: - Setup bottomBarView
     fileprivate func setupBottomBarView() {
@@ -155,12 +124,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         searchCollectionView.alwaysBounceVertical = true
         
         searchView.addSubview(searchCollectionView)
-    }
-    
-    
-    fileprivate func setupCategories() {
-        
-        
     }
     
     
