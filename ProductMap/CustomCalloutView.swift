@@ -22,15 +22,16 @@ class CustomCalloutView: UIView {
     private var product: Product? {
         didSet{
             if let product = product {
+                // Update UI elements
                 productNameLabel.text = product.title
                 productID = product.id
                 
                 guard let productUpvoteCount = product.upvoteCount else {
-                    return
+                    fatalError()
                 }
                 
                 upvoteCount = productUpvoteCount
-                
+                upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
             }
         }
     }
@@ -71,7 +72,10 @@ class CustomCalloutView: UIView {
         
         // Present the ProductViewController modally
         let mainViewController = UIApplication.shared.keyWindow?.rootViewController
-        let vc = ProductViewController()
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        let vc = ProductDetailController(collectionViewLayout: layout)
         if let product = product {
             vc.product = product
         }
@@ -81,7 +85,6 @@ class CustomCalloutView: UIView {
             completion: nil
         )
     }
-    
     
     fileprivate func setupProductNameLabel() {
         self.addSubview(productNameLabel)
@@ -112,15 +115,6 @@ class CustomCalloutView: UIView {
     public func configure(with product: Product) {
         // Assigning properties
         self.product = product
-        productNameLabel.text = product.title
-        productID = product.id
-        
-        guard let productUpvoteCount = product.upvoteCount else {
-            fatalError()
-        }
-        
-        upvoteCount = productUpvoteCount
-        upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
     }
     
     

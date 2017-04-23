@@ -13,6 +13,8 @@ target 'ProductMap' do
   pod 'XCGLogger'
   pod 'SwiftyJSON'
   pod 'SDWebImage'
+  pod "ImageSlideshow/Alamofire"
+  pod 'ImageSlideshow'
 
   target 'ProductMapTests' do
     inherit! :search_paths
