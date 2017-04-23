@@ -33,7 +33,7 @@ class SearchCollectionView: UICollectionView {
     }
     
     
-    func showSearchCollectionView() {
+    public func showSearchCollectionView() {
         
         guard let keyWindow = keyWindow?.frame else {
             return
@@ -47,7 +47,7 @@ class SearchCollectionView: UICollectionView {
     }
     
     
-    func dismissSearchCollectionView() {
+    public func dismissSearchCollectionView() {
         
         UIView.animate(withDuration: 0.2, animations: {
             // Create search view when editting
