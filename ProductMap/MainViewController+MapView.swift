@@ -41,6 +41,7 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         
         if let annotationView = annotationView {
             // Resizing the image because the image.size is a get only property
+            /*
             let image = UIImage(named: "pinImage")
             
             let size = CGSize(
@@ -62,6 +63,7 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             annotationView.image = resizedImage
+            */
         }
    
         return annotationView

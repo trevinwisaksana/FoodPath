@@ -36,6 +36,7 @@ class APIClient {
     public func createProduct(product: Product) {
         // Retrieving product reference
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
+        
         // Modify database in Firebase
         productRef.setValue(product.toJson())
     }
@@ -43,7 +44,7 @@ class APIClient {
     
     public func getProductsByCity(city: String, completionHandler: @escaping ([Product]) -> Void){
         
-        APIClient.productRef.child(city).observe(.value, with: { (snapshot) in
+        APIClient.productRef.child(city).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 
                 if let data = snapshot.value as? [String: AnyObject] {
