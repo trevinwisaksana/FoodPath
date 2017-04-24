@@ -169,11 +169,15 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         // Setting the center of the map to the user location
         mainMapView.setCenter(currentLocation, animated: false)
         // Getting the region to focus
-        let region = MKCoordinateRegionMakeWithDistance(
+        var region = MKCoordinateRegionMakeWithDistance(
             currentLocation,
-            5000,
-            5000
+            50,
+            50
         )
+        let span = MKCoordinateSpan(
+            latitudeDelta: 50,
+            longitudeDelta: 50)
+        region.span = span
         self.mainMapView.setRegion(region, animated: false)
     }
     
@@ -186,12 +190,31 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     func revealSearchView() {
         // Display searchView
         searchView.showSearchView()
+        // Revearls the cancel buton
+        topBarContainer.showCancelButton()
+        // Sends the searchTextField to back
+        topBarContainer.sendSubview(toBack: searchTextField)
         // Display the searchCollectionView
         searchCollectionView.showSearchCollectionView()
-        // Place the Bottom Bar View at the back
-        self.view.sendSubview(toBack: bottomBarView)
         // Disable the map from being scrollable
         mainMapView.isUserInteractionEnabled = false
+    
+        // Hides the callout view
+        for subview in self.view.subviews {
+            if subview.isKind(of: CustomCalloutView.self) {
+                UIView.animate(withDuration: 0.2, animations: { 
+                    subview.alpha = 0
+                })
+            }
+            
+            
+            if subview.isKind(of: AddProductView.self) {
+                UIView.animate(withDuration: 0.2, animations: {
+                    subview.frame.origin.y = self.view.frame.height
+                    self.mainMapView.resizeMapView(for: .cancelAdd)
+                })
+            }
+        }
     }
     
     
@@ -200,12 +223,19 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         searchView.dismissSearchView()
         // Hide the searchCollectionView
         searchCollectionView.dismissSearchCollectionView()
-        // Place the Bottom Bar View at the back
-        self.view.bringSubview(toFront: bottomBarView)
         // Enable map view
         mainMapView.isUserInteractionEnabled = true
-        // Hide keyboard
+        // Hide keyboard and clear text
         searchTextField.resignFirstResponder()
+        searchTextField.text = ""
+        // Unhides the callout view
+        for subview in self.view.subviews {
+            if subview.isKind(of: CustomCalloutView.self) {
+                UIView.animate(withDuration: 0.2, animations: {
+                    subview.alpha = 1
+                })
+            }
+        }
     }
     
 }

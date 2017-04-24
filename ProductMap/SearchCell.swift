@@ -8,11 +8,13 @@
 
 import UIKit
 
+
 class SearchCell: UICollectionViewCell {
     
     // UIElements
     private var productTitleLabel = UILabel()
     private var productCityLabel = UILabel()
+    private var productUpvoteLabel = UILabel()
     
     
     override init(frame: CGRect) {
@@ -21,6 +23,8 @@ class SearchCell: UICollectionViewCell {
         setupProductTitleLabel()
         // Setup product city label
         setupProductCityLabel()
+        // Setup label
+        setupProductUpvoteLabel()
         // Setup itself
         setupCell()
     }
@@ -32,7 +36,6 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupCell() {
         backgroundColor = .white
-        layer.cornerRadius = 10
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(width: 0, height: 0)
         isUserInteractionEnabled = true
@@ -43,6 +46,11 @@ class SearchCell: UICollectionViewCell {
         productCityLabel.text = product.city
         productTitleLabel.text = product.title
         
+        
+        guard let upvoteCount = product.upvoteCount else {
+            return
+        }
+        productUpvoteLabel.text = "\(upvoteCount)"
     }
     
     
@@ -54,14 +62,14 @@ class SearchCell: UICollectionViewCell {
         }
         
         let labelFrame = CGRect(
-            x: 20,
-            y: 20,
+            x: self.frame.width * 0.05,
+            y: self.frame.height * 0.15,
             width: windowFrame.width * 0.6,
-            height: windowFrame.height * 0.03
+            height: self.frame.height * 0.5
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 30
+            size: 20
         )
         productTitleLabel.frame = labelFrame
         productTitleLabel.font = labelFont
@@ -76,8 +84,8 @@ class SearchCell: UICollectionViewCell {
         }
         
         let labelFrame = CGRect(
-            x: 20,
-            y: 40,
+            x: self.frame.width * 0.05,
+            y: self.frame.height * 0.6,
             width: windowFrame.width * 0.6,
             height: windowFrame.height * 0.03
         )
@@ -87,6 +95,35 @@ class SearchCell: UICollectionViewCell {
         )
         productCityLabel.frame = labelFrame
         productCityLabel.font = labelFont
+        productCityLabel.adjustsFontSizeToFitWidth = true
+    }
+    
+    
+    fileprivate func setupProductUpvoteLabel() {
+        self.addSubview(productUpvoteLabel)
+        productUpvoteLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: 20).isActive = true
+        productUpvoteLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        productUpvoteLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        let labelFrame = CGRect(
+            x: self.frame.width * 0.8,
+            y: self.frame.height * 0.02,
+            width: self.frame.width * 0.2,
+            height: self.frame.height
+        )
+        let labelFont = UIFont(
+            name: "Avenir",
+            size: 30
+        )
+        productUpvoteLabel.frame = labelFrame
+        productUpvoteLabel.backgroundColor = UIColor(
+            colorLiteralRed: 166/255,
+            green: 159/255,
+            blue: 135/255,
+            alpha: 1
+        )
+        productUpvoteLabel.font = labelFont
+        productUpvoteLabel.textAlignment = .center
     }
     
 }

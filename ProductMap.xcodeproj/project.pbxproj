@@ -24,6 +24,7 @@
 		C4EC64E51EAC259800866098 /* ImageScrollerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64E41EAC259800866098 /* ImageScrollerCell.swift */; };
 		C4EC64E71EAC280800866098 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64E61EAC280800866098 /* DescriptionCell.swift */; };
 		C4EC64E91EAC2E5300866098 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64E81EAC2E5300866098 /* TitleCell.swift */; };
+		C4EC64EF1EAD95EC00866098 /* ProductDetailButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64EE1EAD95EC00866098 /* ProductDetailButtons.swift */; };
 		DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */; };
 		DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BE01E9EBA91005B88D8 /* MainViewController.swift */; };
 		DD224BE71E9EBA91005B88D8 /* ProductMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD224BE51E9EBA91005B88D8 /* ProductMap.xcdatamodeld */; };
@@ -46,9 +47,9 @@
 		DD4B194B1EA43E3700DC0F00 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */; };
 		DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */; };
 		DD4B19561EA547C800DC0F00 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19551EA547C800DC0F00 /* APIClient.swift */; };
+		DD5B22D41EAD3DC2004461A2 /* TopBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5B22D31EAD3DC2004461A2 /* TopBarContainer.swift */; };
 		DD7370CA1EA59880007511B5 /* TopSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7370C91EA59880007511B5 /* TopSpaceView.swift */; };
 		DD7370D01EA6CD26007511B5 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7370CF1EA6CD26007511B5 /* SearchCell.swift */; };
-		DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */; };
 		DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */; };
 		DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED21EA03B3700925A43 /* SignInButton.swift */; };
 		DD9D8ED81EA03E7000925A43 /* MainViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED71EA03E7000925A43 /* MainViewController+CollectionView.swift */; };
@@ -95,6 +96,7 @@
 		C4EC64E41EAC259800866098 /* ImageScrollerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollerCell.swift; sourceTree = "<group>"; };
 		C4EC64E61EAC280800866098 /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		C4EC64E81EAC2E5300866098 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		C4EC64EE1EAD95EC00866098 /* ProductDetailButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailButtons.swift; sourceTree = "<group>"; };
 		DD224BDB1E9EBA91005B88D8 /* ProductMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD224BE01E9EBA91005B88D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -123,9 +125,9 @@
 		DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionView.swift; sourceTree = "<group>"; };
 		DD4B19551EA547C800DC0F00 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		DD5B22D31EAD3DC2004461A2 /* TopBarContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopBarContainer.swift; sourceTree = "<group>"; };
 		DD7370C91EA59880007511B5 /* TopSpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopSpaceView.swift; sourceTree = "<group>"; };
 		DD7370CF1EA6CD26007511B5 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
-		DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		DD9D8ECD1EA02F4B00925A43 /* ProductMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProductMap.entitlements; sourceTree = "<group>"; };
 		DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
 		DD9D8ED21EA03B3700925A43 /* SignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				C4EC64E41EAC259800866098 /* ImageScrollerCell.swift */,
 				C4EC64E61EAC280800866098 /* DescriptionCell.swift */,
 				C4EC64E81EAC2E5300866098 /* TitleCell.swift */,
+				C4EC64EE1EAD95EC00866098 /* ProductDetailButtons.swift */,
 			);
 			name = "Product controller cells";
 			sourceTree = "<group>";
@@ -333,7 +336,7 @@
 			children = (
 				DD224C241E9FE4A2005B88D8 /* SearchView.swift */,
 				DD4B19391EA2F7F700DC0F00 /* SearchTextField.swift */,
-				DD9D8ECB1E9FF42400925A43 /* BottomBarView.swift */,
+				DD5B22D31EAD3DC2004461A2 /* TopBarContainer.swift */,
 				DD4B19441EA3DDA800DC0F00 /* Map Views */,
 				DD9D8EDB1EA042C500925A43 /* CollectionViewCells */,
 				DD9D8ED01EA0391500925A43 /* CollectionViews */,
@@ -465,7 +468,7 @@
 				TargetAttributes = {
 					DD224BDA1E9EBA91005B88D8 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3FX26JCU7E;
+						DevelopmentTeam = 9ME882KZTA;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -625,7 +628,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		738675765FD8DD3F5ACDC95E /* [CP] Check Pods Manifest.lock */ = {
@@ -640,7 +643,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		A60355F6A70E109DC1BFD59F /* [CP] Check Pods Manifest.lock */ = {
@@ -655,7 +658,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B3BD022A264DCFEEBDB317BE /* [CP] Copy Pods Resources */ = {
@@ -682,7 +685,9 @@
 			files = (
 				DD4B194B1EA43E3700DC0F00 /* AddProductView.swift in Sources */,
 				C4EC64E01EAC243100866098 /* ProductController.swift in Sources */,
+				C4EC64EF1EAD95EC00866098 /* ProductDetailButtons.swift in Sources */,
 				DD9D8EDA1EA03F0A00925A43 /* CategoriesCell.swift in Sources */,
+				DD5B22D41EAD3DC2004461A2 /* TopBarContainer.swift in Sources */,
 				DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */,
 				C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */,
 				C4EC64E51EAC259800866098 /* ImageScrollerCell.swift in Sources */,
@@ -710,7 +715,6 @@
 				DD4B19481EA42BAC00DC0F00 /* ProductViewController.swift in Sources */,
 				C4EC64DE1EABFFBC00866098 /* ProductDescriptionView.swift in Sources */,
 				DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */,
-				DD9D8ECC1E9FF42400925A43 /* BottomBarView.swift in Sources */,
 				DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */,
 				DD4B193C1EA33AB900DC0F00 /* MainViewController+MapView.swift in Sources */,
 				DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */,
@@ -860,7 +864,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ProductMap/ProductMap.entitlements;
-				DEVELOPMENT_TEAM = 3FX26JCU7E;
+				DEVELOPMENT_TEAM = 9ME882KZTA;
 				INFOPLIST_FILE = ProductMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -876,7 +880,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ProductMap/ProductMap.entitlements;
-				DEVELOPMENT_TEAM = 3FX26JCU7E;
+				DEVELOPMENT_TEAM = 9ME882KZTA;
 				INFOPLIST_FILE = ProductMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
