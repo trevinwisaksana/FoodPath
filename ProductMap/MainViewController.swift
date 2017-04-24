@@ -11,7 +11,7 @@ import MapKit
 import Firebase
 
 
-class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewDelegate {
+class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarContainerDelegate {
     
     // MARK: - Lists
     var listOfCategories: [Category] = []
@@ -22,7 +22,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
     // MARK: - Views
     let mainMapView = MainMapView()
     let searchView = SearchView()
-    let bottomBarView = BottomBarView()
+    let topBarContainer = TopBarContainer()
     var searchTextField = SearchTextField()
     var categoriesCollectionView: CategoriesCollectionView!
     var searchCollectionView: SearchCollectionView!
@@ -40,8 +40,10 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         mainMapView.setupMapView(self)
         // Setup searchView
         searchView.setupSearchView(self)
+        // Setup top bar container
+        topBarContainer.setupTopBarContainer(self)
         // Setup search text field
-        setupSearchTextField()
+        searchTextField.setupSearchTextField(self, topBarContainer)
         // Setup for location manager
         setupLocationManager()
         // Setup search collectoion view
@@ -53,38 +55,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
             self.mainMapView.addAnnotations(products)
             
         }
-        
-    }
-
-    
-    // MARK: - Setup bottomBarView
-    fileprivate func setupBottomBarView() {
-        self.view.addSubview(bottomBarView)
-        
-        let width = self.view.frame.width
-        let height = self.view.frame.height
-        let frame = CGRect(x: 0,
-                           y: height * 0.84,
-                           width: width,
-                           height: height * 0.8)
-        bottomBarView.frame = frame
-    }
-    
-    
-    fileprivate func setupSearchTextField() {
-        self.view.addSubview(searchTextField)
-        // Using this update products
-        searchTextField.searchTextFieldDelegate = self
-        
-        // SearchTextField setup
-        let textFieldFrame = CGRect(
-            x: self.view.frame.width * 0.15,
-            y: self.view.frame.height * 0.05,
-            width: self.view.frame.width * 0.7,
-            height: self.view.frame.height * 0.06
-        )
-        
-        searchTextField.frame = textFieldFrame
     }
     
     
@@ -133,16 +103,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, SearchViewD
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
-    
-    
-    
-    // MARK: - Annotations
-    
-    
-    // MARK: - Overlays
-    
-    
-    // MARK: Life Cycle
     
     
 }

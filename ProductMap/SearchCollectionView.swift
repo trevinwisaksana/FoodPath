@@ -16,20 +16,19 @@ class SearchCollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         
-        backgroundColor = .white
+        backgroundColor = UIColor(
+            colorLiteralRed: 242/255,
+            green: 237/255,
+            blue: 217/255,
+            alpha: 1
+        )
+        
         isScrollEnabled = true
         isUserInteractionEnabled = true
-        alwaysBounceVertical = true
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    func setupSearchCollectionView() {
-        
-
     }
     
     
@@ -41,7 +40,7 @@ class SearchCollectionView: UICollectionView {
         
         UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             // Show search view when editting
-            self.frame.size.height = keyWindow.height
+            self.frame.size.height = keyWindow.height * 0.85
         })
         
     }

@@ -66,7 +66,9 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         )
         // Dismisses the SearchView
         dismissSearchView()
-        
+        topBarContainer.hideCancelButton()
+        // Clears text field
+        searchTextField.text = ""
     }
     
     
