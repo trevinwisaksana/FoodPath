@@ -116,25 +116,27 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        let width = view.frame.width
+        
         switch indexPath.item {
             // Image Scroller
         case 0:
-            return CGSize(width: view.frame.width, height: 200)
+            return CGSize(width: width, height: 200)
             // Title and city label
         case 1:
-            return CGSize(width: view.frame.width, height: 80)
+            return CGSize(width: width, height: 80)
             // Navigation and contact Button
         case 2:
-            return CGSize(width: view.frame.width, height: 40)
+            return CGSize(width: width, height: 40)
             // Description
         case 3:
-            let dummySize = CGSize(width: view.frame.width - 8 - 8, height: 1000)
+            let dummySize = CGSize(width: width - 8 - 8, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin)
             let rect = descriptionAttributedText().boundingRect(with: dummySize, options: options, context: nil)
             
-            return CGSize(width: view.frame.width, height: rect.height + 60)
+            return CGSize(width: width, height: rect.height + 60)
         default:
-            return CGSize(width: view.frame.width, height: 170)
+            return CGSize(width: width, height: 0)
         }
     }
     
