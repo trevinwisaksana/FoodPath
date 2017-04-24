@@ -28,7 +28,28 @@ class TitleCollectionViewCell: BaseCell {
         return lbl
     }()
     
-    
+    var product: Product? {
+        didSet{
+            if let product = product {
+                self.titleLabel.text = product.title
+                self.cityLabel.text = product.city
+                self.productID = product.id
+                
+                guard let productUpvoteCount = product.upvoteCount else {
+                    return
+                }
+                
+                upvoteCount = productUpvoteCount
+                upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
+                
+                if upvoteCount > 1 {
+                    upvoteTitleLabel.text = "Upvotes"
+                } else {
+                    upvoteTitleLabel.text = "Upvote"
+                }
+            }
+        }
+    }
     
     
     // Button for upvoting
@@ -37,6 +58,7 @@ class TitleCollectionViewCell: BaseCell {
     private var upvoteTitleLabel = UILabel()
     // Stack views
     private var upvoteContainer = UIStackView()
+    private var productLabelContainer = UIStackView()
     // Product count
     private var upvoteCount: Int = 0
     // Selected product ID
@@ -45,17 +67,15 @@ class TitleCollectionViewCell: BaseCell {
     
     override func setupViews() {
         
-        self.backgroundColor = UIColor(red: 66/255, green: 133/255, blue: 255/255, alpha: 1)
+        self.backgroundColor = UIColor(
+            red: 66/255,
+            green: 133/255,
+            blue: 255/255,
+            alpha: 1
+        )
         
-        addSubview(titleLabel)
-        addSubview(cityLabel)
-        
-        titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-        
-        cityLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
-        cityLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        setupUpvoteContainer()
+        setupProductLabelContainer()
     }
     
     
@@ -105,7 +125,7 @@ class TitleCollectionViewCell: BaseCell {
             ).isActive = true
         upvoteContainer.centerYAnchor.constraint(
             equalTo: self.centerYAnchor,
-            constant: -10
+            constant: 0
             ).isActive = true
         upvoteContainer.translatesAutoresizingMaskIntoConstraints = false
         
@@ -159,6 +179,30 @@ class TitleCollectionViewCell: BaseCell {
         upvoteButton.heightAnchor.constraint(equalToConstant: windowFrame.width * 0.19).isActive = true
         upvoteButton.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    
+    fileprivate func setupProductLabelContainer() {
+        self.addSubview(productLabelContainer)
+        
+        productLabelContainer.axis = .vertical
+        productLabelContainer.distribution = .fillEqually
+        productLabelContainer.alignment = .leading
+        productLabelContainer.spacing = 5
+        
+        productLabelContainer.addArrangedSubview(titleLabel)
+        productLabelContainer.addArrangedSubview(cityLabel)
+        
+        productLabelContainer.leftAnchor.constraint(
+            equalTo: leftAnchor,
+            constant: 20
+            ).isActive = true
+        productLabelContainer.centerYAnchor.constraint(
+            equalTo: self.centerYAnchor,
+            constant: 0
+            ).isActive = true
+        productLabelContainer.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     
     @objc fileprivate func upvoteButtonHandler() {
         

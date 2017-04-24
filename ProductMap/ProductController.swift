@@ -114,10 +114,14 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
             return cell
             // Title and city Label cell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: titleCellId, for: indexPath) as! TitleCollectionViewCell
-            // TODO: Encapsulate this
-            cell.titleLabel.text = product?.title
-            cell.cityLabel.text = product?.city
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: titleCellId,
+                for: indexPath) as! TitleCollectionViewCell
+            
+            if let product = product {
+                cell.product = product
+            }
+            
             return cell
             // Navigation and contact buttons
         case 2:
@@ -141,17 +145,13 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
         let width = view.frame.width
         
         switch indexPath.item {
-            // Image Scroller
-        case 0:
-            return CGSize(width: width, height: 200)
-            // Title and city label
-        case 1:
-            return CGSize(width: view.frame.width, height: 150)
-            // Navigation and contact Button
-        case 2:
+        case 0: // Image Scroller
+            return CGSize(width: width, height: 300)
+        case 1: // Title and city label
+            return CGSize(width: view.frame.width, height: 120)
+        case 2: // Navigation and contact Button
             return CGSize(width: width, height: 40)
-            // Description
-        case 3:
+        case 3: // Description
             let dummySize = CGSize(width: width - 8 - 8, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin)
             let rect = descriptionAttributedText().boundingRect(with: dummySize, options: options, context: nil)
