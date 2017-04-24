@@ -43,12 +43,12 @@ class ProductDescriptionCell: BaseCell {
         addSubview(textView)
         
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 2).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         
         dividerLineView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0).isActive = true
-        dividerLineView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5).isActive = true
-        dividerLineView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
+        dividerLineView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        dividerLineView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         dividerLineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         textView.topAnchor.constraint(equalTo: dividerLineView.bottomAnchor, constant: 0).isActive = true

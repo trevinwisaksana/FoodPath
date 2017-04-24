@@ -29,7 +29,7 @@ class ProductDetailButtons: BaseCell {
     
     let dividerLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor(white: 0.4, alpha: 0.4)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -51,8 +51,8 @@ class ProductDetailButtons: BaseCell {
         addSubview(dividerLine)
         
         dividerLine.topAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
-        dividerLine.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5).isActive = true
-        dividerLine.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
+        dividerLine.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        dividerLine.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         dividerLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
 }
