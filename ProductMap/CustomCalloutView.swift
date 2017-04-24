@@ -62,7 +62,7 @@ class CustomCalloutView: UIView {
         
         // Miscellaneous setup
         backgroundColor = .white
-        layer.cornerRadius = 30
+        layer.cornerRadius = 20
         layer.shadowOpacity = 0.15
         layer.shadowOffset = CGSize(width: 0, height: 2)
     }

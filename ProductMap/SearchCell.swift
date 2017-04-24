@@ -27,6 +27,7 @@ class SearchCell: UICollectionViewCell {
         setupProductUpvoteLabel()
         // Setup itself
         setupCell()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,9 +37,6 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupCell() {
         backgroundColor = .white
-        layer.shadowOpacity = 0.2
-        layer.shadowOffset = CGSize(width: 0, height: 0)
-        isUserInteractionEnabled = true
     }
     
     
@@ -106,14 +104,14 @@ class SearchCell: UICollectionViewCell {
         productUpvoteLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         let labelFrame = CGRect(
-            x: self.frame.width * 0.8,
-            y: self.frame.height * 0.02,
-            width: self.frame.width * 0.2,
-            height: self.frame.height
+            x: self.frame.width * 0.75,
+            y: self.frame.height * 0.105,
+            width: self.frame.width * 0.18,
+            height: self.frame.width * 0.18
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 30
+            size: 25
         )
         productUpvoteLabel.frame = labelFrame
         productUpvoteLabel.backgroundColor = UIColor(
@@ -124,6 +122,8 @@ class SearchCell: UICollectionViewCell {
         )
         productUpvoteLabel.font = labelFont
         productUpvoteLabel.textAlignment = .center
+        productUpvoteLabel.clipsToBounds = true
+        productUpvoteLabel.layer.cornerRadius = productUpvoteLabel.frame.width / 2
     }
     
 }

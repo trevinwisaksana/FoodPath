@@ -70,6 +70,9 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         // Creating an instance of a layout
         let layout = UICollectionViewFlowLayout()
         
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
+        
         layout.sectionInset = UIEdgeInsets(
             top: 20,
             left: 12,
@@ -79,7 +82,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         
         // Makes the height and width equal
         layout.itemSize = CGSize(
-            width: self.view.frame.width * 0.8,
+            width: self.view.frame.width * 0.9,
             height: self.view.frame.width * 0.2
         )
         

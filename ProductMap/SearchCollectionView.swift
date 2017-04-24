@@ -25,6 +25,7 @@ class SearchCollectionView: UICollectionView {
         
         isScrollEnabled = true
         isUserInteractionEnabled = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
