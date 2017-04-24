@@ -36,6 +36,8 @@ class ImageScrollerCollectionViewCell: BaseCell {
         }
     }
     
+    weak var delegate: TopSpaceViewDelegate!
+    
     override func setupViews() {
         self.backgroundColor = .black
         
@@ -50,6 +52,12 @@ class ImageScrollerCollectionViewCell: BaseCell {
         addSubview(dismissButton)
         dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         dismissButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        
+        dismissButton.addTarget(self, action: #selector(handleDismissButton), for: .touchUpInside)
+    }
+    
+    func handleDismissButton(){
+        delegate.dismissViewController()
     }
     
     func addGradientView(){
