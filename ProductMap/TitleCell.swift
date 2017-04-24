@@ -55,10 +55,6 @@ class TitleCollectionViewCell: BaseCell {
         
         cityLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
         cityLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        
-        // Setup upvote container
-        setupUpvoteContainer()
-        
     }
     
     
@@ -81,7 +77,6 @@ class TitleCollectionViewCell: BaseCell {
         )
         upvoteTitleLabel.frame = labelFrame
         upvoteTitleLabel.font = labelFont
-        // upvoteTitleLabel
         upvoteTitleLabel.adjustsFontSizeToFitWidth = true
         
     }
