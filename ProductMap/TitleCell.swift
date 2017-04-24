@@ -81,6 +81,7 @@ class TitleCollectionViewCell: BaseCell {
         )
         upvoteTitleLabel.frame = labelFrame
         upvoteTitleLabel.font = labelFont
+        // upvoteTitleLabel
         upvoteTitleLabel.adjustsFontSizeToFitWidth = true
         
     }
