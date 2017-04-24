@@ -51,12 +51,10 @@ class AddProductView: UIView {
         setupCancelButton()
         setupAddProductButton()
         setupInstructionLabel()
-        
-        // TODO: Fix keyboard
     
         // Miscellaneaous setup
         backgroundColor = .white
-        layer.cornerRadius = 30
+        layer.cornerRadius = 20
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(
             width: 0,

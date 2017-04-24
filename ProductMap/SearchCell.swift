@@ -27,6 +27,7 @@ class SearchCell: UICollectionViewCell {
         setupProductUpvoteLabel()
         // Setup itself
         setupCell()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,9 +37,6 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupCell() {
         backgroundColor = .white
-        layer.shadowOpacity = 0.2
-        layer.shadowOffset = CGSize(width: 0, height: 0)
-        isUserInteractionEnabled = true
     }
     
     
@@ -56,6 +54,11 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupProductTitleLabel() {
         self.addSubview(productTitleLabel)
+        productTitleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
+        productTitleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        productTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        productTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+    
         
         guard let windowFrame = keyWindow?.frame else {
             return
@@ -78,6 +81,11 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupProductCityLabel() {
         self.addSubview(productCityLabel)
+        productCityLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
+        productCityLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        productCityLabel.topAnchor.constraint(equalTo: productTitleLabel.bottomAnchor, constant: -5).isActive = true
+        // productCityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).isActive = true
+        productCityLabel.translatesAutoresizingMaskIntoConstraints = false
         
         guard let windowFrame = keyWindow?.frame else {
             return
@@ -101,19 +109,16 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupProductUpvoteLabel() {
         self.addSubview(productUpvoteLabel)
-        productUpvoteLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: 20).isActive = true
-        productUpvoteLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        productUpvoteLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         let labelFrame = CGRect(
-            x: self.frame.width * 0.8,
-            y: self.frame.height * 0.02,
-            width: self.frame.width * 0.2,
-            height: self.frame.height
+            x: self.frame.width * 0.75,
+            y: self.frame.height * 0.105,
+            width: self.frame.width * 0.18,
+            height: self.frame.width * 0.18
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 30
+            size: 25
         )
         productUpvoteLabel.frame = labelFrame
         productUpvoteLabel.backgroundColor = UIColor(
@@ -124,6 +129,19 @@ class SearchCell: UICollectionViewCell {
         )
         productUpvoteLabel.font = labelFont
         productUpvoteLabel.textAlignment = .center
+        productUpvoteLabel.clipsToBounds = true
+        productUpvoteLabel.layer.cornerRadius = productUpvoteLabel.frame.width / 2
+        
+        // Auto layout
+        /*
+        productUpvoteLabel.translatesAutoresizingMaskIntoConstraints = false
+        productUpvoteLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        productUpvoteLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        productUpvoteLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        productUpvoteLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        productUpvoteLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        */
+        
     }
     
 }

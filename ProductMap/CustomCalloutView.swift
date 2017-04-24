@@ -18,6 +18,9 @@ class CustomCalloutView: UIView {
     private var upvoteTitleLabel = UILabel()
     // Button for upvoting
     private var upvoteButton = UIButton()
+    // Stack views
+    private var upvoteContainer = UIStackView()
+    private var productLabelContainer = UIStackView()
     // Selected product ID
     private var productID: String?
     // Product count
@@ -52,17 +55,14 @@ class CustomCalloutView: UIView {
         // Setup tap gesture to present ProductViewController
         setupTapGesture()
         // Setup productNameLabel
-        setupProductNameLabel()
-        // Setup upvote button
-        setupUpvoteButton()
-        // Setup product city label
-        setupProductCityLabel()
-        // Setup upvote title label
-        setupUpvoteTitleLabel()
+        setupProductLabelContainer()
+        // Setup upvoteConatainer
+        setupUpvoteContainer()
+        
         
         // Miscellaneous setup
         backgroundColor = .white
-        layer.cornerRadius = 30
+        layer.cornerRadius = 10
         layer.shadowOpacity = 0.15
         layer.shadowOffset = CGSize(width: 0, height: 2)
     }
@@ -105,28 +105,25 @@ class CustomCalloutView: UIView {
     
     fileprivate func setupProductNameLabel() {
         self.addSubview(productNameLabel)
-        productNameLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        productNameLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        productNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        productNameLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         
-        guard let keyWindow = keyWindow?.frame else {
+        guard let windowFrame = keyWindow?.frame else {
             return
         }
         
         let labelFrame = CGRect(
-            x: keyWindow.width * 0.05,
-            y: keyWindow.width * 0.03,
-            width: keyWindow.width * 0.6,
-            height: keyWindow.height * 0.06
+            x: windowFrame.width * 0.05,
+            y: windowFrame.width * 0.03,
+            width: windowFrame.width * 0.6,
+            height: windowFrame.height * 0.06
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 28
+            size: windowFrame.height * 0.04
         )
         productNameLabel.frame = labelFrame
         productNameLabel.font = labelFont
         productNameLabel.backgroundColor = .white
+        
     }
     
 
@@ -137,26 +134,24 @@ class CustomCalloutView: UIView {
         // Assigning properties
         self.product = product
     }
+    
 
     fileprivate func setupProductCityLabel() {
         self.addSubview(productCityLabel)
-        productCityLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        productCityLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        productCityLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     
-        guard let keyWindow = keyWindow?.frame else {
+        guard let windowFrame = keyWindow?.frame else {
             return
         }
         
         let labelFrame = CGRect(
-            x: keyWindow.width * 0.05,
-            y: keyWindow.width * 0.15,
-            width: keyWindow.width * 0.6,
-            height: keyWindow.height * 0.06
+            x: windowFrame.width * 0.05,
+            y: windowFrame.width * 0.15,
+            width: windowFrame.width * 0.6,
+            height: windowFrame.height * 0.06
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 20
+            size: windowFrame.height * 0.025
         )
         productCityLabel.frame = labelFrame
         productCityLabel.font = labelFont
@@ -180,20 +175,74 @@ class CustomCalloutView: UIView {
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 15
+            size: windowFrame.height * 0.025
         )
         upvoteTitleLabel.frame = labelFrame
         upvoteTitleLabel.font = labelFont
-        upvoteTitleLabel.backgroundColor = .white
+        upvoteTitleLabel.adjustsFontSizeToFitWidth = true
         
+    }
+    
+    
+    fileprivate func setupProductLabelContainer() {
+        self.addSubview(productLabelContainer)
+        
+        productLabelContainer.axis = .vertical
+        productLabelContainer.distribution = .equalSpacing
+        productLabelContainer.alignment = .leading
+        productLabelContainer.spacing = 0
+        
+        // Setup product city label
+        setupProductCityLabel()
+        // Setup product name button
+        setupProductNameLabel()
+        
+        productLabelContainer.addArrangedSubview(productNameLabel)
+        productLabelContainer.addArrangedSubview(productCityLabel)
+        
+        productLabelContainer.leftAnchor.constraint(
+            equalTo: leftAnchor,
+            constant: 20
+            ).isActive = true
+        productLabelContainer.centerYAnchor.constraint(
+            equalTo: self.centerYAnchor,
+            constant: -20
+            ).isActive = true
+        productLabelContainer.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    
+    fileprivate func setupUpvoteContainer() {
+        self.addSubview(upvoteContainer)
+        
+        upvoteContainer.axis  = .vertical
+        upvoteContainer.distribution  = .equalSpacing
+        upvoteContainer.alignment = .center
+        upvoteContainer.spacing   = 0
+        
+        // Setup upvote title label
+        setupUpvoteTitleLabel()
+        // Setup upvote button
+        setupUpvoteButton()
+        
+        upvoteContainer.addArrangedSubview(upvoteButton)
+        upvoteContainer.addArrangedSubview(upvoteTitleLabel)
+        
+        upvoteContainer.rightAnchor.constraint(
+            equalTo: rightAnchor,
+            constant: -25
+            ).isActive = true
+        upvoteContainer.centerYAnchor.constraint(
+            equalTo: self.centerYAnchor,
+            constant: -10
+            ).isActive = true
+        upvoteContainer.translatesAutoresizingMaskIntoConstraints = false
+    
     }
     
     
     fileprivate func setupUpvoteButton() {
         self.addSubview(upvoteButton)
-        upvoteButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        upvoteButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        upvoteButton.topAnchor.constraint(equalTo: topAnchor).isActive = true
         
         
         // Window frame
@@ -217,7 +266,10 @@ class CustomCalloutView: UIView {
         upvoteButton.layer.cornerRadius = upvoteButton.frame.width / 2
         
         // Button label
-        let buttonFont = UIFont(name: "Avenir", size: 35)
+        let buttonFont = UIFont(
+            name: "Avenir",
+            size: windowFrame.height * 0.05
+        )
         upvoteButton.titleLabel?.font = buttonFont
         upvoteButton.titleLabel?.textColor = .white
         upvoteButton.titleLabel?.textAlignment = .center
@@ -230,6 +282,11 @@ class CustomCalloutView: UIView {
             action: #selector(upvoteButtonHandler)
         )
         upvoteButton.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Auto layout
+        upvoteButton.widthAnchor.constraint(equalToConstant: windowFrame.width * 0.19).isActive = true
+        upvoteButton.heightAnchor.constraint(equalToConstant: windowFrame.width * 0.19).isActive = true
+        upvoteButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
     @objc fileprivate func upvoteButtonHandler() {

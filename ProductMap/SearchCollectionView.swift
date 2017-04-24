@@ -25,6 +25,8 @@ class SearchCollectionView: UICollectionView {
         
         isScrollEnabled = true
         isUserInteractionEnabled = true
+        translatesAutoresizingMaskIntoConstraints = false
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -24,6 +24,7 @@ class SearchView: UIView {
         )
     
         isUserInteractionEnabled = true
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder aDecoder: NSCoder) {

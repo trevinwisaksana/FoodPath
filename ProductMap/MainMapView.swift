@@ -134,8 +134,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             options: .curveEaseIn,
             animations: {
             // Animate Product View
-            addProductView.frame.origin.y = height * 0.5
-            self.frame.size.height = keyWindow.frame.height * 0.55
+            addProductView.frame.origin.y = height * 0.25
+            self.frame.size.height = keyWindow.frame.height * 0.3
         })
         
     }

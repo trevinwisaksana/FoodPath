@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class AnnotationView: MKAnnotationView {
+class AnnotationView: MKPinAnnotationView {
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         //

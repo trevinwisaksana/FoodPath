@@ -36,6 +36,7 @@ class APIClient {
     public func createProduct(product: Product) {
         // Retrieving product reference
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
+        
         // Modify database in Firebase
         productRef.setValue(product.toJson())
     }
