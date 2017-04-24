@@ -24,6 +24,7 @@
 		C4EC64E51EAC259800866098 /* ImageScrollerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64E41EAC259800866098 /* ImageScrollerCell.swift */; };
 		C4EC64E71EAC280800866098 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64E61EAC280800866098 /* DescriptionCell.swift */; };
 		C4EC64E91EAC2E5300866098 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64E81EAC2E5300866098 /* TitleCell.swift */; };
+		C4EC64EF1EAD95EC00866098 /* ProductDetailButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64EE1EAD95EC00866098 /* ProductDetailButtons.swift */; };
 		DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */; };
 		DD224BE11E9EBA91005B88D8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD224BE01E9EBA91005B88D8 /* MainViewController.swift */; };
 		DD224BE71E9EBA91005B88D8 /* ProductMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD224BE51E9EBA91005B88D8 /* ProductMap.xcdatamodeld */; };
@@ -95,6 +96,7 @@
 		C4EC64E41EAC259800866098 /* ImageScrollerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollerCell.swift; sourceTree = "<group>"; };
 		C4EC64E61EAC280800866098 /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		C4EC64E81EAC2E5300866098 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		C4EC64EE1EAD95EC00866098 /* ProductDetailButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailButtons.swift; sourceTree = "<group>"; };
 		DD224BDB1E9EBA91005B88D8 /* ProductMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD224BDE1E9EBA91005B88D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD224BE01E9EBA91005B88D8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				C4EC64E41EAC259800866098 /* ImageScrollerCell.swift */,
 				C4EC64E61EAC280800866098 /* DescriptionCell.swift */,
 				C4EC64E81EAC2E5300866098 /* TitleCell.swift */,
+				C4EC64EE1EAD95EC00866098 /* ProductDetailButtons.swift */,
 			);
 			name = "Product controller cells";
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 			files = (
 				DD4B194B1EA43E3700DC0F00 /* AddProductView.swift in Sources */,
 				C4EC64E01EAC243100866098 /* ProductController.swift in Sources */,
+				C4EC64EF1EAD95EC00866098 /* ProductDetailButtons.swift in Sources */,
 				DD9D8EDA1EA03F0A00925A43 /* CategoriesCell.swift in Sources */,
 				DD5B22D41EAD3DC2004461A2 /* TopBarContainer.swift in Sources */,
 				DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */,
