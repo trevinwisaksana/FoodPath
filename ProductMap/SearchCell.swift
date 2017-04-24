@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SearchCell: UICollectionViewCell {
     
     // UIElements
@@ -105,8 +106,8 @@ class SearchCell: UICollectionViewCell {
         productUpvoteLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         let labelFrame = CGRect(
-            x: self.frame.width * 0.85,
-            y: self.frame.height * 0.05,
+            x: self.frame.width * 0.8,
+            y: self.frame.height * 0.02,
             width: self.frame.width * 0.2,
             height: self.frame.height
         )
@@ -115,7 +116,14 @@ class SearchCell: UICollectionViewCell {
             size: 30
         )
         productUpvoteLabel.frame = labelFrame
+        productUpvoteLabel.backgroundColor = UIColor(
+            colorLiteralRed: 166/255,
+            green: 159/255,
+            blue: 135/255,
+            alpha: 1
+        )
         productUpvoteLabel.font = labelFont
+        productUpvoteLabel.textAlignment = .center
     }
     
 }
