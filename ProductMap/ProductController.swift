@@ -93,6 +93,7 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
             // Title and city Label cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: titleCellId, for: indexPath) as! TitleCollectionViewCell
+            // TODO: Encapsulate this
             cell.titleLabel.text = product?.title
             cell.cityLabel.text = product?.city
             return cell
@@ -121,7 +122,7 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
             return CGSize(width: view.frame.width, height: 200)
             // Title and city label
         case 1:
-            return CGSize(width: view.frame.width, height: 60)
+            return CGSize(width: view.frame.width, height: 150)
             // Navigation and contact Button
         case 2:
             return CGSize(width: view.frame.width, height: 40)
