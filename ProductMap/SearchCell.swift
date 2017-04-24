@@ -35,7 +35,6 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupCell() {
         backgroundColor = .white
-        layer.cornerRadius = 10
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(width: 0, height: 0)
         isUserInteractionEnabled = true
@@ -62,14 +61,14 @@ class SearchCell: UICollectionViewCell {
         }
         
         let labelFrame = CGRect(
-            x: 20,
-            y: 20,
+            x: self.frame.width * 0.05,
+            y: self.frame.height * 0.15,
             width: windowFrame.width * 0.6,
-            height: windowFrame.height * 0.03
+            height: self.frame.height * 0.5
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 30
+            size: 20
         )
         productTitleLabel.frame = labelFrame
         productTitleLabel.font = labelFont
@@ -84,8 +83,8 @@ class SearchCell: UICollectionViewCell {
         }
         
         let labelFrame = CGRect(
-            x: 20,
-            y: 50,
+            x: self.frame.width * 0.05,
+            y: self.frame.height * 0.6,
             width: windowFrame.width * 0.6,
             height: windowFrame.height * 0.03
         )
@@ -95,21 +94,21 @@ class SearchCell: UICollectionViewCell {
         )
         productCityLabel.frame = labelFrame
         productCityLabel.font = labelFont
+        productCityLabel.adjustsFontSizeToFitWidth = true
     }
     
     
     fileprivate func setupProductUpvoteLabel() {
         self.addSubview(productUpvoteLabel)
-        
-        guard let windowFrame = keyWindow?.frame else {
-            return
-        }
+        productUpvoteLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: 20).isActive = true
+        productUpvoteLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        productUpvoteLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         let labelFrame = CGRect(
-            x: 280,
-            y: 30,
-            width: windowFrame.width * 0.6,
-            height: windowFrame.height * 0.03
+            x: self.frame.width * 0.85,
+            y: self.frame.height * 0.05,
+            width: self.frame.width * 0.2,
+            height: self.frame.height
         )
         let labelFont = UIFont(
             name: "Avenir",

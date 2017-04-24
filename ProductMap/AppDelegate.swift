@@ -11,6 +11,7 @@ import CoreData
 import Firebase
 import FirebaseAuth
 import XCGLogger
+import IQKeyboardManagerSwift
 
 // Global log variable to give verbose log information in console
 public let log = XCGLogger.default
@@ -37,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         
         window?.rootViewController = MainViewController()
+        
+        IQKeyboardManager.sharedManager().enable = true
+        
         
         /*
         if FIRAuth.auth()?.currentUser != nil {

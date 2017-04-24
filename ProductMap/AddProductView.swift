@@ -36,9 +36,12 @@ class AddProductView: UIView {
     
     private let productNameTextField = UITextField()
     private let productDescriptionTextField = UITextField()
+    private let instructionLabel = UILabel()
     private let cancelButton = UIButton()
     private let addProductButton = UIButton()
+    
     weak var delegate: AddProductViewDelegate!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,12 +50,13 @@ class AddProductView: UIView {
         setupProductDescriptionTextField()
         setupCancelButton()
         setupAddProductButton()
+        setupInstructionLabel()
         
         // TODO: Fix keyboard
     
         // Miscellaneaous setup
         backgroundColor = .white
-        layer.cornerRadius = 20
+        layer.cornerRadius = 30
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(
             width: 0,
@@ -115,6 +119,29 @@ class AddProductView: UIView {
     }
     
     
+    fileprivate func setupInstructionLabel() {
+        self.addSubview(instructionLabel)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.2,
+            y: frame.height * 0.03,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        instructionLabel.frame = labelFrame
+        instructionLabel.layer.cornerRadius = 10
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: 25
+        )
+        instructionLabel.font = font
+        instructionLabel.text = "Add new product"
+        
+    }
+    
+    
     fileprivate func setupCancelButton() {
         self.addSubview(cancelButton)
         
@@ -126,15 +153,17 @@ class AddProductView: UIView {
         )
         cancelButton.frame = labelFrame
         cancelButton.clipsToBounds = false
+        cancelButton.backgroundColor = UIColor(
+            colorLiteralRed: 166/255,
+            green: 159/255,
+            blue: 135/255,
+            alpha: 1
+        )
+        cancelButton.layer.cornerRadius = cancelButton.frame.width / 2
         
         let image = UIImage(named: "CloseButton")
         cancelButton.setImage(image, for: .normal)
-        cancelButton.layer.shadowOpacity = 0.2
-        cancelButton.layer.shadowOffset = CGSize(
-            width: 0,
-            height: 0
-        )
-        
+    
         let tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(cancelTapGestureHandler)
@@ -156,17 +185,17 @@ class AddProductView: UIView {
             x: self.frame.width * 0.05,
             y: self.frame.height * 0.45,
             width: self.frame.size.width * 0.9,
-            height: self.frame.size.height * 0.15
+            height: self.frame.size.height * 0.12
         )
         addProductButton.frame = frame
-        addProductButton.layer.cornerRadius = 10
+        addProductButton.layer.cornerRadius = self.frame.width * 0.08
         // Font setup
         let font = UIFont(
             name: "Avenir",
-            size: 14
+            size: 30
         )
         addProductButton.titleLabel?.font = font
-        addProductButton.titleLabel?.text = "Add product"
+        addProductButton.setTitle("Add product", for: .normal)
         
         // Custom tap gesture setup
         let tapGestureRecognizer = UITapGestureRecognizer(
@@ -176,29 +205,42 @@ class AddProductView: UIView {
         addProductButton.addGestureRecognizer(tapGestureRecognizer)
         
         // Miscellaneous setup
-        addProductButton.backgroundColor = .blue
+        addProductButton.backgroundColor = UIColor(
+            colorLiteralRed: 166/255,
+            green: 159/255,
+            blue: 135/255,
+            alpha: 1
+        )
         addProductButton.isUserInteractionEnabled = true
         
     }
     
     
     @objc fileprivate func addProductButtonHandler() {
-        // Dismiss the view
-        dismissAddProductView(for: .addProduct)
-        guard let productTitle = productNameTextField.text else {
-            return
+        // Check if the text field is empty
+        if productNameTextField.text == "" {
+            
+            productNameTextField.placeholder = "Product title missing"
+            
+        } else {
+            // Dismiss the view
+            dismissAddProductView(for: .addProduct)
+            guard let productTitle = productNameTextField.text else {
+                return
+            }
+            
+            guard let productDescription = productDescriptionTextField.text else {
+                return
+            }
+            
+            // Sends this information to the MainMapView
+            delegate.createProduct(
+                title: productTitle,
+                description: productDescription,
+                image: nil
+            )
         }
         
-        guard let productDescription = productDescriptionTextField.text else {
-            return
-        }
-        
-        // Sends this information to the MainMapView
-        delegate.createProduct(
-            title: productTitle,
-            description: productDescription,
-            image: nil
-        )
     }
     
     

@@ -16,7 +16,13 @@ class SearchCollectionView: UICollectionView {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         
-        backgroundColor = .white
+        backgroundColor = UIColor(
+            colorLiteralRed: 242/255,
+            green: 237/255,
+            blue: 217/255,
+            alpha: 1
+        )
+        
         isScrollEnabled = true
         isUserInteractionEnabled = true
     }

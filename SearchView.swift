@@ -6,7 +6,6 @@
 //  Copyright © 2017 Trevin Wisaksana. All rights reserved.
 //
 
-
 import UIKit
 
 
@@ -17,16 +16,13 @@ class SearchView: UIView {
         super.init(frame: frame)
         
         // Setup
-        /*
         backgroundColor = UIColor(
-            colorLiteralRed: 255/255,
-            green: 252/255,
-            blue: 236/255,
+            colorLiteralRed: 242/255,
+            green: 237/255,
+            blue: 217/255,
             alpha: 1
         )
-        */
-        
-        backgroundColor = .white
+    
         isUserInteractionEnabled = true
     }
     

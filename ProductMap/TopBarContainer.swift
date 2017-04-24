@@ -62,7 +62,7 @@ class TopBarContainer: UIView {
         self.addSubview(cancelSearchButton)
         
         let buttonFrame = CGRect(
-            x: self.frame.origin.x * 0.2,
+            x: self.frame.origin.x * 0.25,
             y: self.frame.origin.x * 0.2,
             width: self.frame.size.width * 0.135,
             height: self.frame.size.width * 0.135
@@ -71,7 +71,12 @@ class TopBarContainer: UIView {
         
         cancelSearchButton.clipsToBounds = true
         cancelSearchButton.alpha = 0
-        cancelSearchButton.backgroundColor = .blue
+        cancelSearchButton.backgroundColor = UIColor(
+            colorLiteralRed: 166/255,
+            green: 159/255,
+            blue: 135/255,
+            alpha: 1
+        )
         cancelSearchButton.layer.cornerRadius = cancelSearchButton.frame.width / 2
         
         let tapGestureRecognizer = UITapGestureRecognizer(

@@ -62,7 +62,7 @@ class CustomCalloutView: UIView {
         
         // Miscellaneous setup
         backgroundColor = .white
-        layer.cornerRadius = 15
+        layer.cornerRadius = 30
         layer.shadowOpacity = 0.15
         layer.shadowOffset = CGSize(width: 0, height: 2)
     }
@@ -102,8 +102,13 @@ class CustomCalloutView: UIView {
         )
     }
     
+    
     fileprivate func setupProductNameLabel() {
         self.addSubview(productNameLabel)
+        productNameLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        productNameLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        productNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        productNameLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         
         guard let keyWindow = keyWindow?.frame else {
             return
@@ -117,7 +122,7 @@ class CustomCalloutView: UIView {
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 30
+            size: 28
         )
         productNameLabel.frame = labelFrame
         productNameLabel.font = labelFont
@@ -135,6 +140,9 @@ class CustomCalloutView: UIView {
 
     fileprivate func setupProductCityLabel() {
         self.addSubview(productCityLabel)
+        productCityLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        productCityLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        productCityLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     
         guard let keyWindow = keyWindow?.frame else {
             return
@@ -183,6 +191,10 @@ class CustomCalloutView: UIView {
     
     fileprivate func setupUpvoteButton() {
         self.addSubview(upvoteButton)
+        upvoteButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        upvoteButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        upvoteButton.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        
         
         // Window frame
         guard let windowFrame = keyWindow?.frame else {
@@ -192,8 +204,8 @@ class CustomCalloutView: UIView {
         let buttonFrame = CGRect(
             x: windowFrame.width * 0.72,
             y: windowFrame.width * 0.03,
-            width: 80,
-            height: 80
+            width: windowFrame.width * 0.19,
+            height: windowFrame.width * 0.19
         )
         upvoteButton.frame = buttonFrame
         upvoteButton.backgroundColor = UIColor(
