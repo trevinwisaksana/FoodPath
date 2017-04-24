@@ -13,7 +13,6 @@ class TitleCollectionViewCell: BaseCell {
     
     let titleLabel: UILabel = {
         let lbl = UILabel()
-        lbl.text = ""
         lbl.textColor = .white
         lbl.font = UIFont.systemFont(ofSize: 20)
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -22,12 +21,20 @@ class TitleCollectionViewCell: BaseCell {
     
     let cityLabel: UILabel = {
         let lbl = UILabel()
-        lbl.text = ""
         lbl.textColor = .white
         lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
+    
+    var product: Product? {
+        didSet{
+            if let product = product {
+                self.titleLabel.text = product.title
+                self.cityLabel.text = product.city
+            }
+        }
+    }
     
     override func setupViews(){
         

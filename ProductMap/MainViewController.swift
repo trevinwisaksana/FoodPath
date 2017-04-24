@@ -53,7 +53,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         APIClient.sharedInstance.getProductsByCity(city: "San Francisco") { (products) in
             
             self.mainMapView.addAnnotations(products)
-            
         }
     }
     
