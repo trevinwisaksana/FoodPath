@@ -14,7 +14,6 @@ class TitleCollectionViewCell: BaseCell {
     
     let titleLabel: UILabel = {
         let lbl = UILabel()
-        lbl.text = ""
         lbl.textColor = .white
         lbl.font = UIFont.systemFont(ofSize: 20)
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +22,6 @@ class TitleCollectionViewCell: BaseCell {
     
     let cityLabel: UILabel = {
         let lbl = UILabel()
-        lbl.text = ""
         lbl.textColor = .white
         lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.translatesAutoresizingMaskIntoConstraints = false
