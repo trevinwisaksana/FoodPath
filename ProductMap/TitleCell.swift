@@ -28,6 +28,9 @@ class TitleCollectionViewCell: BaseCell {
         return lbl
     }()
     
+    
+    
+    
     // Button for upvoting
     private var upvoteButton = UIButton()
     // Upvote label
