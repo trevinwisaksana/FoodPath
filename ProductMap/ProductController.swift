@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class ProductDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout, TopSpaceViewDelegate {
     
@@ -45,7 +46,28 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     }
     
     func handleDirections(){
-        print("map")
+        if let product = product {
+            if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+                UIApplication.shared.openURL(URL(string:
+                    "comgooglemaps://?saddr=&daddr=\(product.coordinate.latitude),\(product.coordinate.longitude)&directionsmode=driving")!)
+            } else {
+                
+                let latitude:CLLocationDegrees =  CLLocationDegrees(product.coordinate.latitude)
+                let longitude:CLLocationDegrees =  CLLocationDegrees(product.coordinate.longitude)
+                
+                let regionDistance:CLLocationDistance = 10000
+                let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+                let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+                let options = [
+                    MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+                    MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+                ]
+                let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                let mapItem = MKMapItem(placemark: placemark)
+                mapItem.name = product.title
+                mapItem.openInMaps(launchOptions: options)
+            }
+        }
     }
     
     func handleContact(){
