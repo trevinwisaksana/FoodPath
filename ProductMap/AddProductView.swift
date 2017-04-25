@@ -173,6 +173,12 @@ class AddProductView: UIView {
     @objc fileprivate func cancelTapGestureHandler() {
         // Dismiss the Add Product View
         dismissAddProductView(for: .cancelAdd)
+        
+        let notificationName = NSNotification.Name("RevealTopBarNotification")
+        NotificationCenter.default.post(
+            name: notificationName,
+            object: nil
+        )
     }
     
     

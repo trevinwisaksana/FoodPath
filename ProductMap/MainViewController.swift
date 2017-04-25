@@ -103,7 +103,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
     }
     
     

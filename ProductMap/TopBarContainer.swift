@@ -12,9 +12,10 @@ protocol TopBarContainerDelegate: class {
     func dismissSearchView()
 }
 
-class TopBarContainer: UIView {
+class TopBarContainer: UIView, AnimationManagerDelegate {
     
     var cancelSearchButton = UIButton()
+    var originalPosition: CGFloat = 0
     weak var delegate: TopBarContainerDelegate?
     
     override init(frame: CGRect) {
@@ -24,6 +25,21 @@ class TopBarContainer: UIView {
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 0.1
         backgroundColor = .white
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(dismissTopBarContainer),
+            name: Notification.Name("DismissTopBarNotification"),
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(revealTopBarContainer),
+            name: Notification.Name("RevealTopBarNotification"),
+            object: nil
+        )
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,6 +63,9 @@ class TopBarContainer: UIView {
             x: viewController.view.center.x,
             y: viewController.view.center.y * 0.18
         )
+        
+        // Remembering the original position
+        originalPosition = viewController.view.center.y * 0.18
         
         // Corner radius
         layer.cornerRadius = self.frame.width * 0.08
@@ -112,6 +131,27 @@ class TopBarContainer: UIView {
         UIView.animate(withDuration: 0.3, animations: {
             // Hide cancel button
             self.cancelSearchButton.alpha = 0
+        })
+    }
+    
+    
+    func dismissTopBarContainer() {
+        guard let windowFrame = keyWindow?.frame else {
+            return
+        }
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            // Hide cancel button
+            self.frame.origin.y = windowFrame.origin.y - 100
+        })
+    }
+    
+    
+    func revealTopBarContainer() {
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            // Hide cancel button
+            self.center.y = self.originalPosition
         })
     }
     

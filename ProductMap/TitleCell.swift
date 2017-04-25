@@ -97,6 +97,7 @@ class TitleCollectionViewCell: BaseCell {
             size: windowFrame.height * 0.025
         )
         upvoteTitleLabel.frame = labelFrame
+        upvoteTitleLabel.textColor = .white
         upvoteTitleLabel.font = labelFont
         upvoteTitleLabel.adjustsFontSizeToFitWidth = true
         

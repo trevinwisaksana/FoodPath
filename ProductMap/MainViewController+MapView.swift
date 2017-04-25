@@ -161,29 +161,27 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     // MARK: - CLLocationManager
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         // Getting user location
         guard let currentLocation = manager.location?.coordinate else {
-            return
+            fatalError()
         }
         // Setting the center of the map to the user location
         mainMapView.setCenter(currentLocation, animated: false)
         // Getting the region to focus
-        var region = MKCoordinateRegionMakeWithDistance(
+        let region = MKCoordinateRegionMakeWithDistance(
             currentLocation,
-            50,
-            50
+            1200,
+            1200
         )
-        let span = MKCoordinateSpan(
-            latitudeDelta: 50,
-            longitudeDelta: 50)
-        region.span = span
-        self.mainMapView.setRegion(region, animated: false)
+        self.mainMapView.setRegion(
+            region,
+            animated: false
+        )
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+     
     }
     
     
