@@ -167,6 +167,8 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             
             DataManager.shared.getCityByCoordinates(location: currentLocation) { (city) in
                 self.updateProducts(city: city)
+                // Get the city information
+                self.searchTextField.setupCurrentCity(city: city)
             }
             
             let currentCoordinates = currentLocation.coordinate

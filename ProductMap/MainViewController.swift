@@ -28,12 +28,10 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
     var searchCollectionView: SearchCollectionView!
     let locationManager = CLLocationManager()
     
-    var didGetCity: Bool = false
-    
-    
     // MARK: - Logic
     var calloutViewIsVisible = false
-    
+    // Used to prevent didUpdate from sending continous network request
+    var didGetCity: Bool = false
     
     // MARK: Properties and Outlets
     override func viewDidLoad() {
