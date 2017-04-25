@@ -81,6 +81,7 @@ class SearchTextField: UITextField, UITextFieldDelegate {
             return false
         }
         
+        // TODO: Change the city
         APIClient.sharedInstance.searchForProduct(searchString: string, city: "San Francisco") { (products) in
             // Updates the search collection view
             self.searchTextFieldDelegate?.updateSearchCollectionView(products: products)

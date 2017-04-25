@@ -116,7 +116,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     }
     
     
-    fileprivate func showAddProductView() {
+    public func showAddProductView() {
         
         guard let keyWindow = keyWindow else {
             return
