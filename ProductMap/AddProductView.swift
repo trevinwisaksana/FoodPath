@@ -32,11 +32,16 @@ protocol AddProductViewDelegate: class {
     )
 }
 
+
 class AddProductView: UIView {
     
     private let productNameTextField = UITextField()
     private let productDescriptionTextField = UITextField()
+    
     private let instructionLabel = UILabel()
+    private let pleaseInsertTitleLabel = UILabel()
+    private let productDescriptionLabel = UILabel()
+    
     private let cancelButton = UIButton()
     private let addProductButton = UIButton()
     
@@ -51,6 +56,9 @@ class AddProductView: UIView {
         setupCancelButton()
         setupAddProductButton()
         setupInstructionLabel()
+        setupPleaseInsertLabel()
+        setupProductDescriptionLabel()
+        
     
         // Miscellaneaous setup
         backgroundColor = .white
@@ -72,8 +80,8 @@ class AddProductView: UIView {
         
         // Label size
         let labelFrame = CGRect(
-            x: frame.width * 0.05,
-            y: frame.height * 0.15,
+            x: frame.width * 0.096,
+            y: frame.height * 0.225,
             width: frame.size.width * 0.9,
             height: frame.size.height * 0.1
         )
@@ -82,10 +90,10 @@ class AddProductView: UIView {
         
         let font = UIFont(
             name: "Avenir",
-            size: 25
+            size: frame.height * 0.04
         )
         productNameTextField.font = font
-        productNameTextField.placeholder = "  Product name"
+        productNameTextField.placeholder = "Product name"
         
         productNameTextField.backgroundColor = .white
         
@@ -94,11 +102,10 @@ class AddProductView: UIView {
     
     fileprivate func setupProductDescriptionTextField() {
         self.addSubview(productDescriptionTextField)
-        
         // Label size
         let labelFrame = CGRect(
-            x: frame.width * 0.05,
-            y: frame.height * 0.29,
+            x: frame.width * 0.096,
+            y: frame.height * 0.385,
             width: frame.size.width * 0.9,
             height: frame.size.height * 0.1
         )
@@ -107,10 +114,10 @@ class AddProductView: UIView {
         
         let font = UIFont(
             name: "Avenir",
-            size: 25
+            size: frame.height * 0.04
         )
         productDescriptionTextField.font = font
-        productDescriptionTextField.placeholder = "  Product description"
+        productDescriptionTextField.placeholder = "Product description"
         
         productDescriptionTextField.backgroundColor = .white
         
@@ -128,14 +135,57 @@ class AddProductView: UIView {
             height: frame.size.height * 0.1
         )
         instructionLabel.frame = labelFrame
-        instructionLabel.layer.cornerRadius = 10
         
         let font = UIFont(
             name: "Avenir",
-            size: 25
+            size: frame.height * 0.05
         )
         instructionLabel.font = font
         instructionLabel.text = "Add new product"
+        
+    }
+    
+    
+    fileprivate func setupPleaseInsertLabel() {
+        self.addSubview(pleaseInsertTitleLabel)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.1,
+            y: frame.height * 0.16,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        pleaseInsertTitleLabel.frame = labelFrame
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: frame.height * 0.04
+        )
+        pleaseInsertTitleLabel.font = font
+        pleaseInsertTitleLabel.text = "Please insert the product name"
+        
+    }
+    
+    
+    fileprivate func setupProductDescriptionLabel() {
+        self.addSubview(productDescriptionLabel)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.1,
+            y: frame.height * 0.32,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        productDescriptionLabel.frame = labelFrame
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: frame.height * 0.04
+        )
+        productDescriptionLabel.font = font
+        productDescriptionLabel.text = "Product description"
         
     }
     
@@ -187,7 +237,7 @@ class AddProductView: UIView {
         // Frame setup
         let frame = CGRect(
             x: self.frame.width * 0.05,
-            y: self.frame.height * 0.45,
+            y: self.frame.height * 0.75,
             width: self.frame.size.width * 0.9,
             height: self.frame.size.height * 0.12
         )
@@ -196,7 +246,7 @@ class AddProductView: UIView {
         // Font setup
         let font = UIFont(
             name: "Avenir",
-            size: 30
+            size: self.frame.height * 0.05
         )
         addProductButton.titleLabel?.font = font
         addProductButton.setTitle("Add product", for: .normal)
@@ -221,6 +271,13 @@ class AddProductView: UIView {
     
     
     @objc fileprivate func addProductButtonHandler() {
+        // Reveal the top bar view again
+        let notificationName = NSNotification.Name("RevealTopBarNotification")
+        NotificationCenter.default.post(
+            name: notificationName,
+            object: nil
+        )
+        
         // Check if the text field is empty
         if productNameTextField.text == "" {
             

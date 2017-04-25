@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+
 
 protocol SearchTextFieldDelegate: class {
     
@@ -21,6 +23,7 @@ protocol SearchTextFieldDelegate: class {
 class SearchTextField: UITextField, UITextFieldDelegate {
     
     weak var searchTextFieldDelegate: SearchTextFieldDelegate?
+    private var currentCity: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,6 +44,10 @@ class SearchTextField: UITextField, UITextFieldDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func setupCurrentCity(city: String) {
+        currentCity = city
     }
     
     
@@ -71,6 +78,7 @@ class SearchTextField: UITextField, UITextFieldDelegate {
         textField.text = ""
         // Disable map view
         searchTextFieldDelegate?.revealSearchView()
+        
     }
     
     
@@ -81,9 +89,15 @@ class SearchTextField: UITextField, UITextFieldDelegate {
             return false
         }
         
-        APIClient.sharedInstance.searchForProduct(searchString: string, city: "San Francisco") { (products) in
+        guard let currentCity = currentCity else {
+            return false
+        }
+        
+        APIClient.sharedInstance.searchForProduct(searchString: string, city: currentCity) { (products) in
             // Updates the search collection view
-            self.searchTextFieldDelegate?.updateSearchCollectionView(products: products)
+            self.searchTextFieldDelegate?.updateSearchCollectionView(
+                products: products
+            )
         }
         
         return true

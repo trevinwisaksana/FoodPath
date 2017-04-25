@@ -31,7 +31,7 @@ class CustomCalloutView: UIView {
             if let product = product {
                 // Update UI elements
                 productNameLabel.text = product.title
-                productCityLabel.text = product.city
+                productCityLabel.text = "in \(product.city)"
                 productID = product.id
                 
                 guard let productUpvoteCount = product.upvoteCount else {

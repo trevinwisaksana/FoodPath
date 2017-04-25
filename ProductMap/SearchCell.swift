@@ -16,15 +16,11 @@ class SearchCell: UICollectionViewCell {
     private var productCityLabel = UILabel()
     private var productUpvoteLabel = UILabel()
     
+    private var productLabelContainer = UIStackView()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // Setup product title label
-        setupProductTitleLabel()
-        // Setup product city label
-        setupProductCityLabel()
-        // Setup label
-        setupProductUpvoteLabel()
         // Setup itself
         setupCell()
         
@@ -37,11 +33,20 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupCell() {
         backgroundColor = .white
+        
+        // Setup product title label
+        setupProductTitleLabel()
+        // Setup product city label
+        setupProductCityLabel()
+        // Setup label
+        setupProductUpvoteLabel()
+        // setup container
+        setupProductLabelContainer()
     }
     
     
     public func configure(with product: Product) {
-        productCityLabel.text = product.city
+        productCityLabel.text = "in \(product.city)"
         productTitleLabel.text = product.title
         
         
@@ -54,9 +59,6 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupProductTitleLabel() {
         self.addSubview(productTitleLabel)
-        productTitleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        productTitleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        productTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         productTitleLabel.translatesAutoresizingMaskIntoConstraints = false
     
         
@@ -72,7 +74,7 @@ class SearchCell: UICollectionViewCell {
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 20
+            size: windowFrame.height * 0.032
         )
         productTitleLabel.frame = labelFrame
         productTitleLabel.font = labelFont
@@ -81,10 +83,6 @@ class SearchCell: UICollectionViewCell {
     
     fileprivate func setupProductCityLabel() {
         self.addSubview(productCityLabel)
-        productCityLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        productCityLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        productCityLabel.topAnchor.constraint(equalTo: productTitleLabel.bottomAnchor, constant: -5).isActive = true
-        // productCityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).isActive = true
         productCityLabel.translatesAutoresizingMaskIntoConstraints = false
         
         guard let windowFrame = keyWindow?.frame else {
@@ -99,7 +97,7 @@ class SearchCell: UICollectionViewCell {
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 15
+            size: windowFrame.height * 0.025
         )
         productCityLabel.frame = labelFrame
         productCityLabel.font = labelFont
@@ -110,6 +108,10 @@ class SearchCell: UICollectionViewCell {
     fileprivate func setupProductUpvoteLabel() {
         self.addSubview(productUpvoteLabel)
         
+        guard let windowFrame = keyWindow?.frame else {
+            return
+        }
+        
         let labelFrame = CGRect(
             x: self.frame.width * 0.75,
             y: self.frame.height * 0.105,
@@ -118,7 +120,7 @@ class SearchCell: UICollectionViewCell {
         )
         let labelFont = UIFont(
             name: "Avenir",
-            size: 25
+            size: windowFrame.height * 0.04
         )
         productUpvoteLabel.frame = labelFrame
         productUpvoteLabel.backgroundColor = UIColor(
@@ -133,15 +135,46 @@ class SearchCell: UICollectionViewCell {
         productUpvoteLabel.layer.cornerRadius = productUpvoteLabel.frame.width / 2
         
         // Auto layout
-        /*
         productUpvoteLabel.translatesAutoresizingMaskIntoConstraints = false
-        productUpvoteLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        productUpvoteLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        productUpvoteLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        productUpvoteLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        productUpvoteLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        */
+        productUpvoteLabel.widthAnchor.constraint(equalToConstant: windowFrame.width * 0.16).isActive = true
+        productUpvoteLabel.heightAnchor.constraint(equalTo: productUpvoteLabel.widthAnchor).isActive = true
+        productUpvoteLabel.rightAnchor.constraint(
+            equalTo: rightAnchor,
+            constant: -8
+            ).isActive = true
+        productUpvoteLabel.topAnchor.constraint(
+            equalTo: topAnchor,
+            constant: 6
+            ).isActive = true
+ 
+    }
+    
+    
+    fileprivate func setupProductLabelContainer() {
+        self.addSubview(productLabelContainer)
         
+        productLabelContainer.axis = .vertical
+        productLabelContainer.distribution = .equalSpacing
+        productLabelContainer.alignment = .leading
+        productLabelContainer.spacing = 0
+        
+        // Setup product city label
+        setupProductCityLabel()
+        // Setup product name button
+        setupProductTitleLabel()
+        
+        productLabelContainer.addArrangedSubview(productTitleLabel)
+        productLabelContainer.addArrangedSubview(productCityLabel)
+        
+        productLabelContainer.leftAnchor.constraint(
+            equalTo: leftAnchor,
+            constant: 20
+            ).isActive = true
+        productLabelContainer.centerYAnchor.constraint(
+            equalTo: self.centerYAnchor,
+            constant: 0
+            ).isActive = true
+        productLabelContainer.translatesAutoresizingMaskIntoConstraints = false
     }
     
 }

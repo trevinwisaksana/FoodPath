@@ -41,7 +41,7 @@ import UIKit
         let colors  = [topColor.cgColor, bottomColor.cgColor]
         gradientLayer.colors = colors
         
-        let radians = angle * CGFloat(M_PI) / 180
+        let radians = angle * CGFloat(Double.pi) / 180
         
         let x1 = cos(radians) * 0.5 + 0.5 // 0 to 1
         let x2 = 1 - x1

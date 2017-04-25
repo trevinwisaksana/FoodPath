@@ -97,16 +97,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
-        // Adds the notation
-        let region = MKCoordinateRegionMakeWithDistance(
-            touchMapCoordinate,
-            50,
-            50
-        )
-        self.setRegion(
-            region,
-            animated: false
-        )
         self.setCenter(
             touchMapCoordinate,
             animated: false
@@ -126,7 +116,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     }
     
     
-    fileprivate func showAddProductView() {
+    public func showAddProductView() {
         
         guard let keyWindow = keyWindow else {
             return
@@ -158,9 +148,26 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             initialSpringVelocity: 1,
             options: .curveEaseIn,
             animations: {
+                
             // Animate Product View
             addProductView.frame.origin.y = height * 0.25
             self.frame.size.height = keyWindow.frame.height * 0.3
+        }, completion: { (_) in
+            
+            guard let productCoordinate = self.productCoordinate else {
+                return
+            }
+            
+            // Adds the notation
+            let region = MKCoordinateRegionMakeWithDistance(
+                productCoordinate,
+                50,
+                50
+            )
+            self.setRegion(
+                region,
+                animated: true
+            )
         })
         
     }

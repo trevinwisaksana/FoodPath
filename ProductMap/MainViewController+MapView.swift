@@ -158,14 +158,32 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     // MARK: - CLLocationManager
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let currentLocation = manager.location else {
-            return
-        }
-        
-        locationManager.stopUpdatingLocation()
-        
-        DataManager.shared.getCityByCoordinates(location: currentLocation) { (city) in
-            self.updateProducts(city: city)
+        if !didGetCity {
+            guard let currentLocation = manager.location else {
+                return
+            }
+            
+            self.didGetCity = true
+            // Stop updating
+            locationManager.stopUpdatingLocation()
+            
+            DataManager.shared.getCityByCoordinates(location: currentLocation) { (city) in
+                self.updateProducts(city: city)
+                // Get the city information
+                self.searchTextField.setupCurrentCity(city: city)
+            }
+            
+            let currentCoordinates = currentLocation.coordinate
+            
+            // Setting the center of the map to the user location
+            mainMapView.setCenter(currentCoordinates, animated: false)
+            // Getting the region to focus
+            let region = MKCoordinateRegionMakeWithDistance(
+                currentCoordinates,
+                1200,
+                1200
+            )
+            self.mainMapView.setRegion(region, animated: false)
         }
         
         let currentCoordinates = currentLocation.coordinate
