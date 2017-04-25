@@ -185,18 +185,6 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             )
             self.mainMapView.setRegion(region, animated: false)
         }
-        
-        let currentCoordinates = currentLocation.coordinate
-        
-        // Setting the center of the map to the user location
-        mainMapView.setCenter(currentCoordinates, animated: false)
-        // Getting the region to focus
-        let region = MKCoordinateRegionMakeWithDistance(
-            currentCoordinates,
-            1200,
-            1200
-        )
-        self.mainMapView.setRegion(region, animated: false)
     }
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
