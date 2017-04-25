@@ -138,11 +138,8 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
                         subview.removeFromSuperview()
                     })
                 }
-                
             }
-            
         }
-
     }
     
     
@@ -158,32 +155,41 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         }
     }
     
-    
     // MARK: - CLLocationManager
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        
+        if !didGetCity {
+            guard let currentLocation = manager.location else {
+                return
+            }
+            
+            self.didGetCity = true
+            
+            DataManager.shared.getCityByCoordinates(location: currentLocation) { (city) in
+                self.updateProducts(city: city)
+            }
+            
+            let currentCoordinates = currentLocation.coordinate
+            
+            // Setting the center of the map to the user location
+            mainMapView.setCenter(currentCoordinates, animated: false)
+//            // Getting the region to focus
+//            var region = MKCoordinateRegionMakeWithDistance(
+//                currentCoordinates,
+//                50,
+//                50
+//            )
+//            let span = MKCoordinateSpan(
+//                latitudeDelta: 50,
+//                longitudeDelta: 50)
+//            region.span = span
+//            self.mainMapView.setRegion(region, animated: false)
+        }
     }
     
-    
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        // Getting user location
-        guard let currentLocation = manager.location?.coordinate else {
-            return
-        }
-        // Setting the center of the map to the user location
-        mainMapView.setCenter(currentLocation, animated: false)
-        // Getting the region to focus
-        var region = MKCoordinateRegionMakeWithDistance(
-            currentLocation,
-            50,
-            50
-        )
-        let span = MKCoordinateSpan(
-            latitudeDelta: 50,
-            longitudeDelta: 50)
-        region.span = span
-        self.mainMapView.setRegion(region, animated: false)
+        
     }
     
     

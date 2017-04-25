@@ -28,6 +28,8 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
     var searchCollectionView: SearchCollectionView!
     let locationManager = CLLocationManager()
     
+    var didGetCity: Bool = false
+    
     
     // MARK: - Logic
     var calloutViewIsVisible = false
@@ -48,14 +50,13 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         setupLocationManager()
         // Setup search collectoion view
         setupSearchCollectionView()
-        
-        // Testing with artificial data
-        APIClient.sharedInstance.getProductsByCity(city: "San Francisco") { (products) in
-            
+    }
+    
+    func updateProducts(city: String){
+        APIClient.sharedInstance.getProductsByCity(city: city) { (products) in
             self.mainMapView.addAnnotations(products)
         }
     }
-    
     
     fileprivate func setupSearchCollectionView() {
 
@@ -104,9 +105,8 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
     }
-    
-    
 }
 
 
