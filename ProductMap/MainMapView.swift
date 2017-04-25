@@ -98,8 +98,19 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         }
         
         // Adds the notation
-        
-        self.setCenter(touchMapCoordinate, animated: true)
+        let region = MKCoordinateRegionMakeWithDistance(
+            touchMapCoordinate,
+            50,
+            50
+        )
+        self.setRegion(
+            region,
+            animated: false
+        )
+        self.setCenter(
+            touchMapCoordinate,
+            animated: false
+        )
         self.addAnnotation(productLocation)
         self.isUserInteractionEnabled = false
         // Show view to insert product information
@@ -156,6 +167,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     
     
     func resizeMapView(for state: addProductViewState) {
+        // Getting the phone size
         guard let keyWindow = keyWindow else {
             return
         }
@@ -164,8 +176,21 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
-        UIView.animate(withDuration: 0.2, animations: { 
+        let userLocation = self.userLocation.coordinate
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            // Assigning the height of the map equal to the size of the screen
             self.frame.size.height = keyWindow.frame.height
+            
+            // Setting the center of the map to the user location
+            self.setCenter(userLocation, animated: false)
+            // Getting the region to focus
+            let region = MKCoordinateRegionMakeWithDistance(
+                userLocation,
+                1200,
+                1200
+            )
+            self.setRegion(region, animated: false)
             
             switch state {
             case .addProduct:
