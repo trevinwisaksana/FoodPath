@@ -20,8 +20,7 @@ class Product: NSObject, MKAnnotation {
     var upvoteCount: Int?
     var city: String
     
-    // TODO: Remove hardcoded url
-    var imageUrl: String = "https://lh5.googleusercontent.com/-4KFXQTbmqco/V6wlexPoNcI/AAAAAAAAUGA/oOCq2NXrbsAOK08hWieIkhylwv0nu0KEwCLIB/w200-k/"
+    var imageUrl: String?
     var coordinate: CLLocationCoordinate2D
 
     

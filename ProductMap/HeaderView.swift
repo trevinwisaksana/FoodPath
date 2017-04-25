@@ -12,7 +12,6 @@ class HeaderView: UIView {
     
     let titleLabel: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Test title"
         lbl.textColor = .white
         lbl.font = UIFont.systemFont(ofSize: 18)
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +20,6 @@ class HeaderView: UIView {
     
     let cityLabel: UILabel = {
         let lbl = UILabel()
-        lbl.text = "San Francisco"
         lbl.textColor = .white
         lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.translatesAutoresizingMaskIntoConstraints = false

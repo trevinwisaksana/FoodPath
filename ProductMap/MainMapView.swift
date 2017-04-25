@@ -228,6 +228,5 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         ) 
         
         APIClient.sharedInstance.createProduct(product: product)
-        
     }
 }
