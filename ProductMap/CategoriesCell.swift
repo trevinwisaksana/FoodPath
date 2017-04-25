@@ -10,23 +10,16 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell {
     
-    var title = UILabel()
-    var icon = UIImageView()
+    private var title = UILabel()
+    private var icon = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         
         setupIcon()
         
         isUserInteractionEnabled = true
     }
-    
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        
-//    }
- 
  
     
     required init?(coder aDecoder: NSCoder) {

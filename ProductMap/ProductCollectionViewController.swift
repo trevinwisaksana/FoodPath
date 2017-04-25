@@ -22,7 +22,9 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     // MARK: Variables
     
     let activityIndicator: UIActivityIndicatorView = {
-        let ai = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        let ai = UIActivityIndicatorView(
+            activityIndicatorStyle: UIActivityIndicatorViewStyle.gray
+        )
         return ai
     }()
     
@@ -34,10 +36,22 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .white
         // Register cell classes
-        collectionView?.register(ImageScrollerCollectionViewCell.self, forCellWithReuseIdentifier: imageCellId)
-        collectionView?.register(ProductDescriptionCell.self, forCellWithReuseIdentifier: descriptionId)
-        collectionView?.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: titleCellId)
-        collectionView?.register(ProductDetailButtons.self, forCellWithReuseIdentifier: buttonsCellId)
+        collectionView?.register(
+            ImageScrollerCollectionViewCell.self,
+            forCellWithReuseIdentifier: imageCellId
+        )
+        collectionView?.register(
+            ProductDescriptionCell.self,
+            forCellWithReuseIdentifier: descriptionId
+        )
+        collectionView?.register(
+            TitleCollectionViewCell.self,
+            forCellWithReuseIdentifier: titleCellId
+        )
+        collectionView?.register(
+            ProductDetailButtons.self,
+            forCellWithReuseIdentifier: buttonsCellId
+        )
         
         collectionView?.backgroundColor = .white
         collectionView?.alwaysBounceVertical = true
@@ -45,6 +59,8 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
         setupActivityMonitor()
     }
     
+    
+    /// Used to open either Google Maps or Apple Maps when looking for directions
     func handleDirections(){
         if let product = product {
             if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
@@ -71,12 +87,14 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
         }
     }
     
+    
     func handleContact(){
         let hardcodedNumber = "///////////////////"
         
         guard let number = URL(string: "telprompt://" + hardcodedNumber) else { return }
         UIApplication.shared.open(number, options: [:], completionHandler: nil)
     }
+    
     
     func setupActivityMonitor(){
         activityIndicator.center = self.view.center

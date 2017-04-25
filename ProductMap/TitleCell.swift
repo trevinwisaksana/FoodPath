@@ -34,6 +34,7 @@ class TitleCollectionViewCell: BaseCell {
                 self.titleLabel.text = product.title
                 self.cityLabel.text = product.city
                 self.productID = product.id
+                self.currentCity = product.city
                 
                 guard let productUpvoteCount = product.upvoteCount else {
                     return
@@ -63,6 +64,8 @@ class TitleCollectionViewCell: BaseCell {
     private var upvoteCount: Int = 0
     // Selected product ID
     private var productID: String?
+    // City of the product
+    private var currentCity: String?
     
     
     override func setupViews() {
@@ -211,13 +214,18 @@ class TitleCollectionViewCell: BaseCell {
             return
         }
         
+        guard let currentCity = currentCity else {
+            return
+        }
+        
+        // Increment the upvote count
         upvoteCount += 1
-        
+        // Set the title of the upvote button based on the count
         upvoteButton.setTitle("\(upvoteCount)", for: .normal)
-        
+        // TODO: Change the city
         APIClient.sharedInstance.upvoteRequest(
             with: productID,
-            city: "San Francisco"
+            city: currentCity
         )
         
     }

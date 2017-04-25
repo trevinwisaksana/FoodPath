@@ -67,7 +67,7 @@ class ProductDescriptionView: UIView {
         textView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
     }
     
-    public func setupDescriptionView(){
+    public func setupDescriptionView() {
         guard let windowFrame = keyWindow?.frame else {
             return
         }
