@@ -180,6 +180,8 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
                 1200
             )
             self.mainMapView.setRegion(region, animated: false)
+            // Stop updating
+            locationManager.stopUpdatingLocation()
         }
     }
     
