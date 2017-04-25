@@ -147,22 +147,46 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = view.frame.width
+        let height = view.frame.height * 0.315
         
         switch indexPath.item {
         case 0: // Image Scroller
-            return CGSize(width: width, height: 300)
+            return CGSize(
+                width: width,
+                height: height
+            )
         case 1: // Title and city label
-            return CGSize(width: view.frame.width, height: 120)
+            return CGSize(
+                width: view.frame.width,
+                height: height * 0.5
+            )
         case 2: // Navigation and contact Button
-            return CGSize(width: width, height: 40)
+            return CGSize(
+                width: width,
+                height: 40
+            )
         case 3: // Description
-            let dummySize = CGSize(width: width - 8 - 8, height: 1000)
-            let options = NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin)
-            let rect = descriptionAttributedText().boundingRect(with: dummySize, options: options, context: nil)
+            let dummySize = CGSize(
+                width: width - 16,
+                height: 1000
+            )
             
-            return CGSize(width: width, height: rect.height + 60)
+            let options = NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin)
+            let rect = descriptionAttributedText().boundingRect(
+                with: dummySize,
+                options: options,
+                context: nil
+            )
+            
+            return CGSize(
+                width: width,
+                height: rect.height + 60
+            )
         default:
-            return CGSize(width: width, height: 0)
+            return CGSize(
+                width: width,
+                height: 0
+            )
         }
     }
     

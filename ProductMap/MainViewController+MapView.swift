@@ -158,7 +158,6 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     // MARK: - CLLocationManager
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         if !didGetCity {
             guard let currentLocation = manager.location else {
                 return
@@ -186,10 +185,6 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
 //            region.span = span
 //            self.mainMapView.setRegion(region, animated: false)
         }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        
     }
     
     

@@ -11,24 +11,30 @@ import UIKit
 import MapKit
 import Firebase
 
+protocol AnimationManagerDelegate: class {
+    func dismissTopBarContainer()
+}
+
 
 class MainMapView: MKMapView, AddProductViewDelegate {
     
     private var productCoordinate: CLLocationCoordinate2D?
     private var productLocation: Product?
+    weak var animationDelegate: AnimationManagerDelegate?
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         // Cleans the map
         showsPointsOfInterest = true
-        // Setting user location
-        showsUserLocation = true
+        showsTraffic = false
         // Disabling compass
         showsCompass = false
         // Map type
         mapType = MKMapType.standard
         // Setup gesture recognizer
         setupLongTapGesture()
+        
     }
     
     
@@ -92,12 +98,20 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         }
         
         // Adds the notation
-        // TODO: Make a network request to Firebase
+        
         self.setCenter(touchMapCoordinate, animated: true)
         self.addAnnotation(productLocation)
         self.isUserInteractionEnabled = false
         // Show view to insert product information
         showAddProductView()
+        animationDelegate?.dismissTopBarContainer()
+        
+        let notificationName = NSNotification.Name("DismissTopBarNotification")
+        NotificationCenter.default.post(
+            name: notificationName,
+            object: nil
+        )
+    
     }
     
     
