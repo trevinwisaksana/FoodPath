@@ -72,7 +72,7 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     }
     
     func handleContact(){
-        let hardcodedNumber = "+1(628)202-9376"
+        let hardcodedNumber = "///////////////////"
         
         guard let number = URL(string: "telprompt://" + hardcodedNumber) else { return }
         UIApplication.shared.open(number, options: [:], completionHandler: nil)

@@ -20,7 +20,7 @@
 		C4CEB3F91EA7E980001722E5 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CEB3F81EA7E980001722E5 /* GradientView.swift */; };
 		C4E7AAA61EA544AC00518FD6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E7AAA51EA544AC00518FD6 /* Product.swift */; };
 		C4EC64DE1EABFFBC00866098 /* ProductDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64DD1EABFFBC00866098 /* ProductDescriptionView.swift */; };
-		C4EC64E01EAC243100866098 /* ProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64DF1EAC243100866098 /* ProductController.swift */; };
+		C4EC64E01EAC243100866098 /* ProductCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64DF1EAC243100866098 /* ProductCollectionViewController.swift */; };
 		C4EC64E31EAC257300866098 /* Base Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64E21EAC257300866098 /* Base Cell.swift */; };
 		C4EC64E51EAC259800866098 /* ImageScrollerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64E41EAC259800866098 /* ImageScrollerCell.swift */; };
 		C4EC64E71EAC280800866098 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64E61EAC280800866098 /* DescriptionCell.swift */; };
@@ -93,7 +93,7 @@
 		C4CEB3F81EA7E980001722E5 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		C4E7AAA51EA544AC00518FD6 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C4EC64DD1EABFFBC00866098 /* ProductDescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDescriptionView.swift; sourceTree = "<group>"; };
-		C4EC64DF1EAC243100866098 /* ProductController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductController.swift; sourceTree = "<group>"; };
+		C4EC64DF1EAC243100866098 /* ProductCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewController.swift; sourceTree = "<group>"; };
 		C4EC64E21EAC257300866098 /* Base Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Base Cell.swift"; sourceTree = "<group>"; };
 		C4EC64E41EAC259800866098 /* ImageScrollerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollerCell.swift; sourceTree = "<group>"; };
 		C4EC64E61EAC280800866098 /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		C4EC64E11EAC251B00866098 /* Product controller cells */ = {
+		C4EC64E11EAC251B00866098 /* ProductController Cells */ = {
 			isa = PBXGroup;
 			children = (
 				C4EC64E21EAC257300866098 /* Base Cell.swift */,
@@ -189,7 +189,7 @@
 				C4EC64E81EAC2E5300866098 /* TitleCell.swift */,
 				C4EC64EE1EAD95EC00866098 /* ProductDetailButtons.swift */,
 			);
-			name = "Product controller cells";
+			name = "ProductController Cells";
 			sourceTree = "<group>";
 		};
 		DD224BD21E9EBA91005B88D8 = {
@@ -291,7 +291,7 @@
 				C4BD02391E9FEDB50025FE76 /* LoginViewController.swift */,
 				C4BD023B1E9FEDBF0025FE76 /* SignUpViewController.swift */,
 				DD4B19491EA42D8B00DC0F00 /* ProductViewController */,
-				C4EC64E11EAC251B00866098 /* Product controller cells */,
+				C4EC64E11EAC251B00866098 /* ProductController Cells */,
 				DD9D8ED41EA03E0D00925A43 /* MainViewController */,
 			);
 			name = "View Controllers";
@@ -321,7 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				DD4B19471EA42BAC00DC0F00 /* ProductViewController.swift */,
-				C4EC64DF1EAC243100866098 /* ProductController.swift */,
+				C4EC64DF1EAC243100866098 /* ProductCollectionViewController.swift */,
 			);
 			name = ProductViewController;
 			sourceTree = "<group>";
@@ -688,7 +688,7 @@
 			files = (
 				C40C0C811EAECC5A002AF3E1 /* Data Manager.swift in Sources */,
 				DD4B194B1EA43E3700DC0F00 /* AddProductView.swift in Sources */,
-				C4EC64E01EAC243100866098 /* ProductController.swift in Sources */,
+				C4EC64E01EAC243100866098 /* ProductCollectionViewController.swift in Sources */,
 				C4EC64EF1EAD95EC00866098 /* ProductDetailButtons.swift in Sources */,
 				DD9D8EDA1EA03F0A00925A43 /* CategoriesCell.swift in Sources */,
 				DD5B22D41EAD3DC2004461A2 /* TopBarContainer.swift in Sources */,
