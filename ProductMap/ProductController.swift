@@ -48,8 +48,9 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     func handleDirections(){
         if let product = product {
             if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
-                UIApplication.shared.openURL(URL(string:
-                    "comgooglemaps://?saddr=&daddr=\(product.coordinate.latitude),\(product.coordinate.longitude)&directionsmode=driving")!)
+                let url = URL(string:
+                    "comgooglemaps://?saddr=&daddr=\(product.coordinate.latitude),\(product.coordinate.longitude)&directionsmode=walking")!
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
                 
                 let latitude:CLLocationDegrees =  CLLocationDegrees(product.coordinate.latitude)
@@ -71,7 +72,10 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     }
     
     func handleContact(){
-        print("contact")
+        let hardcodedNumber = "+1(628)202-9376"
+        
+        guard let number = URL(string: "telprompt://" + hardcodedNumber) else { return }
+        UIApplication.shared.open(number, options: [:], completionHandler: nil)
     }
     
     func setupActivityMonitor(){
