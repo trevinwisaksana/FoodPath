@@ -52,7 +52,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         setupSearchCollectionView()
     }
     
-    func updateProducts(city: String){
+    func updateProducts(city: String) {
         APIClient.sharedInstance.getProductsByCity(city: city) { (products) in
             self.mainMapView.addAnnotations(products)
         }

@@ -173,17 +173,13 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             
             // Setting the center of the map to the user location
             mainMapView.setCenter(currentCoordinates, animated: false)
-//            // Getting the region to focus
-//            var region = MKCoordinateRegionMakeWithDistance(
-//                currentCoordinates,
-//                50,
-//                50
-//            )
-//            let span = MKCoordinateSpan(
-//                latitudeDelta: 50,
-//                longitudeDelta: 50)
-//            region.span = span
-//            self.mainMapView.setRegion(region, animated: false)
+            // Getting the region to focus
+            let region = MKCoordinateRegionMakeWithDistance(
+                currentCoordinates,
+                1200,
+                1200
+            )
+            self.mainMapView.setRegion(region, animated: false)
         }
     }
     
