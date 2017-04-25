@@ -54,6 +54,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
     
     func updateProducts(city: String) {
         APIClient.sharedInstance.getProductsByCity(city: city) { (products) in
+            
             self.mainMapView.addAnnotations(products)
         }
     }
@@ -104,7 +105,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.startUpdatingLocation()
     }
 }
 

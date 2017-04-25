@@ -13,7 +13,7 @@ class ProductDetailButtons: BaseCell {
     
     let navigationButton: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Navigation", for: .normal)
+        btn.setTitle("Get directions", for: .normal)
         btn.setTitleColor(.blue, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         return btn
@@ -36,7 +36,7 @@ class ProductDetailButtons: BaseCell {
     
     override func setupViews() {
         
-        let stackView = UIStackView(arrangedSubviews: [navigationButton, contactButton])
+        let stackView = UIStackView(arrangedSubviews: [navigationButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill

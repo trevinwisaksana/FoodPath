@@ -158,29 +158,49 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     // MARK: - CLLocationManager
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if !didGetCity {
-            guard let currentLocation = manager.location else {
-                return
-            }
-            
-            self.didGetCity = true
-            
-            DataManager.shared.getCityByCoordinates(location: currentLocation) { (city) in
-                self.updateProducts(city: city)
-            }
-            
-            let currentCoordinates = currentLocation.coordinate
-            
-            // Setting the center of the map to the user location
-            mainMapView.setCenter(currentCoordinates, animated: false)
-            // Getting the region to focus
-            let region = MKCoordinateRegionMakeWithDistance(
-                currentCoordinates,
-                1200,
-                1200
-            )
-            self.mainMapView.setRegion(region, animated: false)
+        guard let currentLocation = manager.location else {
+            return
         }
+        
+        locationManager.stopUpdatingLocation()
+        
+        DataManager.shared.getCityByCoordinates(location: currentLocation) { (city) in
+            self.updateProducts(city: city)
+        }
+        
+        let currentCoordinates = currentLocation.coordinate
+        
+        // Setting the center of the map to the user location
+        mainMapView.setCenter(currentCoordinates, animated: false)
+        // Getting the region to focus
+        let region = MKCoordinateRegionMakeWithDistance(
+            currentCoordinates,
+            1200,
+            1200
+        )
+        self.mainMapView.setRegion(region, animated: false)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        guard let currentLocation = manager.location else {
+            return
+        }
+        
+        DataManager.shared.getCityByCoordinates(location: currentLocation) { (city) in
+            self.updateProducts(city: city)
+        }
+        
+        let currentCoordinates = currentLocation.coordinate
+        
+        // Setting the center of the map to the user location
+        mainMapView.setCenter(currentCoordinates, animated: false)
+        // Getting the region to focus
+        let region = MKCoordinateRegionMakeWithDistance(
+            currentCoordinates,
+            1200,
+            1200
+        )
+        self.mainMapView.setRegion(region, animated: false)
     }
     
     
