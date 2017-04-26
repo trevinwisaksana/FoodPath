@@ -50,23 +50,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         setupLocationManager()
         // Setup search collectoion view
         setupSearchCollectionView()
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(presentImagePicker),
-            name: Notification.Name("presentImagePicker"),
-            object: nil
-        )
-    }
-    
-    func presentImagePicker(){
-        print("image picker presented")
-        let picker = UIImagePickerController()
-        
-//        picker.delegate = self
-        picker.allowsEditing = true
-        
-        present(picker, animated: true, completion: nil)
     }
     
     func updateProducts(city: String) {

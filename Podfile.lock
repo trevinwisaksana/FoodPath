@@ -11,6 +11,9 @@ PODS:
   - Firebase/Database (3.16.0):
     - Firebase/Core
     - FirebaseDatabase (= 3.1.2)
+  - Firebase/Storage (3.16.0):
+    - Firebase/Core
+    - FirebaseStorage (= 1.1.0)
   - FirebaseAnalytics (3.8.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
@@ -25,6 +28,9 @@ PODS:
     - FirebaseAnalytics (~> 3.7)
   - FirebaseInstanceID (1.0.10):
     - FirebaseCore (~> 3.6)
+  - FirebaseStorage (1.1.0):
+    - FirebaseAnalytics (~> 3.7)
+    - GTMSessionFetcher/Core (~> 1.1)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -59,6 +65,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/Storage
   - ImageSlideshow
   - ImageSlideshow/Alamofire
   - IQKeyboardManagerSwift
@@ -75,6 +82,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   ImageSlideshow: c1395dcf33f7dba407fd21df0e8c315e8941e209
@@ -84,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: 980a4af3abdd2dac4651aa92350b3658c7bf40f5
+PODFILE CHECKSUM: 26c9b211c699bc371fa29df62b5b3740c79f22bd
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.1.1

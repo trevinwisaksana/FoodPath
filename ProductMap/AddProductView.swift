@@ -28,11 +28,11 @@ protocol AddProductViewDelegate: class {
     func createProduct(
         title: String,
         description: String,
-        image: UIImage?
+        image: UIImage
     )
 }
 
-class AddProductView: UIView {
+class AddProductView: UIView, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private let productNameTextField = UITextField()
     private let productDescriptionTextField = UITextField()
@@ -48,6 +48,9 @@ class AddProductView: UIView {
     private var product: Product?
     
     weak var delegate: AddProductViewDelegate!
+    var mainViewController: MainViewController?
+    
+    private var seletedImage: UIImage?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -191,6 +194,7 @@ class AddProductView: UIView {
         
     }
     
+    // MARK: Cancel Button
     
     fileprivate func setupCancelButton() {
         self.addSubview(cancelButton)
@@ -233,12 +237,14 @@ class AddProductView: UIView {
         )
     }
     
+    // MARK: AddImage Button
+    
     fileprivate func setupAddImageButton(){
         self.addSubview(addImageButton)
         
         let frame = CGRect(
             x: self.frame.width * 0.25,
-            y: self.frame.height * 0.55,
+            y: self.frame.height * 0.60,
             width: self.frame.size.width * 0.5,
             height: self.frame.size.height * 0.07
         )
@@ -252,6 +258,7 @@ class AddProductView: UIView {
         )
         addImageButton.titleLabel?.font = font
         addImageButton.setTitle("Add Image", for: .normal)
+        addImageButton.layer.cornerRadius = self.frame.width * 0.05
         
         // Custom tap gesture setup
         let tapGestureRecognizer = UITapGestureRecognizer(
@@ -262,22 +269,53 @@ class AddProductView: UIView {
         
         // Miscellaneous setup
         addImageButton.backgroundColor = UIColor(
-            colorLiteralRed: 166/255,
-            green: 159/255,
-            blue: 135/255,
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
             alpha: 1
         )
         addImageButton.isUserInteractionEnabled = true
     }
     
     func addImageHandler(){
-        print("add image")
-        let notificationName = NSNotification.Name("presentImagePicker")
-        NotificationCenter.default.post(
-            name: notificationName,
-            object: nil
-        )
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.allowsEditing = true
+        if let mainVC = mainViewController {
+            mainVC.present(picker, animated: true, completion: nil)
+        }
     }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        if let mainVC = mainViewController {
+            mainVC.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImageFromPicker = selectedImageFromPicker {
+            print("Got an image to assign")
+            self.seletedImage = selectedImageFromPicker
+            self.addImageButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            self.addImageButton.setTitle("Image added!", for: .normal)
+            self.addImageButton.setTitleColor(.green, for: .normal)
+        }
+        
+        if let mainVC = mainViewController {
+            mainVC.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: AddProduct Button
     
     fileprivate func setupAddProductButton() {
         self.addSubview(addProductButton)
@@ -325,6 +363,15 @@ class AddProductView: UIView {
             object: nil
         )
         
+        guard let image = self.seletedImage else {
+            // TODO: Present alert please select an image
+            addImageButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            addImageButton.setTitle("Please add an image", for: .normal)
+            addImageButton.setTitleColor(.red, for: .normal)
+            print("no image selected")
+            return
+        }
+        
         // Check if the text field is empty
         if productNameTextField.text == "" {
             
@@ -349,7 +396,7 @@ class AddProductView: UIView {
             delegate.createProduct(
                 title: productTitle,
                 description: productDescription,
-                image: nil
+                image: image
             )
         }
     }

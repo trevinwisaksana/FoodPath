@@ -24,6 +24,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     private var currentCity: String?
     weak var animationDelegate: AnimationManagerDelegate?
     
+    var mainViewController: MainViewController?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         // Cleans the map
@@ -43,21 +45,22 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: - Map setup
-    func setupMapView(_ viewController: UIViewController) {
+    func setupMapView(_ viewController: MainViewController) {
         viewController.view.addSubview(self)
+        
+        // Cheaty way of making image picker work
+        mainViewController = viewController
         
         frame = viewController.view.frame
         // Setting the delegate
-        delegate = viewController as? MKMapViewDelegate
+        delegate = viewController as MKMapViewDelegate
         // User location
         showsUserLocation = true
         // Allow user tracking
         userTrackingMode = MKUserTrackingMode.follow
         
     }
-    
     
     fileprivate func setupLongTapGesture() {
         let longPressGestureRecognizer = UILongPressGestureRecognizer(
@@ -67,7 +70,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         addGestureRecognizer(longPressGestureRecognizer)
     }
-    
     
     /// Adds a pin on the MapView when the user long presses
     ///
@@ -135,9 +137,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
                     name: notificationName,
                     object: nil
                 )
-
         }
-        
     }
     
     
@@ -159,7 +159,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         let addProductView = AddProductView(frame: frame)
         
         addProductView.delegate = self
-//        addProductView.imageDelegate = self
+        addProductView.mainViewController = mainViewController
         
         guard let mainViewController = keyWindow.rootViewController else {
             return
@@ -252,8 +252,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     }
     
     
-    func createProduct(title: String, description: String, image: UIImage?) {
-        
+    func createProduct(title: String, description: String, image: UIImage) {
+        print("beginning to create product")
         guard let productID = productID else {
             return
         }
@@ -261,16 +261,20 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         guard let currentCity = currentCity else {
             return
         }
-    
-        // Assigning the product ID because it's set to nil by default
-        productLocation?.id = productID
-        // Updating the product with the ID with the new information
-        APIClient.sharedInstance.updateProduct(
-            id: productID,
-            title: title,
-            city: currentCity,
-            description: description
-        )
         
+        APIClient.sharedInstance.uploadImageToFirebase(productId: productID, image: image) { (imageUrl) in
+            print("Got image url")
+            
+            // Assigning the product ID because it's set to nil by default
+            self.productLocation?.id = productID
+            // Updating the product with the ID with the new information
+            APIClient.sharedInstance.updateProduct(
+                id: productID,
+                title: title,
+                city: currentCity,
+                description: description,
+                imageUrl: imageUrl
+            )
+        }
     }
 }
