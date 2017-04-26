@@ -19,6 +19,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
     var listOfProducts: [Product] = []
     var listOfFilteredProducts = Set<Product>()
     
+    
     // MARK: - Views
     let mainMapView = MainMapView()
     let searchView = SearchView()
@@ -27,6 +28,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
     var categoriesCollectionView: CategoriesCollectionView!
     var searchCollectionView: SearchCollectionView!
     let locationManager = CLLocationManager()
+    
     
     // MARK: - Logic
     var calloutViewIsVisible = false

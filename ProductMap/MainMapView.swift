@@ -116,7 +116,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
                     return
                 }
                 
-                // TODO: Call a delegate method
+                // Creating a new product in the long press because we need to get the key
                 APIClient.sharedInstance.createProduct(product: productLocation) { (key) in
                     self.productID = key
                 }
@@ -229,6 +229,21 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             case .addProduct:
                 break
             case .cancelAdd:
+                
+                // Used to prevent using bang operators
+                guard let productID = self.productID else {
+                    return
+                }
+                guard let currentCity = self.currentCity else {
+                    return
+                }
+                // Delete the product when we cancel the add
+                APIClient.sharedInstance.deleteProduct(
+                    id: productID,
+                    city: currentCity
+                )
+                
+                // Remove the annotation because it's cancelled
                 self.removeAnnotation(productLocation)
             }
             
@@ -247,17 +262,15 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         guard let currentCity = currentCity else {
             return
         }
-        
-        let productTitle = title
-        let productDescription = description
-        
+    
+        // Assigning the product ID because it's set to nil by default
         productLocation?.id = productID
-        
+        // Updating the product with the ID with the new information
         APIClient.sharedInstance.updateProduct(
             id: productID,
-            title: productTitle,
+            title: title,
             city: currentCity,
-            description: productDescription
+            description: description
         )
         
     }

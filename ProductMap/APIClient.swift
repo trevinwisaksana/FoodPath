@@ -111,6 +111,12 @@ class APIClient {
         })
     }
     
+    
+    public func deleteProduct(id: String, city: String) {
+        APIClient.productRef.child(city).child(id).removeValue()
+    }
+    
+    
     // MARK: Up and down vote requests
     public func downvoteRequest(with id: String, city: String) {
         getProduct(with: id, city: city) { (product) in
