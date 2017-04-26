@@ -49,11 +49,22 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         // Setup search collectoion view
         setupSearchCollectionView()
         
-        // TESTING
-//        let product = Product(id: nil, title: "Testing", description: "Testing", city: "San Francisco", coordinate: CLLocationCoordinate2DMake(0, 0) , upvoteCount: 1)
-//        APIClient.sharedInstance.createProduct(product: product)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(presentImagePicker),
+            name: Notification.Name("presentImagePicker"),
+            object: nil
+        )
+    }
+    
+    func presentImagePicker(){
+        print("image picker presented")
+        let picker = UIImagePickerController()
         
+//        picker.delegate = self
+        picker.allowsEditing = true
         
+        present(picker, animated: true, completion: nil)
     }
     
     func updateProducts(city: String) {

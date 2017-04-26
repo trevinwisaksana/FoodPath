@@ -49,9 +49,14 @@ class APIClient {
         
         let productRef = APIClient.productRef.child(city).child(id)
         
-        productRef.setValue(title, forKey: "title")
-        productRef.setValue(description, forKey: "description")
+        productRef.child("title").setValue(title)
+        productRef.child("description").setValue(description)
     }
+    
+    func updateProductUpvoteCount(id: String, city: String, upvoteCount: Int) {
+        APIClient.productRef.child(city).child(id).child("upvoteCount").setValue(upvoteCount)
+    }
+    
     
     
     public func getProductsByCity(city: String, completionHandler: @escaping ([Product]) -> Void){
@@ -142,11 +147,6 @@ class APIClient {
                 self.updateProductUpvoteCount(id: id, city: city, upvoteCount: upvoteCount)
             }
         }
-    }
-    
-    
-    func updateProductUpvoteCount(id: String, city: String, upvoteCount: Int) {
-        APIClient.productRef.child(city).child(id).child("upvoteCount").setValue(upvoteCount)
     }
     
     

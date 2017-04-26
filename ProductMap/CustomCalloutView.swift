@@ -25,6 +25,8 @@ class CustomCalloutView: UIView {
     private var productID: String?
     // Product count
     private var upvoteCount: Int = 0
+    // Current city
+    private var currentCity: String?
     
     private var product: Product? {
         didSet{
@@ -33,6 +35,7 @@ class CustomCalloutView: UIView {
                 productNameLabel.text = product.title
                 productCityLabel.text = "in \(product.city)"
                 productID = product.id
+                currentCity = product.city
                 
                 guard let productUpvoteCount = product.upvoteCount else {
                     fatalError()
@@ -299,9 +302,13 @@ class CustomCalloutView: UIView {
         
         upvoteButton.setTitle("\(upvoteCount)", for: .normal)
         
+        guard let currentCity = currentCity else {
+            return
+        }
+        
         APIClient.sharedInstance.upvoteRequest(
             with: productID,
-            city: "San Francisco"
+            city: currentCity
         )
         
     }

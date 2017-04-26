@@ -50,7 +50,6 @@ class SearchTextField: UITextField, UITextFieldDelegate {
         currentCity = city
     }
     
-    
     public func setupSearchTextField(_ viewController: UIViewController, _ superview: UIView) {
         superview.addSubview(self)
         

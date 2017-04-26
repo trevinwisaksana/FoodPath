@@ -32,7 +32,6 @@ protocol AddProductViewDelegate: class {
     )
 }
 
-
 class AddProductView: UIView {
     
     private let productNameTextField = UITextField()
@@ -46,9 +45,9 @@ class AddProductView: UIView {
     private let addProductButton = UIButton()
     
     private let addImageButton = UIButton()
+    private var product: Product?
     
     weak var delegate: AddProductViewDelegate!
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,6 +59,8 @@ class AddProductView: UIView {
         setupInstructionLabel()
         setupPleaseInsertLabel()
         setupProductDescriptionLabel()
+        
+        setupAddImageButton()
         
     
         // Miscellaneaous setup
@@ -203,9 +204,9 @@ class AddProductView: UIView {
         cancelButton.frame = labelFrame
         cancelButton.clipsToBounds = false
         cancelButton.backgroundColor = UIColor(
-            colorLiteralRed: 166/255,
-            green: 159/255,
-            blue: 135/255,
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
             alpha: 1
         )
         cancelButton.layer.cornerRadius = cancelButton.frame.width / 2
@@ -236,10 +237,10 @@ class AddProductView: UIView {
         self.addSubview(addImageButton)
         
         let frame = CGRect(
-            x: self.frame.width * 0.05,
-            y: self.frame.height * 0.65,
-            width: self.frame.size.width * 0.9,
-            height: self.frame.size.height * 0.12
+            x: self.frame.width * 0.25,
+            y: self.frame.height * 0.55,
+            width: self.frame.size.width * 0.5,
+            height: self.frame.size.height * 0.07
         )
         
         addImageButton.frame = frame
@@ -255,7 +256,7 @@ class AddProductView: UIView {
         // Custom tap gesture setup
         let tapGestureRecognizer = UITapGestureRecognizer(
             target: self,
-            action: #selector(addProductButtonHandler)
+            action: #selector(addImageHandler)
         )
         addImageButton.addGestureRecognizer(tapGestureRecognizer)
         
@@ -271,8 +272,12 @@ class AddProductView: UIView {
     
     func addImageHandler(){
         print("add image")
+        let notificationName = NSNotification.Name("presentImagePicker")
+        NotificationCenter.default.post(
+            name: notificationName,
+            object: nil
+        )
     }
-    
     
     fileprivate func setupAddProductButton() {
         self.addSubview(addProductButton)
@@ -302,9 +307,9 @@ class AddProductView: UIView {
         
         // Miscellaneous setup
         addProductButton.backgroundColor = UIColor(
-            colorLiteralRed: 166/255,
-            green: 159/255,
-            blue: 135/255,
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
             alpha: 1
         )
         addProductButton.isUserInteractionEnabled = true
@@ -328,6 +333,7 @@ class AddProductView: UIView {
         } else {
             // Dismiss the view
             dismissAddProductView(for: .addProduct)
+            
             guard let productTitle = productNameTextField.text else {
                 return
             }
@@ -335,9 +341,9 @@ class AddProductView: UIView {
             guard let productDescription = productDescriptionTextField.text else {
                 return
             }
-            
-            // Remove pin
-            // create product
+      
+            product?.title = productTitle
+            product?.productDescription = productDescription
             
             // Sends this information to the MainMapView
             delegate.createProduct(

@@ -22,7 +22,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     private var productLocation: Product?
     weak var animationDelegate: AnimationManagerDelegate?
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         // Cleans the map
@@ -73,6 +72,9 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     /// - Parameter gestureRecognizer: Default UIGestureRecognizer
     @objc fileprivate func longPressHandler(_ gestureRecognizer: UIGestureRecognizer) {
         
+        // TODO: Create an empty product
+        // TODO: Call a delegate method
+        
         if gestureRecognizer.state != .began { return }
         
         let touchPoint = gestureRecognizer.location(in: self)
@@ -84,11 +86,12 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         productCoordinate = touchMapCoordinate
         
+        // MARK: - Holy Grail
         productLocation = Product(
             id: nil,
-            title: "Test",
-            description: "Testing",
-            city: "Testong",
+            title: "",
+            description: "",
+            city: "",
             coordinate: touchMapCoordinate,
             upvoteCount: 0,
             imageUrl: nil
@@ -135,6 +138,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         let addProductView = AddProductView(frame: frame)
         
         addProductView.delegate = self
+//        addProductView.imageDelegate = self
         
         guard let mainViewController = keyWindow.rootViewController else {
             return
@@ -172,7 +176,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         })
         
     }
-    
     
     func resizeMapView(for state: addProductViewState) {
         // Getting the phone size
@@ -232,5 +235,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         APIClient.sharedInstance.createProduct(product: product) { (id) in
             
         }
+
     }
 }
