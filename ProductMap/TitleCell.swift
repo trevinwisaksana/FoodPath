@@ -15,7 +15,6 @@ class TitleCollectionViewCell: BaseCell {
     let titleLabel: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
-        lbl.font = UIFont.systemFont(ofSize: 20)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -23,7 +22,6 @@ class TitleCollectionViewCell: BaseCell {
     let cityLabel: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
-        lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -34,6 +32,7 @@ class TitleCollectionViewCell: BaseCell {
                 self.titleLabel.text = product.title
                 self.cityLabel.text = product.city
                 self.productID = product.id
+                self.currentCity = product.city
                 
                 guard let productUpvoteCount = product.upvoteCount else {
                     return
@@ -63,19 +62,38 @@ class TitleCollectionViewCell: BaseCell {
     private var upvoteCount: Int = 0
     // Selected product ID
     private var productID: String?
+    // City of the product
+    private var currentCity: String?
     
     
     override func setupViews() {
         
+        guard let windowFrame = keyWindow?.frame else {
+            return
+        }
+        
         self.backgroundColor = UIColor(
-            red: 66/255,
-            green: 133/255,
-            blue: 255/255,
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
             alpha: 1
         )
         
         setupUpvoteContainer()
         setupProductLabelContainer()
+        
+        // Setup the font size
+        let cityLabelFont = UIFont(
+            name: "Avenir",
+            size: windowFrame.height * 0.03
+        )
+        cityLabel.font = cityLabelFont
+        let titleLabelFont = UIFont(
+            name: "Avenir",
+            size: windowFrame.height * 0.05
+        )
+        titleLabel.font = titleLabelFont
+        
     }
     
     
@@ -163,10 +181,15 @@ class TitleCollectionViewCell: BaseCell {
             size: windowFrame.height * 0.05
         )
         upvoteButton.titleLabel?.font = buttonFont
-        upvoteButton.titleLabel?.textColor = .white
         upvoteButton.titleLabel?.textAlignment = .center
         upvoteButton.setTitle("\(upvoteCount)", for: .normal)
         upvoteButton.setTitleColor(.black, for: .normal)
+        
+        upvoteButton.layer.shadowOpacity = 0.4
+        upvoteButton.layer.shadowOffset = CGSize(
+            width: 0,
+            height: 0
+        )
         
         // Button target action
         let tapGestureRecognizer = UITapGestureRecognizer(
@@ -211,13 +234,18 @@ class TitleCollectionViewCell: BaseCell {
             return
         }
         
+        guard let currentCity = currentCity else {
+            return
+        }
+        
+        // Increment the upvote count
         upvoteCount += 1
-        
+        // Set the title of the upvote button based on the count
         upvoteButton.setTitle("\(upvoteCount)", for: .normal)
-        
+        // TODO: Change the city
         APIClient.sharedInstance.upvoteRequest(
             with: productID,
-            city: "San Francisco"
+            city: currentCity
         )
         
     }

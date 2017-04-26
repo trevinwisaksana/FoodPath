@@ -21,7 +21,6 @@ class ImageScrollerCollectionViewCell: BaseCell {
     
     let dismissButton: UIButton = {
         let btn = UIButton()
-        btn.layer.cornerRadius = 10
         btn.setImage(UIImage(named: "CloseButton"), for: .normal)
         btn.isUserInteractionEnabled = true
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -51,9 +50,8 @@ class ImageScrollerCollectionViewCell: BaseCell {
         addGradientView()
         
         addSubview(dismissButton)
-        dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
         dismissButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        
         dismissButton.addTarget(self, action: #selector(handleDismissButton), for: .touchUpInside)
         setNoImageImage()
     }

@@ -90,6 +90,8 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             return
         }
         
+        
+        
         APIClient.sharedInstance.getProduct(
             with: productAnnotation.id!,
             city: productAnnotation.city) { (product) in

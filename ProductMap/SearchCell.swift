@@ -124,9 +124,9 @@ class SearchCell: UICollectionViewCell {
         )
         productUpvoteLabel.frame = labelFrame
         productUpvoteLabel.backgroundColor = UIColor(
-            colorLiteralRed: 166/255,
-            green: 159/255,
-            blue: 135/255,
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
             alpha: 1
         )
         productUpvoteLabel.font = labelFont
