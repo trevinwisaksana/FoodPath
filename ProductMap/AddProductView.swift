@@ -45,6 +45,8 @@ class AddProductView: UIView {
     private let cancelButton = UIButton()
     private let addProductButton = UIButton()
     
+    private var product: Product?
+    
     weak var delegate: AddProductViewDelegate!
     
     
@@ -202,9 +204,9 @@ class AddProductView: UIView {
         cancelButton.frame = labelFrame
         cancelButton.clipsToBounds = false
         cancelButton.backgroundColor = UIColor(
-            colorLiteralRed: 166/255,
-            green: 159/255,
-            blue: 135/255,
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
             alpha: 1
         )
         cancelButton.layer.cornerRadius = cancelButton.frame.width / 2
@@ -260,9 +262,9 @@ class AddProductView: UIView {
         
         // Miscellaneous setup
         addProductButton.backgroundColor = UIColor(
-            colorLiteralRed: 166/255,
-            green: 159/255,
-            blue: 135/255,
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
             alpha: 1
         )
         addProductButton.isUserInteractionEnabled = true
@@ -286,6 +288,7 @@ class AddProductView: UIView {
         } else {
             // Dismiss the view
             dismissAddProductView(for: .addProduct)
+            
             guard let productTitle = productNameTextField.text else {
                 return
             }
@@ -293,6 +296,9 @@ class AddProductView: UIView {
             guard let productDescription = productDescriptionTextField.text else {
                 return
             }
+            
+            product?.title = productTitle
+            product?.productDescription = productDescription
             
             // Sends this information to the MainMapView
             delegate.createProduct(

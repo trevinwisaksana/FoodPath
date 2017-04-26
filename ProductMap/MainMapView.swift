@@ -73,6 +73,9 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     /// - Parameter gestureRecognizer: Default UIGestureRecognizer
     @objc fileprivate func longPressHandler(_ gestureRecognizer: UIGestureRecognizer) {
         
+        // TODO: Create an empty product
+        // TODO: Call a delegate method
+        
         if gestureRecognizer.state != .began { return }
         
         let touchPoint = gestureRecognizer.location(in: self)
@@ -84,11 +87,12 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         productCoordinate = touchMapCoordinate
         
+        // MARK: - Holy Grail
         productLocation = Product(
             id: nil,
-            title: "Test",
-            description: "Testing",
-            city: "Testong",
+            title: "",
+            description: "",
+            city: "",
             coordinate: touchMapCoordinate,
             upvoteCount: 0
             )
@@ -218,16 +222,26 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
-        let product = Product(
-            id: nil,
-            title: title,
-            description: description,
-            city: "San Francisco",
-            coordinate: productCoordinate,
-            upvoteCount: 0
-        ) 
+        let userLocation = self.userLocation.coordinate
+        let clLocation = CLLocation(
+            latitude: userLocation.latitude,
+            longitude: userLocation.longitude
+        )
         
-        APIClient.sharedInstance.createProduct(product: product)
+        DataManager.shared.getCityByCoordinates(location: clLocation) { (city) in
+            
+            let product = Product(
+                id: nil,
+                title: title,
+                description: description,
+                city: city,
+                coordinate: productCoordinate,
+                upvoteCount: 0
+            )
+            
+            APIClient.sharedInstance.createProduct(product: product)
+            
+        }
         
     }
 }

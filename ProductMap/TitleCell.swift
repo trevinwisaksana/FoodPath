@@ -15,7 +15,6 @@ class TitleCollectionViewCell: BaseCell {
     let titleLabel: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
-        lbl.font = UIFont.systemFont(ofSize: 20)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -23,7 +22,6 @@ class TitleCollectionViewCell: BaseCell {
     let cityLabel: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
-        lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -70,15 +68,32 @@ class TitleCollectionViewCell: BaseCell {
     
     override func setupViews() {
         
+        guard let windowFrame = keyWindow?.frame else {
+            return
+        }
+        
         self.backgroundColor = UIColor(
-            red: 66/255,
-            green: 133/255,
-            blue: 255/255,
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
             alpha: 1
         )
         
         setupUpvoteContainer()
         setupProductLabelContainer()
+        
+        // Setup the font size
+        let cityLabelFont = UIFont(
+            name: "Avenir",
+            size: windowFrame.height * 0.03
+        )
+        cityLabel.font = cityLabelFont
+        let titleLabelFont = UIFont(
+            name: "Avenir",
+            size: windowFrame.height * 0.05
+        )
+        titleLabel.font = titleLabelFont
+        
     }
     
     
@@ -166,10 +181,15 @@ class TitleCollectionViewCell: BaseCell {
             size: windowFrame.height * 0.05
         )
         upvoteButton.titleLabel?.font = buttonFont
-        upvoteButton.titleLabel?.textColor = .white
         upvoteButton.titleLabel?.textAlignment = .center
         upvoteButton.setTitle("\(upvoteCount)", for: .normal)
         upvoteButton.setTitleColor(.black, for: .normal)
+        
+        upvoteButton.layer.shadowOpacity = 0.4
+        upvoteButton.layer.shadowOffset = CGSize(
+            width: 0,
+            height: 0
+        )
         
         // Button target action
         let tapGestureRecognizer = UITapGestureRecognizer(

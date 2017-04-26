@@ -11,7 +11,6 @@
 		28A5F3CD42CF8694AE97BBFF /* Pods_ProductMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69D235FFAD148F656EEEB87 /* Pods_ProductMapTests.framework */; };
 		A9A9C785561B19D64368CA72 /* Pods_ProductMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E79EAAD5B42041EA3395239 /* Pods_ProductMap.framework */; };
 		C40C0C811EAECC5A002AF3E1 /* Data Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C0C801EAECC5A002AF3E1 /* Data Manager.swift */; };
-		C437785D1EA960D9009FEFE8 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437785C1EA960D9009FEFE8 /* HeaderView.swift */; };
 		C4BD02381E9FE9DB0025FE76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4BD02371E9FE9DB0025FE76 /* GoogleService-Info.plist */; };
 		C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD02391E9FEDB50025FE76 /* LoginViewController.swift */; };
 		C4BD023C1E9FEDBF0025FE76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD023B1E9FEDBF0025FE76 /* SignUpViewController.swift */; };
@@ -44,7 +43,6 @@
 		DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B193F1EA3C73000DC0F00 /* Constants.swift */; };
 		DD4B19421EA3D77900DC0F00 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19411EA3D77900DC0F00 /* AnnotationView.swift */; };
 		DD4B19461EA3E13200DC0F00 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19451EA3E13200DC0F00 /* CustomCalloutView.swift */; };
-		DD4B19481EA42BAC00DC0F00 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19471EA42BAC00DC0F00 /* ProductViewController.swift */; };
 		DD4B194B1EA43E3700DC0F00 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */; };
 		DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */; };
 		DD4B19561EA547C800DC0F00 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B19551EA547C800DC0F00 /* APIClient.swift */; };
@@ -84,7 +82,6 @@
 		9E79EAAD5B42041EA3395239 /* Pods_ProductMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProductMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE139491CA24F3F245638DF3 /* Pods-ProductMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProductMapTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProductMapTests/Pods-ProductMapTests.release.xcconfig"; sourceTree = "<group>"; };
 		C40C0C801EAECC5A002AF3E1 /* Data Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data Manager.swift"; sourceTree = "<group>"; };
-		C437785C1EA960D9009FEFE8 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C4BD02371E9FE9DB0025FE76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4BD02391E9FEDB50025FE76 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4BD023B1E9FEDBF0025FE76 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -123,7 +120,6 @@
 		DD4B193F1EA3C73000DC0F00 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DD4B19411EA3D77900DC0F00 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		DD4B19451EA3E13200DC0F00 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
-		DD4B19471EA42BAC00DC0F00 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		DD4B194A1EA43E3700DC0F00 /* AddProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionView.swift; sourceTree = "<group>"; };
 		DD4B19551EA547C800DC0F00 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -320,7 +316,6 @@
 		DD4B19491EA42D8B00DC0F00 /* ProductViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DD4B19471EA42BAC00DC0F00 /* ProductViewController.swift */,
 				C4EC64DF1EAC243100866098 /* ProductCollectionViewController.swift */,
 			);
 			name = ProductViewController;
@@ -360,7 +355,6 @@
 			children = (
 				DD7370C91EA59880007511B5 /* TopSpaceView.swift */,
 				C4CEB3F81EA7E980001722E5 /* GradientView.swift */,
-				C437785C1EA960D9009FEFE8 /* HeaderView.swift */,
 				C4EC64DD1EABFFBC00866098 /* ProductDescriptionView.swift */,
 			);
 			name = "ProductViewController Views";
@@ -721,10 +715,8 @@
 				C4EC64E71EAC280800866098 /* DescriptionCell.swift in Sources */,
 				DD7370D01EA6CD26007511B5 /* SearchCell.swift in Sources */,
 				DD9D8ED81EA03E7000925A43 /* MainViewController+CollectionView.swift in Sources */,
-				C437785D1EA960D9009FEFE8 /* HeaderView.swift in Sources */,
 				C4CEB3F91EA7E980001722E5 /* GradientView.swift in Sources */,
 				DD224C251E9FE4A2005B88D8 /* SearchView.swift in Sources */,
-				DD4B19481EA42BAC00DC0F00 /* ProductViewController.swift in Sources */,
 				C4EC64DE1EABFFBC00866098 /* ProductDescriptionView.swift in Sources */,
 				DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */,
 				DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */,
@@ -880,7 +872,7 @@
 				INFOPLIST_FILE = ProductMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.trevinwisaksana.ProductMap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trevinwisaksana.FoodPath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -896,7 +888,7 @@
 				INFOPLIST_FILE = ProductMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.trevinwisaksana.ProductMap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trevinwisaksana.FoodPath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
