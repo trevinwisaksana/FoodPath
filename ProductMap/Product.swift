@@ -24,14 +24,15 @@ class Product: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
 
     
-    init(id: String?, title: String, description: String, city: String, coordinate: CLLocationCoordinate2D, upvoteCount: Int?) {
+    init(id: String?, title: String, description: String, city: String, coordinate: CLLocationCoordinate2D, upvoteCount: Int?, imageUrl: String?) {
         
         self.title = title
         self.productDescription = description
         self.city = city
         self.coordinate = coordinate
         self.id = id
-        self.upvoteCount = upvoteCount 
+        self.upvoteCount = upvoteCount
+        self.imageUrl = imageUrl
     }
     
     
@@ -59,6 +60,7 @@ class Product: NSObject, MKAnnotation {
         }
         
         let upvoteCount = json["upvoteCount"] as? Int
+        let url = json["imageUrl"] as? String
 
         self.init(
             id: id,
@@ -66,7 +68,10 @@ class Product: NSObject, MKAnnotation {
             description: description,
             city: city,
             coordinate: CLLocationCoordinate2DMake(latitude, longitude),
-            upvoteCount: upvoteCount
+            upvoteCount: upvoteCount,
+            imageUrl: url
         )
+        
+        print(self.imageUrl)
     }
 }

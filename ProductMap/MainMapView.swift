@@ -90,7 +90,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             description: "Testing",
             city: "Testong",
             coordinate: touchMapCoordinate,
-            upvoteCount: 0
+            upvoteCount: 0,
+            imageUrl: nil
             )
         
         guard let productLocation = productLocation else {
@@ -224,9 +225,12 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             description: description,
             city: "San Francisco",
             coordinate: productCoordinate,
-            upvoteCount: 0
+            upvoteCount: 0,
+            imageUrl: nil
         ) 
         
-        APIClient.sharedInstance.createProduct(product: product)
+        APIClient.sharedInstance.createProduct(product: product) { (id) in
+            
+        }
     }
 }

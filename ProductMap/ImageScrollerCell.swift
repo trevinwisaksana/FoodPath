@@ -71,7 +71,7 @@ class ImageScrollerCollectionViewCell: BaseCell {
     }
     
     func setNoImageImage(){
-        imageShow.setImageInputs([AlamofireSource(urlString: "https://placeholdit.imgix.net/~text?txtsize=33&txt=No+Image&w=360&h=200&txttrack=0")!])
+        imageShow.setImageInputs([AlamofireSource(urlString: "https://celebritycruisescom.files.wordpress.com/2014/12/silk-beef-chow-mein.jpg")!])
     }
     
     func makeImageShowInputs(urls: [String]) -> [InputSource]{

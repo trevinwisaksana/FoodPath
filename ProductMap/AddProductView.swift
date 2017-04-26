@@ -294,6 +294,9 @@ class AddProductView: UIView {
                 return
             }
             
+            // Remove pin
+            // create product
+            
             // Sends this information to the MainMapView
             delegate.createProduct(
                 title: productTitle,
@@ -301,7 +304,6 @@ class AddProductView: UIView {
                 image: nil
             )
         }
-        
     }
     
     
