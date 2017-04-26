@@ -256,6 +256,7 @@ class AddProductView: UIView, UIImagePickerControllerDelegate, UINavigationContr
             name: "Avenir",
             size: self.frame.height * 0.05
         )
+        
         addImageButton.titleLabel?.font = font
         addImageButton.setTitle("Add Image", for: .normal)
         addImageButton.layer.cornerRadius = self.frame.width * 0.05
