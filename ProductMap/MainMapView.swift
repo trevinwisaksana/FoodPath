@@ -73,8 +73,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     /// - Parameter gestureRecognizer: Default UIGestureRecognizer
     @objc fileprivate func longPressHandler(_ gestureRecognizer: UIGestureRecognizer) {
         
-        // TODO: Create an empty product
-        // TODO: Call a delegate method
+        
         
         if gestureRecognizer.state != .began { return }
         
@@ -96,6 +95,9 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             coordinate: touchMapCoordinate,
             upvoteCount: 0
             )
+        
+        // APIClient.sharedInstance.createProduct(product: productLocation)
+        // TODO: Call a delegate method to send the ID
         
         guard let productLocation = productLocation else {
             return
