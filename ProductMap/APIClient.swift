@@ -45,6 +45,14 @@ class APIClient {
         }
     }
     
+    public func updateProduct(id: String, title: String, city: String, description: String) {
+        
+        let productRef = APIClient.productRef.child(city).child(id)
+        
+        productRef.setValue(title, forKey: "title")
+        productRef.setValue(description, forKey: "description")
+    }
+    
     
     public func getProductsByCity(city: String, completionHandler: @escaping ([Product]) -> Void){
         

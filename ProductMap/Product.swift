@@ -71,7 +71,5 @@ class Product: NSObject, MKAnnotation {
             upvoteCount: upvoteCount,
             imageUrl: url
         )
-        
-        print(self.imageUrl)
     }
 }

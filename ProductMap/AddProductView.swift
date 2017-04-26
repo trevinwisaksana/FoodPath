@@ -45,6 +45,8 @@ class AddProductView: UIView {
     private let cancelButton = UIButton()
     private let addProductButton = UIButton()
     
+    private let addImageButton = UIButton()
+    
     weak var delegate: AddProductViewDelegate!
     
     
@@ -74,6 +76,7 @@ class AddProductView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Product Name
     
     fileprivate func setupProductNameTextField() {
         self.addSubview(productNameTextField)
@@ -99,6 +102,28 @@ class AddProductView: UIView {
         
     }
     
+    fileprivate func setupPleaseInsertLabel() {
+        self.addSubview(pleaseInsertTitleLabel)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.1,
+            y: frame.height * 0.16,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        pleaseInsertTitleLabel.frame = labelFrame
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: frame.height * 0.04
+        )
+        pleaseInsertTitleLabel.font = font
+        pleaseInsertTitleLabel.text = "Please insert the product name"
+        
+    }
+    
+    // MARK: Product Description
     
     fileprivate func setupProductDescriptionTextField() {
         self.addSubview(productDescriptionTextField)
@@ -123,6 +148,26 @@ class AddProductView: UIView {
         
     }
     
+    fileprivate func setupProductDescriptionLabel() {
+        self.addSubview(productDescriptionLabel)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.1,
+            y: frame.height * 0.32,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        productDescriptionLabel.frame = labelFrame
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: frame.height * 0.04
+        )
+        productDescriptionLabel.font = font
+        productDescriptionLabel.text = "Product description"
+        
+    }
     
     fileprivate func setupInstructionLabel() {
         self.addSubview(instructionLabel)
@@ -142,50 +187,6 @@ class AddProductView: UIView {
         )
         instructionLabel.font = font
         instructionLabel.text = "Add new product"
-        
-    }
-    
-    
-    fileprivate func setupPleaseInsertLabel() {
-        self.addSubview(pleaseInsertTitleLabel)
-        
-        // Label size
-        let labelFrame = CGRect(
-            x: frame.width * 0.1,
-            y: frame.height * 0.16,
-            width: frame.size.width * 0.9,
-            height: frame.size.height * 0.1
-        )
-        pleaseInsertTitleLabel.frame = labelFrame
-        
-        let font = UIFont(
-            name: "Avenir",
-            size: frame.height * 0.04
-        )
-        pleaseInsertTitleLabel.font = font
-        pleaseInsertTitleLabel.text = "Please insert the product name"
-        
-    }
-    
-    
-    fileprivate func setupProductDescriptionLabel() {
-        self.addSubview(productDescriptionLabel)
-        
-        // Label size
-        let labelFrame = CGRect(
-            x: frame.width * 0.1,
-            y: frame.height * 0.32,
-            width: frame.size.width * 0.9,
-            height: frame.size.height * 0.1
-        )
-        productDescriptionLabel.frame = labelFrame
-        
-        let font = UIFont(
-            name: "Avenir",
-            size: frame.height * 0.04
-        )
-        productDescriptionLabel.font = font
-        productDescriptionLabel.text = "Product description"
         
     }
     
@@ -229,6 +230,47 @@ class AddProductView: UIView {
             name: notificationName,
             object: nil
         )
+    }
+    
+    fileprivate func setupAddImageButton(){
+        self.addSubview(addImageButton)
+        
+        let frame = CGRect(
+            x: self.frame.width * 0.05,
+            y: self.frame.height * 0.65,
+            width: self.frame.size.width * 0.9,
+            height: self.frame.size.height * 0.12
+        )
+        
+        addImageButton.frame = frame
+        
+        // Font setup
+        let font = UIFont(
+            name: "Avenir",
+            size: self.frame.height * 0.05
+        )
+        addImageButton.titleLabel?.font = font
+        addImageButton.setTitle("Add Image", for: .normal)
+        
+        // Custom tap gesture setup
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(addProductButtonHandler)
+        )
+        addImageButton.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Miscellaneous setup
+        addImageButton.backgroundColor = UIColor(
+            colorLiteralRed: 166/255,
+            green: 159/255,
+            blue: 135/255,
+            alpha: 1
+        )
+        addImageButton.isUserInteractionEnabled = true
+    }
+    
+    func addImageHandler(){
+        print("add image")
     }
     
     
