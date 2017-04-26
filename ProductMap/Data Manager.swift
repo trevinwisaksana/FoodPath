@@ -15,7 +15,8 @@ class DataManager {
     func getCityByCoordinates(location: CLLocation, completion: @escaping (String) -> Void){
         // Add below code to get address for touch coordinates.
         let geoCoder = CLGeocoder()
-        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+        geoCoder.reverseGeocodeLocation(
+            location, completionHandler: { (placemarks, error) -> Void in
             
             // Place details
             var placeMark: CLPlacemark!
@@ -23,7 +24,6 @@ class DataManager {
 
             // City
             if let city = placeMark.addressDictionary!["City"] as? String {
-                print(city)
                 completion(city)
             }
         })

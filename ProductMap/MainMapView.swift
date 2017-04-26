@@ -20,6 +20,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     
     private var productCoordinate: CLLocationCoordinate2D?
     private var productLocation: Product?
+    private var productID: String?
+    private var currentCity: String?
     weak var animationDelegate: AnimationManagerDelegate?
     
     
@@ -73,9 +75,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     /// - Parameter gestureRecognizer: Default UIGestureRecognizer
     @objc fileprivate func longPressHandler(_ gestureRecognizer: UIGestureRecognizer) {
         
-        // TODO: Create an empty product
-        // TODO: Call a delegate method
-        
         if gestureRecognizer.state != .began { return }
         
         let touchPoint = gestureRecognizer.location(in: self)
@@ -87,37 +86,59 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         productCoordinate = touchMapCoordinate
         
-        // MARK: - Holy Grail
-        productLocation = Product(
-            id: nil,
-            title: "",
-            description: "",
-            city: "",
-            coordinate: touchMapCoordinate,
-            upvoteCount: 0,
-            imageUrl: nil
-            )
-        
-        guard let productLocation = productLocation else {
+        guard let productCoordinate = productCoordinate else {
             return
         }
         
-        self.setCenter(
-            touchMapCoordinate,
-            animated: false
+        let clLocation = CLLocation(
+            latitude: productCoordinate.latitude,
+            longitude: productCoordinate.longitude
         )
-        self.addAnnotation(productLocation)
-        self.isUserInteractionEnabled = false
-        // Show view to insert product information
-        showAddProductView()
-        animationDelegate?.dismissTopBarContainer()
         
-        let notificationName = NSNotification.Name("DismissTopBarNotification")
-        NotificationCenter.default.post(
-            name: notificationName,
-            object: nil
-        )
-    
+        DataManager.shared.getCityByCoordinates(
+            location: clLocation) { (city) in
+                
+                self.currentCity = city
+                
+                // MARK: - Holy Grail
+                self.productLocation = Product(
+                    id: nil,
+                    title: "",
+                    description: "",
+                    city: city,
+                    coordinate: touchMapCoordinate,
+                    upvoteCount: 0,
+                    imageUrl: nil
+                )
+                
+                
+                guard let productLocation = self.productLocation else {
+                    return
+                }
+                
+                // TODO: Call a delegate method
+                APIClient.sharedInstance.createProduct(product: productLocation) { (key) in
+                    self.productID = key
+                }
+                
+                self.setCenter(
+                    touchMapCoordinate,
+                    animated: false
+                )
+                self.addAnnotation(productLocation)
+                self.isUserInteractionEnabled = false
+                // Show view to insert product information
+                self.showAddProductView()
+                self.animationDelegate?.dismissTopBarContainer()
+                
+                let notificationName = NSNotification.Name("DismissTopBarNotification")
+                NotificationCenter.default.post(
+                    name: notificationName,
+                    object: nil
+                )
+
+        }
+        
     }
     
     
@@ -219,23 +240,25 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     
     func createProduct(title: String, description: String, image: UIImage?) {
         
-        guard let productCoordinate = self.productCoordinate else {
+        guard let productID = productID else {
             return
         }
         
-        let product = Product(
-            id: nil,
-            title: title,
-            description: description,
-            city: "San Francisco",
-            coordinate: productCoordinate,
-            upvoteCount: 0,
-            imageUrl: nil
-        ) 
-        
-        APIClient.sharedInstance.createProduct(product: product) { (id) in
-            
+        guard let currentCity = currentCity else {
+            return
         }
-
+        
+        let productTitle = title
+        let productDescription = description
+        
+        productLocation?.id = productID
+        
+        APIClient.sharedInstance.updateProduct(
+            id: productID,
+            title: productTitle,
+            city: currentCity,
+            description: productDescription
+        )
+        
     }
 }

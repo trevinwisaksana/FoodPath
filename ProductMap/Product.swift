@@ -72,6 +72,6 @@ class Product: NSObject, MKAnnotation {
             imageUrl: url
         )
         
-        print(self.imageUrl)
+        // print(self.imageUrl)
     }
 }
