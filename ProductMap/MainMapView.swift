@@ -75,8 +75,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     /// - Parameter gestureRecognizer: Default UIGestureRecognizer
     @objc fileprivate func longPressHandler(_ gestureRecognizer: UIGestureRecognizer) {
         
-        
-        
         if gestureRecognizer.state != .began { return }
         
         let touchPoint = gestureRecognizer.location(in: self)
@@ -88,20 +86,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         productCoordinate = touchMapCoordinate
         
-        // MARK: - Holy Grail
-        productLocation = Product(
-            id: nil,
-            title: "",
-            description: "",
-            city: "",
-            coordinate: touchMapCoordinate,
-            upvoteCount: 0
-            )
-        
-        // APIClient.sharedInstance.createProduct(product: productLocation)
-        // TODO: Call a delegate method to send the ID
-        
-        guard let productLocation = productLocation else {
+        guard let productCoordinate = productCoordinate else {
             return
         }
         
