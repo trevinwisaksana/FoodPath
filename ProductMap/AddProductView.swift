@@ -28,12 +28,11 @@ protocol AddProductViewDelegate: class {
     func createProduct(
         title: String,
         description: String,
-        image: UIImage?
+        image: UIImage
     )
 }
 
-
-class AddProductView: UIView {
+class AddProductView: UIView, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     private let productNameTextField = UITextField()
     private let productDescriptionTextField = UITextField()
@@ -45,10 +44,13 @@ class AddProductView: UIView {
     private let cancelButton = UIButton()
     private let addProductButton = UIButton()
     
+    private let addImageButton = UIButton()
     private var product: Product?
     
     weak var delegate: AddProductViewDelegate!
+    var mainViewController: MainViewController?
     
+    private var seletedImage: UIImage?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,6 +62,8 @@ class AddProductView: UIView {
         setupInstructionLabel()
         setupPleaseInsertLabel()
         setupProductDescriptionLabel()
+        
+        setupAddImageButton()
         
     
         // Miscellaneaous setup
@@ -76,6 +80,7 @@ class AddProductView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Product Name
     
     fileprivate func setupProductNameTextField() {
         self.addSubview(productNameTextField)
@@ -101,6 +106,28 @@ class AddProductView: UIView {
         
     }
     
+    fileprivate func setupPleaseInsertLabel() {
+        self.addSubview(pleaseInsertTitleLabel)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.1,
+            y: frame.height * 0.16,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        pleaseInsertTitleLabel.frame = labelFrame
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: frame.height * 0.04
+        )
+        pleaseInsertTitleLabel.font = font
+        pleaseInsertTitleLabel.text = "Please insert the product name"
+        
+    }
+    
+    // MARK: Product Description
     
     fileprivate func setupProductDescriptionTextField() {
         self.addSubview(productDescriptionTextField)
@@ -125,6 +152,26 @@ class AddProductView: UIView {
         
     }
     
+    fileprivate func setupProductDescriptionLabel() {
+        self.addSubview(productDescriptionLabel)
+        
+        // Label size
+        let labelFrame = CGRect(
+            x: frame.width * 0.1,
+            y: frame.height * 0.32,
+            width: frame.size.width * 0.9,
+            height: frame.size.height * 0.1
+        )
+        productDescriptionLabel.frame = labelFrame
+        
+        let font = UIFont(
+            name: "Avenir",
+            size: frame.height * 0.04
+        )
+        productDescriptionLabel.font = font
+        productDescriptionLabel.text = "Product description"
+        
+    }
     
     fileprivate func setupInstructionLabel() {
         self.addSubview(instructionLabel)
@@ -147,50 +194,7 @@ class AddProductView: UIView {
         
     }
     
-    
-    fileprivate func setupPleaseInsertLabel() {
-        self.addSubview(pleaseInsertTitleLabel)
-        
-        // Label size
-        let labelFrame = CGRect(
-            x: frame.width * 0.1,
-            y: frame.height * 0.16,
-            width: frame.size.width * 0.9,
-            height: frame.size.height * 0.1
-        )
-        pleaseInsertTitleLabel.frame = labelFrame
-        
-        let font = UIFont(
-            name: "Avenir",
-            size: frame.height * 0.04
-        )
-        pleaseInsertTitleLabel.font = font
-        pleaseInsertTitleLabel.text = "Please insert the product name"
-        
-    }
-    
-    
-    fileprivate func setupProductDescriptionLabel() {
-        self.addSubview(productDescriptionLabel)
-        
-        // Label size
-        let labelFrame = CGRect(
-            x: frame.width * 0.1,
-            y: frame.height * 0.32,
-            width: frame.size.width * 0.9,
-            height: frame.size.height * 0.1
-        )
-        productDescriptionLabel.frame = labelFrame
-        
-        let font = UIFont(
-            name: "Avenir",
-            size: frame.height * 0.04
-        )
-        productDescriptionLabel.font = font
-        productDescriptionLabel.text = "Product description"
-        
-    }
-    
+    // MARK: Cancel Button
     
     fileprivate func setupCancelButton() {
         self.addSubview(cancelButton)
@@ -233,6 +237,85 @@ class AddProductView: UIView {
         )
     }
     
+    // MARK: AddImage Button
+    
+    fileprivate func setupAddImageButton(){
+        self.addSubview(addImageButton)
+        
+        let frame = CGRect(
+            x: self.frame.width * 0.25,
+            y: self.frame.height * 0.60,
+            width: self.frame.size.width * 0.5,
+            height: self.frame.size.height * 0.07
+        )
+        
+        addImageButton.frame = frame
+        
+        // Font setup
+        let font = UIFont(
+            name: "Avenir",
+            size: self.frame.height * 0.05
+        )
+        addImageButton.titleLabel?.font = font
+        addImageButton.setTitle("Add Image", for: .normal)
+        addImageButton.layer.cornerRadius = self.frame.width * 0.05
+        
+        // Custom tap gesture setup
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(addImageHandler)
+        )
+        addImageButton.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Miscellaneous setup
+        addImageButton.backgroundColor = UIColor(
+            colorLiteralRed: 248/255,
+            green: 211/255,
+            blue: 33/255,
+            alpha: 1
+        )
+        addImageButton.isUserInteractionEnabled = true
+    }
+    
+    func addImageHandler(){
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.allowsEditing = true
+        if let mainVC = mainViewController {
+            mainVC.present(picker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        if let mainVC = mainViewController {
+            mainVC.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImageFromPicker = selectedImageFromPicker {
+            print("Got an image to assign")
+            self.seletedImage = selectedImageFromPicker
+            self.addImageButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            self.addImageButton.setTitle("Image added!", for: .normal)
+            self.addImageButton.setTitleColor(.green, for: .normal)
+        }
+        
+        if let mainVC = mainViewController {
+            mainVC.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: AddProduct Button
     
     fileprivate func setupAddProductButton() {
         self.addSubview(addProductButton)
@@ -280,6 +363,15 @@ class AddProductView: UIView {
             object: nil
         )
         
+        guard let image = self.seletedImage else {
+            // TODO: Present alert please select an image
+            addImageButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            addImageButton.setTitle("Please add an image", for: .normal)
+            addImageButton.setTitleColor(.red, for: .normal)
+            print("no image selected")
+            return
+        }
+        
         // Check if the text field is empty
         if productNameTextField.text == "" {
             
@@ -304,7 +396,7 @@ class AddProductView: UIView {
             delegate.createProduct(
                 title: productTitle,
                 description: productDescription,
-                image: nil
+                image: image
             )
         }
     }

@@ -55,11 +55,5 @@ class ProductDescriptionCell: BaseCell {
         textView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5).isActive = true
         textView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
         textView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
-        
-//        addConstraintsWithFormat("H:|-10-[v0]-8-|", views: titleLabel)
-//        addConstraintsWithFormat("H:|-10-[v0]-10-|", views: dividerLineView)
-//        addConstraintsWithFormat("H:|-8-[v0]-20-|", views: textView)
-//        
-//        addConstraintsWithFormat("V:|-4-[v0]-4-[v1(1)]-4-[v2]|", views: titleLabel, dividerLineView, textView)
     }   
 }

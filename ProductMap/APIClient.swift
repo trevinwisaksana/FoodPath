@@ -8,9 +8,11 @@ import Firebase
 import CoreLocation
 import SwiftyJSON
 
-
 class APIClient {
     static var sharedInstance = APIClient()
+    
+    static let storageRef = FIRStorage.storage().reference()
+    static let imageStorage = storageRef.child("Images")
     
     static let reference = FIRDatabase.database().reference()
     static let productRef = reference.child("Products")
@@ -45,6 +47,9 @@ class APIClient {
         }
     }
     
+    func updateProductUpvoteCount(id: String, city: String, upvoteCount: Int) {
+        APIClient.productRef.child(city).child(id).child("upvoteCount").setValue(upvoteCount)
+    }
     
     public func getProductsByCity(city: String, completionHandler: @escaping ([Product]) -> Void){
         
@@ -141,21 +146,15 @@ class APIClient {
             }
         }
     }
-    
-    
-    public func updateProductUpvoteCount(id: String, city: String, upvoteCount: Int)  {
-        APIClient.productRef.child(city).child(id).child("upvoteCount").setValue(upvoteCount)
-    }
-    
-    
-    public func updateProduct(id: String, title: String, city: String, description: String) {
+
+    public func updateProduct(id: String, title: String, city: String, description: String, imageUrl: String) {
         
         let productRef = APIClient.productRef.child(city).child(id)
         
         productRef.child("title").setValue(title)
         productRef.child("description").setValue(description)
+        productRef.child("imageUrl").setValue(imageUrl)
     }
-    
     
     func getProduct(with id: String, city: String, completionHandler: @escaping (Product) -> Void) {
         APIClient.productRef.child(city).child(id).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -168,6 +167,26 @@ class APIClient {
                 }
             }
         })
+    }
+    
+    func uploadImageToFirebase(productId: String, image: UIImage, completion: @escaping (String) -> Void) {
+        
+        if let uploadData = UIImagePNGRepresentation(image) {
+            
+            let imageRef = APIClient.imageStorage.child(productId)
+            
+            imageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                
+                if let error = error {
+                    print(error)
+                    return
+                }
+                
+                if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                    completion(profileImageUrl)
+                }
+            })
+        }
     }
     
     // MARK: Login and Signup requests
@@ -183,7 +202,6 @@ class APIClient {
         }
         
     }
-    
     
     public func firebaseSignIn(email: String, password: String, completion: (() -> Void)?) {
         

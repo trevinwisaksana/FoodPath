@@ -50,12 +50,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         setupLocationManager()
         // Setup search collectoion view
         setupSearchCollectionView()
-        
-        // TESTING
-//        let product = Product(id: nil, title: "Testing", description: "Testing", city: "San Francisco", coordinate: CLLocationCoordinate2DMake(0, 0) , upvoteCount: 1)
-//        APIClient.sharedInstance.createProduct(product: product)
-        
-        
     }
     
     func updateProducts(city: String) {

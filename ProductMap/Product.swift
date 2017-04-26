@@ -43,7 +43,7 @@ class Product: NSObject, MKAnnotation {
             "upvoteCount": upvoteCount ?? 0,
             "coordinates": [
                 "longitude": coordinate.longitude,
-                "latitude": coordinate.latitude]
+                "latitude": coordinate.latitude],
         ]
     }
     
@@ -71,7 +71,5 @@ class Product: NSObject, MKAnnotation {
             upvoteCount: upvoteCount,
             imageUrl: url
         )
-        
-        // print(self.imageUrl)
     }
 }
