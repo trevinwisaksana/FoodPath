@@ -94,7 +94,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             description: "",
             city: "",
             coordinate: touchMapCoordinate,
-            upvoteCount: 0
+            upvoteCount: 0,
+            imageUrl: nil
             )
         
         guard let productLocation = productLocation else {
@@ -222,26 +223,19 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
-        let userLocation = self.userLocation.coordinate
-        let clLocation = CLLocation(
-            latitude: userLocation.latitude,
-            longitude: userLocation.longitude
-        )
+        let product = Product(
+            id: nil,
+            title: title,
+            description: description,
+            city: "San Francisco",
+            coordinate: productCoordinate,
+            upvoteCount: 0,
+            imageUrl: nil
+        ) 
         
-        DataManager.shared.getCityByCoordinates(location: clLocation) { (city) in
-            
-            let product = Product(
-                id: nil,
-                title: title,
-                description: description,
-                city: city,
-                coordinate: productCoordinate,
-                upvoteCount: 0
-            )
-            
-            APIClient.sharedInstance.createProduct(product: product)
+        APIClient.sharedInstance.createProduct(product: product) { (id) in
             
         }
-        
+
     }
 }

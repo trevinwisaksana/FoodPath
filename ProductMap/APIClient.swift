@@ -33,12 +33,16 @@ class APIClient {
     }
     
     
-    public func createProduct(product: Product) {
+    public func createProduct(product: Product, completion: @escaping (String) -> Void) {
         // Retrieving product reference
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
         
         // Modify database in Firebase
-        productRef.setValue(product.toJson())
+        productRef.setValue(product.toJson()){ (error, ref) -> Void in
+            if error == nil {
+                completion(ref.key)
+            }
+        }
     }
     
     

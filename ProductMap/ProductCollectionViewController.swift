@@ -131,6 +131,7 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
             if let url = product?.imageUrl {
                 cell.imagesUrls = [url]
             }
+            
             cell.delegate = self
             
             return cell

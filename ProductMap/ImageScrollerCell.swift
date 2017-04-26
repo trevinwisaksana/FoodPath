@@ -14,6 +14,7 @@ class ImageScrollerCollectionViewCell: BaseCell {
     
     let imageShow: ImageSlideshow = {
         let view = ImageSlideshow()
+        view.contentScaleMode = .scaleToFill
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -52,6 +53,7 @@ class ImageScrollerCollectionViewCell: BaseCell {
         dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
         dismissButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         dismissButton.addTarget(self, action: #selector(handleDismissButton), for: .touchUpInside)
+        setNoImageImage()
     }
     
     func handleDismissButton(){
@@ -64,6 +66,10 @@ class ImageScrollerCollectionViewCell: BaseCell {
         gradientView.bottomColor = UIColor.clear
         gradientView.angle = 90.0
         addSubview(gradientView)
+    }
+    
+    func setNoImageImage(){
+        imageShow.setImageInputs([AlamofireSource(urlString: "https://celebritycruisescom.files.wordpress.com/2014/12/silk-beef-chow-mein.jpg")!])
     }
     
     func makeImageShowInputs(urls: [String]) -> [InputSource]{
