@@ -50,8 +50,10 @@ class ImageScrollerCollectionViewCell: BaseCell {
         addGradientView()
         
         addSubview(dismissButton)
-        dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
-        dismissButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        dismissButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
+        dismissButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        dismissButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         dismissButton.addTarget(self, action: #selector(handleDismissButton), for: .touchUpInside)
         setNoImageImage()
     }
@@ -69,7 +71,7 @@ class ImageScrollerCollectionViewCell: BaseCell {
     }
     
     func setNoImageImage(){
-        imageShow.setImageInputs([AlamofireSource(urlString: "https://firebasestorage.googleapis.com/v0/b/product-map-9f5e3.appspot.com/o/Images%2FTestid?alt=media&token=eed6b32c-d2ae-49e6-bb84-170266a429b5")!])
+        imageShow.setImageInputs([AlamofireSource(urlString: "https://placeholdit.imgix.net/~text?txtsize=15&txt=No+Image+available&w=350&h=200&txttrack=0")!])
     }
     
     func makeImageShowInputs(urls: [String]) -> [InputSource]{
