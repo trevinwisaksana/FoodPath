@@ -89,7 +89,7 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         guard let productAnnotation = view.annotation as? Product else {
             return
         }
-        
+
         APIClient.sharedInstance.getProduct(
             with: productAnnotation.id!,
             city: productAnnotation.city) { (product) in

@@ -45,19 +45,9 @@ class APIClient {
         }
     }
     
-    public func updateProduct(id: String, title: String, city: String, description: String) {
-        
-        let productRef = APIClient.productRef.child(city).child(id)
-        
-        productRef.child("title").setValue(title)
-        productRef.child("description").setValue(description)
-    }
-    
     func updateProductUpvoteCount(id: String, city: String, upvoteCount: Int) {
         APIClient.productRef.child(city).child(id).child("upvoteCount").setValue(upvoteCount)
     }
-    
-    
     
     public func getProductsByCity(city: String, completionHandler: @escaping ([Product]) -> Void){
         
@@ -124,6 +114,12 @@ class APIClient {
         })
     }
     
+    
+    public func deleteProduct(id: String, city: String) {
+        APIClient.productRef.child(city).child(id).removeValue()
+    }
+    
+    
     // MARK: Up and down vote requests
     public func downvoteRequest(with id: String, city: String) {
         getProduct(with: id, city: city) { (product) in
@@ -148,7 +144,14 @@ class APIClient {
             }
         }
     }
-    
+
+    public func updateProduct(id: String, title: String, city: String, description: String) {
+        
+        let productRef = APIClient.productRef.child(city).child(id)
+        
+        productRef.child("title").setValue(title)
+        productRef.child("description").setValue(description)
+    }
     
     func getProduct(with id: String, city: String, completionHandler: @escaping (Product) -> Void) {
         APIClient.productRef.child(city).child(id).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -176,7 +179,6 @@ class APIClient {
         }
         
     }
-    
     
     public func firebaseSignIn(email: String, password: String, completion: (() -> Void)?) {
         
