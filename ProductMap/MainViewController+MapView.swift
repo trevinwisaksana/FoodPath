@@ -91,7 +91,6 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         }
         
         
-        
         APIClient.sharedInstance.getProduct(
             with: productAnnotation.id!,
             city: productAnnotation.city) { (product) in
@@ -166,6 +165,8 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             }
             
             self.didGetCity = true
+            // Stop updating
+            locationManager.stopUpdatingLocation()
             
             DataManager.shared.getCityByCoordinates(location: currentLocation) { (city) in
                 self.updateProducts(city: city)
@@ -184,9 +185,29 @@ extension MainViewController: MKMapViewDelegate, CLLocationManagerDelegate {
                 1200
             )
             self.mainMapView.setRegion(region, animated: false)
-            // Stop updating
-            locationManager.stopUpdatingLocation()
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        guard let currentLocation = manager.location else {
+            return
+        }
+        
+        DataManager.shared.getCityByCoordinates(location: currentLocation) { (city) in
+            self.updateProducts(city: city)
+        }
+        
+        let currentCoordinates = currentLocation.coordinate
+        
+        // Setting the center of the map to the user location
+        mainMapView.setCenter(currentCoordinates, animated: false)
+        // Getting the region to focus
+        let region = MKCoordinateRegionMakeWithDistance(
+            currentCoordinates,
+            1200,
+            1200
+        )
+        self.mainMapView.setRegion(region, animated: false)
     }
     
     

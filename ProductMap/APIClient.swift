@@ -33,12 +33,16 @@ class APIClient {
     }
     
     
-    public func createProduct(product: Product) {
+    public func createProduct(product: Product, completion: @escaping (String) -> Void) {
         // Retrieving product reference
         let productRef = APIClient.productRef.child(product.city).childByAutoId()
         
         // Modify database in Firebase
-        productRef.setValue(product.toJson())
+        productRef.setValue(product.toJson()){ (error, ref) -> Void in
+            if error == nil {
+                completion(ref.key)
+            }
+        }
     }
     
     
@@ -107,6 +111,12 @@ class APIClient {
         })
     }
     
+    
+    public func deleteProduct(id: String, city: String) {
+        APIClient.productRef.child(city).child(id).removeValue()
+    }
+    
+    
     // MARK: Up and down vote requests
     public func downvoteRequest(with id: String, city: String) {
         getProduct(with: id, city: city) { (product) in
@@ -133,8 +143,17 @@ class APIClient {
     }
     
     
-    func updateProductUpvoteCount(id: String, city: String, upvoteCount: Int) {
+    public func updateProductUpvoteCount(id: String, city: String, upvoteCount: Int)  {
         APIClient.productRef.child(city).child(id).child("upvoteCount").setValue(upvoteCount)
+    }
+    
+    
+    public func updateProduct(id: String, title: String, city: String, description: String) {
+        
+        let productRef = APIClient.productRef.child(city).child(id)
+        
+        productRef.child("title").setValue(title)
+        productRef.child("description").setValue(description)
     }
     
     

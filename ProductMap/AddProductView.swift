@@ -296,7 +296,7 @@ class AddProductView: UIView {
             guard let productDescription = productDescriptionTextField.text else {
                 return
             }
-            
+      
             product?.title = productTitle
             product?.productDescription = productDescription
             
@@ -307,7 +307,6 @@ class AddProductView: UIView {
                 image: nil
             )
         }
-        
     }
     
     

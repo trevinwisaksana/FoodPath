@@ -19,6 +19,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
     var listOfProducts: [Product] = []
     var listOfFilteredProducts = Set<Product>()
     
+    
     // MARK: - Views
     let mainMapView = MainMapView()
     let searchView = SearchView()
@@ -27,6 +28,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
     var categoriesCollectionView: CategoriesCollectionView!
     var searchCollectionView: SearchCollectionView!
     let locationManager = CLLocationManager()
+    
     
     // MARK: - Logic
     var calloutViewIsVisible = false
@@ -48,10 +50,17 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         setupLocationManager()
         // Setup search collectoion view
         setupSearchCollectionView()
+        
+        // TESTING
+//        let product = Product(id: nil, title: "Testing", description: "Testing", city: "San Francisco", coordinate: CLLocationCoordinate2DMake(0, 0) , upvoteCount: 1)
+//        APIClient.sharedInstance.createProduct(product: product)
+        
+        
     }
     
     func updateProducts(city: String) {
         APIClient.sharedInstance.getProductsByCity(city: city) { (products) in
+            
             self.mainMapView.addAnnotations(products)
         }
     }

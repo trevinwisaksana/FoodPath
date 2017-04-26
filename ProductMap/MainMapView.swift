@@ -20,6 +20,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     
     private var productCoordinate: CLLocationCoordinate2D?
     private var productLocation: Product?
+    private var productID: String?
+    private var currentCity: String?
     weak var animationDelegate: AnimationManagerDelegate?
     
     
@@ -103,22 +105,55 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             return
         }
         
-        self.setCenter(
-            touchMapCoordinate,
-            animated: false
+        let clLocation = CLLocation(
+            latitude: productCoordinate.latitude,
+            longitude: productCoordinate.longitude
         )
-        self.addAnnotation(productLocation)
-        self.isUserInteractionEnabled = false
-        // Show view to insert product information
-        showAddProductView()
-        animationDelegate?.dismissTopBarContainer()
         
-        let notificationName = NSNotification.Name("DismissTopBarNotification")
-        NotificationCenter.default.post(
-            name: notificationName,
-            object: nil
-        )
-    
+        DataManager.shared.getCityByCoordinates(
+            location: clLocation) { (city) in
+                
+                self.currentCity = city
+                
+                // MARK: - Holy Grail
+                self.productLocation = Product(
+                    id: nil,
+                    title: "",
+                    description: "",
+                    city: city,
+                    coordinate: touchMapCoordinate,
+                    upvoteCount: 0,
+                    imageUrl: nil
+                )
+                
+                
+                guard let productLocation = self.productLocation else {
+                    return
+                }
+                
+                // Creating a new product in the long press because we need to get the key
+                APIClient.sharedInstance.createProduct(product: productLocation) { (key) in
+                    self.productID = key
+                }
+                
+                self.setCenter(
+                    touchMapCoordinate,
+                    animated: false
+                )
+                self.addAnnotation(productLocation)
+                self.isUserInteractionEnabled = false
+                // Show view to insert product information
+                self.showAddProductView()
+                self.animationDelegate?.dismissTopBarContainer()
+                
+                let notificationName = NSNotification.Name("DismissTopBarNotification")
+                NotificationCenter.default.post(
+                    name: notificationName,
+                    object: nil
+                )
+
+        }
+        
     }
     
     
@@ -209,6 +244,21 @@ class MainMapView: MKMapView, AddProductViewDelegate {
             case .addProduct:
                 break
             case .cancelAdd:
+                
+                // Used to prevent using bang operators
+                guard let productID = self.productID else {
+                    return
+                }
+                guard let currentCity = self.currentCity else {
+                    return
+                }
+                // Delete the product when we cancel the add
+                APIClient.sharedInstance.deleteProduct(
+                    id: productID,
+                    city: currentCity
+                )
+                
+                // Remove the annotation because it's cancelled
                 self.removeAnnotation(productLocation)
             }
             
@@ -220,30 +270,23 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     
     func createProduct(title: String, description: String, image: UIImage?) {
         
-        guard let productCoordinate = self.productCoordinate else {
+        guard let productID = productID else {
             return
         }
         
-        let userLocation = self.userLocation.coordinate
-        let clLocation = CLLocation(
-            latitude: userLocation.latitude,
-            longitude: userLocation.longitude
-        )
-        
-        DataManager.shared.getCityByCoordinates(location: clLocation) { (city) in
-            
-            let product = Product(
-                id: nil,
-                title: title,
-                description: description,
-                city: city,
-                coordinate: productCoordinate,
-                upvoteCount: 0
-            )
-            
-            APIClient.sharedInstance.createProduct(product: product)
-            
+        guard let currentCity = currentCity else {
+            return
         }
+    
+        // Assigning the product ID because it's set to nil by default
+        productLocation?.id = productID
+        // Updating the product with the ID with the new information
+        APIClient.sharedInstance.updateProduct(
+            id: productID,
+            title: title,
+            city: currentCity,
+            description: description
+        )
         
     }
 }
