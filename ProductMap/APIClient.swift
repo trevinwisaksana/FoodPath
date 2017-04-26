@@ -5,6 +5,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 import CoreLocation
 import SwiftyJSON
 
