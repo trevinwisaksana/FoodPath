@@ -49,10 +49,8 @@
 		DD5B22D41EAD3DC2004461A2 /* TopBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5B22D31EAD3DC2004461A2 /* TopBarContainer.swift */; };
 		DD7370CA1EA59880007511B5 /* TopSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7370C91EA59880007511B5 /* TopSpaceView.swift */; };
 		DD7370D01EA6CD26007511B5 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7370CF1EA6CD26007511B5 /* SearchCell.swift */; };
-		DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */; };
 		DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED21EA03B3700925A43 /* SignInButton.swift */; };
 		DD9D8ED81EA03E7000925A43 /* MainViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED71EA03E7000925A43 /* MainViewController+CollectionView.swift */; };
-		DD9D8EDA1EA03F0A00925A43 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED91EA03F0A00925A43 /* CategoriesCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,12 +124,9 @@
 		DD5B22D31EAD3DC2004461A2 /* TopBarContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopBarContainer.swift; sourceTree = "<group>"; };
 		DD7370C91EA59880007511B5 /* TopSpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopSpaceView.swift; sourceTree = "<group>"; };
 		DD7370CF1EA6CD26007511B5 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
-		DD9D2D4B1EB0482100AB5894 /* PDD.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PDD.playground; sourceTree = "<group>"; };
 		DD9D8ECD1EA02F4B00925A43 /* ProductMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProductMap.entitlements; sourceTree = "<group>"; };
-		DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
 		DD9D8ED21EA03B3700925A43 /* SignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		DD9D8ED71EA03E7000925A43 /* MainViewController+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+CollectionView.swift"; sourceTree = "<group>"; };
-		DD9D8ED91EA03F0A00925A43 /* CategoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		F69D235FFAD148F656EEEB87 /* Pods_ProductMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProductMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -222,7 +217,6 @@
 				DD224C261E9FE4F7005B88D8 /* Models */,
 				DD4B19521EA536C300DC0F00 /* Network */,
 				DD9D2D4A1EAF9F7800AB5894 /* Manager */,
-				DD9D2D4B1EB0482100AB5894 /* PDD.playground */,
 				DD224BE81E9EBA91005B88D8 /* Assets.xcassets */,
 				C4CEB3F61EA7E1D6001722E5 /* Extention.swift */,
 				DD224BEA1E9EBA91005B88D8 /* LaunchScreen.storyboard */,
@@ -374,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				DD4B194E1EA46D8100DC0F00 /* SearchCollectionView.swift */,
-				DD9D8ECE1EA0390E00925A43 /* CategoriesCollectionView.swift */,
 			);
 			name = CollectionViews;
 			sourceTree = "<group>";
@@ -392,7 +385,6 @@
 		DD9D8EDB1EA042C500925A43 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				DD9D8ED91EA03F0A00925A43 /* CategoriesCell.swift */,
 				DD7370CF1EA6CD26007511B5 /* SearchCell.swift */,
 			);
 			name = CollectionViewCells;
@@ -694,7 +686,6 @@
 				DD4B194B1EA43E3700DC0F00 /* AddProductView.swift in Sources */,
 				C4EC64E01EAC243100866098 /* ProductCollectionViewController.swift in Sources */,
 				C4EC64EF1EAD95EC00866098 /* ProductDetailButtons.swift in Sources */,
-				DD9D8EDA1EA03F0A00925A43 /* CategoriesCell.swift in Sources */,
 				DD5B22D41EAD3DC2004461A2 /* TopBarContainer.swift in Sources */,
 				DD4B19401EA3C73000DC0F00 /* Constants.swift in Sources */,
 				C4BD023A1E9FEDB50025FE76 /* LoginViewController.swift in Sources */,
@@ -721,7 +712,6 @@
 				DD224C251E9FE4A2005B88D8 /* SearchView.swift in Sources */,
 				C4EC64DE1EABFFBC00866098 /* ProductDescriptionView.swift in Sources */,
 				DD4B194F1EA46D8100DC0F00 /* SearchCollectionView.swift in Sources */,
-				DD9D8ECF1EA0390E00925A43 /* CategoriesCollectionView.swift in Sources */,
 				DD4B193C1EA33AB900DC0F00 /* MainViewController+MapView.swift in Sources */,
 				DD224BDF1E9EBA91005B88D8 /* AppDelegate.swift in Sources */,
 				DD4B19421EA3D77900DC0F00 /* AnnotationView.swift in Sources */,

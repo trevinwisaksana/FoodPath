@@ -15,7 +15,6 @@ class SearchCell: UICollectionViewCell {
     private var productTitleLabel = UILabel()
     private var productCityLabel = UILabel()
     private var productUpvoteLabel = UILabel()
-    
     private var productLabelContainer = UIStackView()
     
     
@@ -61,7 +60,6 @@ class SearchCell: UICollectionViewCell {
         self.addSubview(productTitleLabel)
         productTitleLabel.translatesAutoresizingMaskIntoConstraints = false
     
-        
         guard let windowFrame = keyWindow?.frame else {
             return
         }
@@ -129,6 +127,7 @@ class SearchCell: UICollectionViewCell {
             blue: 33/255,
             alpha: 1
         )
+        
         productUpvoteLabel.font = labelFont
         productUpvoteLabel.textAlignment = .center
         productUpvoteLabel.clipsToBounds = true
@@ -136,15 +135,22 @@ class SearchCell: UICollectionViewCell {
         
         // Auto layout
         productUpvoteLabel.translatesAutoresizingMaskIntoConstraints = false
-        productUpvoteLabel.widthAnchor.constraint(equalToConstant: windowFrame.width * 0.16).isActive = true
-        productUpvoteLabel.heightAnchor.constraint(equalTo: productUpvoteLabel.widthAnchor).isActive = true
+        productUpvoteLabel.widthAnchor.constraint(
+            equalToConstant: windowFrame.width * 0.18
+            ).isActive = true
+        
+        productUpvoteLabel.heightAnchor.constraint(
+            equalTo: productUpvoteLabel.widthAnchor
+            ).isActive = true
+        
         productUpvoteLabel.rightAnchor.constraint(
             equalTo: rightAnchor,
             constant: -8
             ).isActive = true
+        
         productUpvoteLabel.topAnchor.constraint(
             equalTo: topAnchor,
-            constant: 6
+            constant: 5
             ).isActive = true
  
     }

@@ -25,7 +25,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
     let searchView = SearchView()
     let topBarContainer = TopBarContainer()
     var searchTextField = SearchTextField()
-    var categoriesCollectionView: CategoriesCollectionView!
     var searchCollectionView: SearchCollectionView!
     let locationManager = CLLocationManager()
     
@@ -68,7 +67,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         // Getting the frame of the bottom bar view
         let frame = CGRect(
             x: 0,
-            y: self.view.frame.height * 0.12,
+            y: self.view.frame.height * 0.15,
             width: self.view.frame.width,
             height: 0
         )
@@ -87,7 +86,7 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         
         // Makes the height and width equal
         layout.itemSize = CGSize(
-            width: self.view.frame.width * 0.9,
+            width: self.view.frame.width,
             height: self.view.frame.width * 0.2
         )
         
