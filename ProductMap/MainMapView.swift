@@ -38,8 +38,6 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         mapType = MKMapType.standard
         // Setup gesture recognizer
         setupLongTapGesture()
-        // Setup image
-        setupMapCrosshair()
     }
     
     
@@ -52,7 +50,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     func setupMapView(_ viewController: UIViewController) {
         viewController.view.addSubview(self)
         
-        frame = viewController.view.frame
+        frame = viewController.view.bounds
         // Setting the delegate
         delegate = viewController as? MKMapViewDelegate
         // User location
@@ -60,6 +58,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         // Allow user tracking
         userTrackingMode = MKUserTrackingMode.follow
         
+        // Setup image
+        setupMapCrosshair()
     }
     
     
@@ -68,7 +68,12 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         
         mapCrosshair.image = #imageLiteral(resourceName: "pinImage")
         
-        mapCrosshair.center = self.center
+        mapCrosshair.center.x = self.center.x
+        mapCrosshair.frame.origin = self.center
+        // Setting the position of the crosshair to be slightly higher than the thumb movement area
+        mapCrosshair.center.y = self.center.y / 1.5
+        
+        mapCrosshair.frame.size = CGSize(width: 20, height: 50)
         
         self.addSubview(mapCrosshair)
     }
