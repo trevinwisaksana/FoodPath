@@ -22,6 +22,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     private var productLocation: Product?
     private var productID: String?
     private var currentCity: String?
+    private var mapCrosshair = UIImageView()
+    private var pinAnnotationImage =  MKPinAnnotationView()
     weak var animationDelegate: AnimationManagerDelegate?
     
     
@@ -36,7 +38,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         mapType = MKMapType.standard
         // Setup gesture recognizer
         setupLongTapGesture()
-        
+        // Setup image
+        setupMapCrosshair()
     }
     
     
@@ -57,6 +60,17 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         // Allow user tracking
         userTrackingMode = MKUserTrackingMode.follow
         
+    }
+    
+    
+    /// Sets up the middle crosshair
+    fileprivate func setupMapCrosshair() {
+        
+        mapCrosshair.image = #imageLiteral(resourceName: "pinImage")
+        
+        mapCrosshair.center = self.center
+        
+        self.addSubview(mapCrosshair)
     }
     
     
