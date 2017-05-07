@@ -150,7 +150,7 @@ class SearchCell: UICollectionViewCell {
         
         productUpvoteLabel.topAnchor.constraint(
             equalTo: topAnchor,
-            constant: 5
+            constant: 4
             ).isActive = true
  
     }
