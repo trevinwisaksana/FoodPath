@@ -24,6 +24,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     private var currentCity: String?
     private var mapCrosshair = UIImageView()
     private var pinAnnotationImage =  MKPinAnnotationView()
+    private var addFoodButton = UIButton()
     weak var animationDelegate: AnimationManagerDelegate?
     
     
@@ -58,7 +59,45 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         // Allow user tracking
         userTrackingMode = MKUserTrackingMode.follow
         
-        // Setup image
+        
+        
+        // Setup food button
+        setupAddFoodButton()
+    }
+    
+    
+    /// Setup for add food button
+    fileprivate func setupAddFoodButton() {
+        
+        let width = self.frame.width * 0.2
+        
+        addFoodButton.setTitle("+", for: .normal)
+        addFoodButton.backgroundColor = .white
+        addFoodButton.layer.shadowOffset = CGSize(
+            width: 0,
+            height: 0
+        )
+        addFoodButton.layer.shadowOpacity = 0.2
+        addFoodButton.frame = CGRect(
+            x: self.frame.width * 0.73,
+            y: self.frame.height * 0.85,
+            width: width,
+            height: width
+        )
+        addFoodButton.layer.cornerRadius = addFoodButton.frame.width / 2
+        
+        let gestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(addFoodButtonHandler)
+        )
+        addFoodButton.addGestureRecognizer(gestureRecognizer)
+        
+        self.addSubview(addFoodButton)
+    }
+    
+    
+    @objc fileprivate func addFoodButtonHandler() {
+        // Setup crosshair image
         setupMapCrosshair()
     }
     
