@@ -19,13 +19,17 @@ class DataManager {
             location, completionHandler: { (placemarks, error) -> Void in
             
             // Place details
-            var placeMark: CLPlacemark!
+            var placeMark: CLPlacemark?
             placeMark = placemarks?[0]
 
             // City
-            if let city = placeMark.addressDictionary!["City"] as? String {
-                completion(city)
+            // TODO: Doesn't work without internet
+            guard let city = placeMark?.addressDictionary?["City"] as? String  else {
+                return
             }
+        
+            completion(city)
+            
         })
     }
 }

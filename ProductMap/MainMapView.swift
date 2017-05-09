@@ -25,6 +25,7 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     private var mapCrosshair = UIImageView()
     private var pinAnnotationImage =  MKPinAnnotationView()
     private var addFoodButton = UIButton()
+    private var crosshairIsHidden = true
     weak var animationDelegate: AnimationManagerDelegate?
     
     
@@ -59,10 +60,14 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         // Allow user tracking
         userTrackingMode = MKUserTrackingMode.follow
         
-        
+        // Setup crosshair image
+        setupMapCrosshair()
         
         // Setup food button
         setupAddFoodButton()
+        
+        // TODO: Add an animation to change the button size and title to "Add food destination"
+    
     }
     
     
@@ -97,8 +102,22 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     
     
     @objc fileprivate func addFoodButtonHandler() {
-        // Setup crosshair image
-        setupMapCrosshair()
+        // TODO: Change the logic
+        // Check if the crosshair is hidden or not
+        if crosshairIsHidden == true {
+            mapCrosshair.isHidden = false
+            crosshairIsHidden = false
+        } else {
+            mapCrosshair.isHidden = true
+            crosshairIsHidden = true
+        }
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.addFoodButton.frame.size.width = self.addFoodButton.frame.width * 3
+        }) { (_) in
+            
+        }
+        
     }
     
     
@@ -113,6 +132,8 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         mapCrosshair.center.y = self.center.y / 1.5
         
         mapCrosshair.frame.size = CGSize(width: 20, height: 50)
+        
+        mapCrosshair.isHidden = true
         
         self.addSubview(mapCrosshair)
     }
