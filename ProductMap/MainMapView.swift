@@ -103,19 +103,36 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     
     @objc fileprivate func addFoodButtonHandler() {
         // TODO: Change the logic
+        
+        let width = self.frame.width * 0.2
         // Check if the crosshair is hidden or not
         if crosshairIsHidden == true {
             mapCrosshair.isHidden = false
             crosshairIsHidden = false
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                
+                self.addFoodButton.frame = CGRect(
+                    x: self.frame.width * 0.93,
+                    y: self.frame.height * 0.85,
+                    width: -self.addFoodButton.frame.width * 3,
+                    height: width
+                )
+                
+            })
+            
         } else {
             mapCrosshair.isHidden = true
             crosshairIsHidden = true
-        }
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            self.addFoodButton.frame.size.width = self.addFoodButton.frame.width * 3
-        }) { (_) in
             
+            UIView.animate(withDuration: 0.2, animations: {
+                self.addFoodButton.frame = CGRect(
+                    x: self.frame.width * 0.73,
+                    y: self.frame.height * 0.85,
+                    width: width,
+                    height: width
+                )
+            })
         }
         
     }
