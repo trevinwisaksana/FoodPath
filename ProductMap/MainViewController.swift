@@ -49,8 +49,6 @@ class MainViewController: UIViewController, SearchTextFieldDelegate, TopBarConta
         setupLocationManager()
         // Setup search collectoion view
         setupSearchCollectionView()
-        
-        
     }
     
     

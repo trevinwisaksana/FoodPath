@@ -10,7 +10,6 @@ import UIKit
 
 protocol AddFoodButtonDelegate: class {
     func displayCrosshair()
-    func dismissCrosshair()
 }
 
 
@@ -26,7 +25,7 @@ class AddFoodButton: UIButton {
         
         let width = superview.frame.width * 0.2
         
-        self.setTitle("+", for: .normal)
+        self.setTitle("Add food location", for: .normal)
         self.backgroundColor = .white
         self.layer.shadowOffset = CGSize(
             width: 0,
@@ -61,6 +60,12 @@ class AddFoodButton: UIButton {
         if crosshairIsHidden == true {
             crosshairIsHidden = false
             
+            let notificationName = NSNotification.Name("DismissTopBarNotification")
+            NotificationCenter.default.post(
+                name: notificationName,
+                object: nil
+            )
+            
             delegate?.displayCrosshair()
             
             UIView.animate(withDuration: 0.2, animations: {
@@ -71,23 +76,41 @@ class AddFoodButton: UIButton {
                     width: -self.frame.width * 4.27,
                     height: width
                 )
+                self.backgroundColor = .blue
                 
             })
             
         } else {
             crosshairIsHidden = true
             
-            delegate?.dismissCrosshair()
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                self.frame = CGRect(
-                    x: self.mainView.frame.width * 0.73,
-                    y: self.mainView.frame.height * 0.85,
-                    width: width,
-                    height: width
-                )
-            })
+      
         }
+        
+    }
+    
+    
+    public func resizeToOriginal() {
+        
+        let width = mainView.frame.width * 0.2
+        crosshairIsHidden = true
+        
+        let notificationName = NSNotification.Name("RevealTopBarNotification")
+        NotificationCenter.default.post(
+            name: notificationName,
+            object: nil
+        )
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.frame = CGRect(
+                x: self.mainView.frame.width * 0.73,
+                y: self.mainView.frame.height * 0.85,
+                width: width,
+                height: width
+            )
+            
+            self.backgroundColor = .white
+            
+        })
         
     }
 

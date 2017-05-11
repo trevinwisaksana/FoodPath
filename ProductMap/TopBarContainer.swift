@@ -12,7 +12,7 @@ protocol TopBarContainerDelegate: class {
     func dismissSearchView()
 }
 
-class TopBarContainer: UIView, AnimationManagerDelegate {
+class TopBarContainer: UIView {
     
     var cancelSearchButton = UIButton()
     var originalPosition: CGFloat = 0
@@ -135,21 +135,21 @@ class TopBarContainer: UIView, AnimationManagerDelegate {
     }
     
     
-    func dismissTopBarContainer() {
+    public func dismissTopBarContainer() {
         guard let windowFrame = keyWindow?.frame else {
             return
         }
         
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             // Hide cancel button
             self.frame.origin.y = windowFrame.origin.y - 100
         })
     }
     
     
-    func revealTopBarContainer() {
+    public func revealTopBarContainer() {
         
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             // Hide cancel button
             self.center.y = self.originalPosition
         })

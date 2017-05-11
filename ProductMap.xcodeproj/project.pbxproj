@@ -52,6 +52,7 @@
 		DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED21EA03B3700925A43 /* SignInButton.swift */; };
 		DD9D8ED81EA03E7000925A43 /* MainViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D8ED71EA03E7000925A43 /* MainViewController+CollectionView.swift */; };
 		DDD865101EC3EBB400C4FBE3 /* AddFoodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD8650F1EC3EBB400C4FBE3 /* AddFoodButton.swift */; };
+		DDD865121EC439B300C4FBE3 /* CancelAddFoodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD865111EC439B300C4FBE3 /* CancelAddFoodButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		DD9D8ED21EA03B3700925A43 /* SignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		DD9D8ED71EA03E7000925A43 /* MainViewController+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		DDD8650F1EC3EBB400C4FBE3 /* AddFoodButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFoodButton.swift; sourceTree = "<group>"; };
+		DDD865111EC439B300C4FBE3 /* CancelAddFoodButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelAddFoodButton.swift; sourceTree = "<group>"; };
 		F69D235FFAD148F656EEEB87 /* Pods_ProductMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProductMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -276,6 +278,7 @@
 				DD7370CC1EA598FF007511B5 /* ProductViewController Views */,
 				DD7370C81EA59832007511B5 /* MainViewController Views */,
 				DDD8650F1EC3EBB400C4FBE3 /* AddFoodButton.swift */,
+				DDD865111EC439B300C4FBE3 /* CancelAddFoodButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				C4EC64E31EAC257300866098 /* BaseCell.swift in Sources */,
 				DD224C1F1E9F3FF4005B88D8 /* ProductLocation.swift in Sources */,
 				DD4B19381EA2A6B700DC0F00 /* Category.swift in Sources */,
+				DDD865121EC439B300C4FBE3 /* CancelAddFoodButton.swift in Sources */,
 				DD9D8ED31EA03B3700925A43 /* SignInButton.swift in Sources */,
 				DD4B19461EA3E13200DC0F00 /* CustomCalloutView.swift in Sources */,
 				C4BD023E1E9FF1D00025FE76 /* User.swift in Sources */,

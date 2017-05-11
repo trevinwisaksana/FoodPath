@@ -11,12 +11,8 @@ import UIKit
 import MapKit
 import Firebase
 
-protocol AnimationManagerDelegate: class {
-    func dismissTopBarContainer()
-}
 
-
-class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate {
+class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, CancelAddFoodButtonDelegate {
     
     
     private var productCoordinate: CLLocationCoordinate2D?
@@ -28,9 +24,7 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate {
     private var crosshairIsHidden = true
     
     private var addFoodButton = AddFoodButton()
-    private var cancelAddFoodButton = UIButton()
-    
-    weak var animationDelegate: AnimationManagerDelegate?
+    private var cancelAddFoodButton = CancelAddFoodButton()
     
     
     override init(frame: CGRect) {
@@ -70,6 +64,9 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate {
         // Setup food button
         addFoodButton.setupAddFoodButton(superview: self)
         
+        // Setup cancel button
+        cancelAddFoodButton.setupCancelAddFoodButton(superview: self)
+        
         // TODO: Add an animation to change the button size and title to "Add food destination"
     
     }
@@ -77,13 +74,17 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate {
     
     func displayCrosshair() {
         mapCrosshair.isHidden = false
-        cancelAddFoodButton.isHidden = false
+        
+        UIView.animate(withDuration: 0.2) {
+            self.cancelAddFoodButton.alpha = 1
+        }
+        
     }
     
     
     func dismissCrosshair() {
         mapCrosshair.isHidden = true
-        
+        addFoodButton.resizeToOriginal()
     }
     
     
@@ -145,7 +146,6 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate {
                 
                 self.currentCity = city
                 
-                // MARK: - Holy Grail
                 self.productLocation = Product(
                     id: nil,
                     title: "",
@@ -174,7 +174,6 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate {
                 self.isUserInteractionEnabled = false
                 // Show view to insert product information
                 self.showAddProductView()
-                self.animationDelegate?.dismissTopBarContainer()
                 
                 let notificationName = NSNotification.Name("DismissTopBarNotification")
                 NotificationCenter.default.post(
