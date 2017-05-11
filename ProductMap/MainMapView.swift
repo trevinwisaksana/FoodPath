@@ -16,7 +16,8 @@ protocol AnimationManagerDelegate: class {
 }
 
 
-class MainMapView: MKMapView, AddProductViewDelegate {
+class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate {
+    
     
     private var productCoordinate: CLLocationCoordinate2D?
     private var productLocation: Product?
@@ -24,8 +25,11 @@ class MainMapView: MKMapView, AddProductViewDelegate {
     private var currentCity: String?
     private var mapCrosshair = UIImageView()
     private var pinAnnotationImage =  MKPinAnnotationView()
-    private var addFoodButton = UIButton()
     private var crosshairIsHidden = true
+    
+    private var addFoodButton = AddFoodButton()
+    private var cancelAddFoodButton = UIButton()
+    
     weak var animationDelegate: AnimationManagerDelegate?
     
     
@@ -64,76 +68,21 @@ class MainMapView: MKMapView, AddProductViewDelegate {
         setupMapCrosshair()
         
         // Setup food button
-        setupAddFoodButton()
+        addFoodButton.setupAddFoodButton(superview: self)
         
         // TODO: Add an animation to change the button size and title to "Add food destination"
     
     }
     
     
-    /// Setup for add food button
-    fileprivate func setupAddFoodButton() {
-        
-        let width = self.frame.width * 0.2
-        
-        addFoodButton.setTitle("+", for: .normal)
-        addFoodButton.backgroundColor = .white
-        addFoodButton.layer.shadowOffset = CGSize(
-            width: 0,
-            height: 0
-        )
-        addFoodButton.layer.shadowOpacity = 0.2
-        addFoodButton.frame = CGRect(
-            x: self.frame.width * 0.73,
-            y: self.frame.height * 0.85,
-            width: width,
-            height: width
-        )
-        addFoodButton.layer.cornerRadius = addFoodButton.frame.width / 2
-        
-        let gestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(addFoodButtonHandler)
-        )
-        addFoodButton.addGestureRecognizer(gestureRecognizer)
-        
-        self.addSubview(addFoodButton)
+    func displayCrosshair() {
+        mapCrosshair.isHidden = false
+        cancelAddFoodButton.isHidden = false
     }
     
     
-    @objc fileprivate func addFoodButtonHandler() {
-        // TODO: Change the logic
-        
-        let width = self.frame.width * 0.2
-        // Check if the crosshair is hidden or not
-        if crosshairIsHidden == true {
-            mapCrosshair.isHidden = false
-            crosshairIsHidden = false
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                
-                self.addFoodButton.frame = CGRect(
-                    x: self.frame.width * 0.93,
-                    y: self.frame.height * 0.85,
-                    width: -self.addFoodButton.frame.width * 3,
-                    height: width
-                )
-                
-            })
-            
-        } else {
-            mapCrosshair.isHidden = true
-            crosshairIsHidden = true
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                self.addFoodButton.frame = CGRect(
-                    x: self.frame.width * 0.73,
-                    y: self.frame.height * 0.85,
-                    width: width,
-                    height: width
-                )
-            })
-        }
+    func dismissCrosshair() {
+        mapCrosshair.isHidden = true
         
     }
     
