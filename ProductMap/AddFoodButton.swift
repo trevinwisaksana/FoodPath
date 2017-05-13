@@ -8,8 +8,9 @@
 
 import UIKit
 
-protocol AddFoodButtonDelegate: class {
+@objc protocol AddFoodButtonDelegate {
     func displayCrosshair()
+    func addPin()
 }
 
 
@@ -81,8 +82,8 @@ class AddFoodButton: UIButton {
             
         } else {
             crosshairIsHidden = true
-            
-            // TODO: Add pin
+            // Add pin
+            delegate?.addPin()
       
         }
         

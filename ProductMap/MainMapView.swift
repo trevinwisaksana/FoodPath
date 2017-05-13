@@ -119,7 +119,7 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
     /// Adds a pin on the MapView when the user long presses
     ///
     /// - Parameter gestureRecognizer: Default UIGestureRecognizer
-    @objc fileprivate func longPressHandler(_ gestureRecognizer: UIGestureRecognizer) {
+    @objc func longPressHandler(_ gestureRecognizer: UIGestureRecognizer) {
         
         if gestureRecognizer.state != .began { return }
         
@@ -181,6 +181,76 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
                     object: nil
                 )
 
+        }
+        
+    }
+    
+    
+    func addPin() {
+        
+        cancelAddFoodButton.alpha = 0
+        
+        // TODO: Reuse code
+        
+        let crosshairPoint = mapCrosshair.center
+        
+        // Converts the touch point to a coordinate
+        let crosshairCoordinate = self.convert(
+            crosshairPoint,
+            toCoordinateFrom: self
+        )
+        
+        productCoordinate = crosshairCoordinate
+        
+        guard let productCoordinate = productCoordinate else {
+            return
+        }
+        
+        let clLocation = CLLocation(
+            latitude: productCoordinate.latitude,
+            longitude: productCoordinate.longitude
+        )
+        
+        DataManager.shared.getCityByCoordinates(
+        location: clLocation) { (city) in
+            
+            self.currentCity = city
+            
+            self.productLocation = Product(
+                id: nil,
+                title: "",
+                description: "",
+                city: city,
+                coordinate: crosshairCoordinate,
+                upvoteCount: 0,
+                imageUrl: nil
+            )
+            
+            
+            guard let productLocation = self.productLocation else {
+                return
+            }
+            
+            // Creating a new product in the long press because we need to get the key
+            APIClient.sharedInstance.createProduct(product: productLocation) { (key) in
+                self.productID = key
+            }
+            
+            self.setCenter(
+                crosshairCoordinate,
+                animated: false
+            )
+            self.addAnnotation(productLocation)
+            self.isUserInteractionEnabled = false
+            // Show view to insert product information
+            self.showAddProductView()
+            
+            let notificationName = NSNotification.Name("DismissTopBarNotification")
+            NotificationCenter.default.post(
+                name: notificationName,
+                object: nil
+            )
+            
         }
         
     }
@@ -254,6 +324,9 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
         }
         
         let userLocation = self.userLocation.coordinate
+        
+        // Resize button
+        addFoodButton.resizeToOriginal()
         
         UIView.animate(withDuration: 0.2, animations: {
             // Assigning the height of the map equal to the size of the screen
