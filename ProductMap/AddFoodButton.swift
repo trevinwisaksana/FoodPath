@@ -53,7 +53,6 @@ class AddFoodButton: UIButton {
     
     
     @objc fileprivate func addFoodButtonHandler() {
-        // TODO: Change the logic
         
         let width = mainView.frame.width * 0.2
         // Check if the crosshair is hidden or not
@@ -83,6 +82,7 @@ class AddFoodButton: UIButton {
         } else {
             crosshairIsHidden = true
             
+            // TODO: Add pin
       
         }
         
