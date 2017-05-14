@@ -81,10 +81,10 @@ class AddFoodButton: UIButton {
             })
             
         } else {
+            // Sets to true to have other portion of code to run
             crosshairIsHidden = true
             // Add pin
             delegate?.addPin()
-      
         }
         
     }

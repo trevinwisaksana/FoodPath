@@ -325,8 +325,6 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
         
         let userLocation = self.userLocation.coordinate
         
-        // Resize button
-        addFoodButton.resizeToOriginal()
         
         UIView.animate(withDuration: 0.2, animations: {
             // Assigning the height of the map equal to the size of the screen
@@ -341,6 +339,9 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
                 1200
             )
             self.setRegion(region, animated: false)
+            
+            // Resize button
+            self.addFoodButton.resizeToOriginal()
             
             switch state {
             case .addProduct:
@@ -365,7 +366,10 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
             }
             
         }) { (_) in
+            
+            // Sets the map user interaction to be enabled
             self.isUserInteractionEnabled = true
+            
         }
     }
     
@@ -379,6 +383,9 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
         guard let currentCity = currentCity else {
             return
         }
+        
+        // Resizing add food button
+        addFoodButton.resizeToOriginal()
     
         // Assigning the product ID because it's set to nil by default
         productLocation?.id = productID
