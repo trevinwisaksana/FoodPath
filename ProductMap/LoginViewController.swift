@@ -22,7 +22,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         button.setTitleColor(UIColor.blue, for: .normal)
         button.backgroundColor = UIColor.white
         
-        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        button.addTarget(self,
+                         action: #selector(handleLogin),
+                         for: .touchUpInside)
         return button
     }()
     
@@ -33,8 +35,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         button.layer.cornerRadius = 25
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.blue.cgColor
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.backgroundColor = UIColor.white
+        button.setTitleColor(.blue, for: .normal)
+        button.backgroundColor = .white
         button.addTarget(self,
                          action: #selector(handleSignup),
                          for: .touchUpInside)
@@ -61,13 +63,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .white
-        let tap = UITapGestureRecognizer(target: self, action: #selector(returnTextField))
-        view.addGestureRecognizer(tap)
+        
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(returnTextField)
+        )
+        view.addGestureRecognizer(tapGesture)
+        
         viewSetup()
     }
     
-    func viewSetup() {
+    fileprivate func viewSetup() {
         view.addSubview(signUpButton)
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
         signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -106,9 +114,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         usernameTextField.bottomAnchor.constraint(equalTo: separatorLine.topAnchor, constant: 0).isActive = true
     }
     
-    func handleLogin() {
+    @objc fileprivate func handleLogin() {
         //Check if Username Field & Password Field are valid:
-        guard let email = usernameTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else { return }
+        guard let email = usernameTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
+            return
+        }
       
         APIClient.sharedInstance.firebaseSignIn(email: email, password: password) { 
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -116,13 +126,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func handleSignup() {
+    
+    @objc fileprivate func handleSignup() {
         present(SignUpViewController(), animated: true, completion: nil)
     }
     
-    func returnTextField() {
-        self.passwordTextField.resignFirstResponder()
-        self.usernameTextField.resignFirstResponder()
+    
+    @objc fileprivate func returnTextField() {
+        passwordTextField.resignFirstResponder()
+        usernameTextField.resignFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

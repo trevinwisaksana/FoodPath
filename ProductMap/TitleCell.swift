@@ -26,30 +26,6 @@ class TitleCollectionViewCell: BaseCell {
         return lbl
     }()
     
-    var product: Product? {
-        didSet{
-            if let product = product {
-                self.titleLabel.text = product.title
-                self.cityLabel.text = product.city
-                self.productID = product.id
-                self.currentCity = product.city
-                
-                guard let productUpvoteCount = product.upvoteCount else {
-                    return
-                }
-                
-                upvoteCount = productUpvoteCount
-                upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
-                
-                if upvoteCount > 1 {
-                    upvoteTitleLabel.text = "Upvotes"
-                } else {
-                    upvoteTitleLabel.text = "Upvote"
-                }
-            }
-        }
-    }
-    
     
     // Button for upvoting
     private var upvoteButton = UIButton()
@@ -88,11 +64,35 @@ class TitleCollectionViewCell: BaseCell {
             size: windowFrame.height * 0.03
         )
         cityLabel.font = cityLabelFont
+        
         let titleLabelFont = UIFont(
             name: "Avenir",
             size: windowFrame.height * 0.05
         )
         titleLabel.font = titleLabelFont
+        
+    }
+    
+    
+    public func configure(with product: Product) {
+        
+        self.titleLabel.text = product.title
+        self.cityLabel.text = product.city
+        self.productID = product.id
+        self.currentCity = product.city
+        
+        guard let productUpvoteCount = product.upvoteCount else {
+            return
+        }
+        
+        upvoteCount = productUpvoteCount
+        upvoteButton.setTitle("\(productUpvoteCount)", for: .normal)
+        
+        if upvoteCount > 1 {
+            upvoteTitleLabel.text = "Upvotes"
+        } else {
+            upvoteTitleLabel.text = "Upvote"
+        }
         
     }
     

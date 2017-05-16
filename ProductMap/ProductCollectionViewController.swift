@@ -60,13 +60,34 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+    }
+    
+    
     /// Used to open either Google Maps or Apple Maps when looking for directions
-    func handleDirections(){
+    @objc fileprivate func handleDirections(){
+        
+        let googleMapsURL = URL(string:"comgooglemaps://")
+        
         if let product = product {
-            if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            
+            let latitude = product.coordinate.latitude
+            let longitude = product.coordinate.longitude
+            
+            if UIApplication.shared.canOpenURL(googleMapsURL!) {
                 let url = URL(string:
-                    "comgooglemaps://?saddr=&daddr=\(product.coordinate.latitude),\(product.coordinate.longitude)&directionsmode=walking")!
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=walking")!
+                
+                UIApplication.shared.open(url,
+                                          options: [:],
+                                          completionHandler: nil)
             } else {
                 
                 let latitude:CLLocationDegrees =  CLLocationDegrees(product.coordinate.latitude)
@@ -88,7 +109,8 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    func handleContact(){
+    @objc fileprivate func handleContact() {
+        // Previously used for testing
         let hardcodedNumber = "///////////////////"
         
         guard let number = URL(string: "telprompt://" + hardcodedNumber) else { return }
@@ -96,23 +118,16 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
     }
     
     
-    func setupActivityMonitor(){
+    fileprivate func setupActivityMonitor(){
         activityIndicator.center = self.view.center
-        self.view.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-    }
     
     func dismissViewController() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
+    
     
     // MARK: UICollectionViewDataSource
     
@@ -120,14 +135,18 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
         return 4
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
         // With map
         switch indexPath.item {
-            // Image scroller
-        case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellId, for: indexPath) as! ImageScrollerCollectionViewCell
+            
+        case 0: // Image scroller
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: imageCellId,
+                for: indexPath) as! ImageScrollerCollectionViewCell
+            
             if let url = product?.imageUrl {
                 cell.imagesUrls = [url]
             }
@@ -135,33 +154,42 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
             cell.delegate = self
             
             return cell
-            // Title and city Label cell
-        case 1:
+            
+        case 1: // Title and city Label cell
+            
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: titleCellId,
                 for: indexPath) as! TitleCollectionViewCell
             
             if let product = product {
-                cell.product = product
+                cell.configure(with: product)
             }
             
             return cell
-            // Navigation and contact buttons
-        case 2:
+            
+        case 2: // Navigation and contact buttons
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: buttonsCellId, for: indexPath) as! ProductDetailButtons
+            
             cell.navigationButton.addTarget(self, action: #selector(handleDirections), for: .touchUpInside)
             cell.contactButton.addTarget(self, action: #selector(handleContact), for: .touchUpInside)
+            
             return cell
-            // Description Cell
-        case 3:
+            
+        case 3: // Description Cell
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: descriptionId, for: indexPath) as! ProductDescriptionCell
             cell.textView.text = product?.productDescription
+            
             return cell
         default:
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+            
             return cell
         }
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -201,6 +229,7 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
                 width: width,
                 height: rect.height + 60
             )
+            
         default:
             return CGSize(
                 width: width,
@@ -209,17 +238,34 @@ class ProductDetailController: UICollectionViewController, UICollectionViewDeleg
         }
     }
     
+    
     fileprivate func descriptionAttributedText() -> NSAttributedString {
-        let attributedText = NSMutableAttributedString(string: "", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)])
+        
+        let attributedText = NSMutableAttributedString(
+            string: "",
+            attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)]
+        )
         
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 10
         
-        let range = NSMakeRange(0, attributedText.string.characters.count)
+        let range = NSMakeRange(
+            0,
+            attributedText.string.characters.count
+        )
+        
         attributedText.addAttribute(NSParagraphStyleAttributeName, value: style, range: range)
         
+        
+        
         if let desc = product?.productDescription {
-            attributedText.append(NSAttributedString(string: desc, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15), NSForegroundColorAttributeName: UIColor.darkGray]))
+            
+            let attributedString = NSAttributedString(
+                string: desc,
+                attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15), NSForegroundColorAttributeName: UIColor.darkGray]
+            )
+            
+            attributedText.append(attributedString)
         }
         
         return attributedText

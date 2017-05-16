@@ -35,7 +35,7 @@ class AddFoodButton: UIButton {
         
         // Attributes setup
         setTitle("+", for: .normal)
-        titleLabel?.font = UIFont(name: "Averta", size: 30)
+        titleLabel?.font = UIFont(name: "Avenir", size: 30)
         backgroundColor = .blue
         layer.shadowOffset = CGSize(
             width: 0,
@@ -71,8 +71,6 @@ class AddFoodButton: UIButton {
             )
             
             delegate?.displayCrosshair()
-            
-            // self.titleLabel?.isHidden = true
         
             UIView.animate(withDuration: 0.2, animations: {
                 
@@ -86,7 +84,7 @@ class AddFoodButton: UIButton {
             }, completion: { (_) in
                 // Change title
                 self.setTitle("Add food location", for: .normal)
-                self.titleLabel?.font = UIFont(name: "Averta", size: 30)
+                self.titleLabel?.font = UIFont(name: "Avenir", size: 30)
             })
             
         } else {
@@ -122,7 +120,7 @@ class AddFoodButton: UIButton {
             
             // Change title
             self.setTitle("+", for: .normal)
-            self.titleLabel?.font = UIFont(name: "Averta", size: 30)
+            self.titleLabel?.font = UIFont(name: "Avenir", size: 30)
             
         })
         

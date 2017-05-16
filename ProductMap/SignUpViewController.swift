@@ -17,8 +17,8 @@ class SignUpViewController: UIViewController {
         button.layer.cornerRadius = 25
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.blue.cgColor
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.backgroundColor = UIColor.white
+        button.setTitleColor(.blue, for: .normal)
+        button.backgroundColor = .white
         button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
         return button
     }()
@@ -29,33 +29,35 @@ class SignUpViewController: UIViewController {
         button.layer.cornerRadius = 25
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.blue.cgColor
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.backgroundColor = UIColor.white
-        button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
+        button.setTitleColor(.blue, for: .normal)
+        button.backgroundColor = .white
+        button.addTarget(self,
+                         action: #selector(handleCancel),
+                         for: .touchUpInside)
         return button
     }()
     
     var usernameTextField: UITextField = {
         let field = UITextField()
         field.placeholder = "Username"
-        field.textColor = UIColor.gray
-        field.backgroundColor = UIColor.white
+        field.textColor = .gray
+        field.backgroundColor = .white
         return field
     }()
     
     var emailTextField: UITextField = {
         let field = UITextField()
         field.placeholder = "Email"
-        field.textColor = UIColor.gray
-        field.backgroundColor = UIColor.white
+        field.textColor = .gray
+        field.backgroundColor = .white
         return field
     }()
     
     var passwordTextField: UITextField = {
         let field = UITextField()
         field.placeholder = "Password"
-        field.textColor = UIColor.gray
-        field.backgroundColor = UIColor.white
+        field.textColor = .gray
+        field.backgroundColor = .white
         return field
     }()
     
