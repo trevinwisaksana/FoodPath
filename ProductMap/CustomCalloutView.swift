@@ -91,13 +91,18 @@ class CustomCalloutView: UIView {
         
         // Present the ProductViewController modally
         let mainViewController = UIApplication.shared.keyWindow?.rootViewController
+        
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        let vc = ProductDetailController(collectionViewLayout: layout)
+        
+        let vc = ProductDetailCollectionViewController(
+            collectionViewLayout: layout
+        )
         if let product = product {
             vc.product = product
         }
+        
         mainViewController?.present(
             vc,
             animated: true,

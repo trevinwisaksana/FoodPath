@@ -20,32 +20,33 @@ class CancelAddFoodButton: UIButton {
     
     /// Setup for add food button
     public func setupCancelAddFoodButton(superview: UIView) {
-        self.mainView = superview
+        mainView = superview
         
-        self.alpha = 0
+        alpha = 0
         
         let width = superview.frame.width * 0.15
         
-        self.setTitle("X", for: .normal)
-        self.backgroundColor = .red
-        self.layer.shadowOffset = CGSize(
+        setTitle("x", for: .normal)
+        titleLabel?.font = UIFont(name: "Avenir", size: 40)
+        backgroundColor = .red
+        layer.shadowOffset = CGSize(
             width: 0,
             height: 0
         )
-        self.layer.shadowOpacity = 0.2
-        self.frame = CGRect(
+        layer.shadowOpacity = 0.2
+        frame = CGRect(
             x: superview.frame.width * 0.05,
             y: superview.frame.height * 0.05,
             width: width,
             height: width
         )
-        self.layer.cornerRadius = self.frame.width / 2
+        layer.cornerRadius = frame.width / 2
         
         let gestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(cancelAddFoodButtonHandler)
         )
-        self.addGestureRecognizer(gestureRecognizer)
+        addGestureRecognizer(gestureRecognizer)
         
         delegate = superview as? CancelAddFoodButtonDelegate
         

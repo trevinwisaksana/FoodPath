@@ -66,15 +66,14 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
         
         // Setup cancel button
         cancelAddFoodButton.setupCancelAddFoodButton(superview: self)
-        
-        // TODO: Add an animation to change the button size and title to "Add food destination"
     
     }
     
     
     func displayCrosshair() {
+        // Unhides the crosshair
         mapCrosshair.isHidden = false
-        
+        // Smoothly hides the cancelAddFoodButton
         UIView.animate(withDuration: 0.2) {
             self.cancelAddFoodButton.alpha = 1
         }
@@ -83,7 +82,9 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
     
     
     func dismissCrosshair() {
+        // Hides the crosshair
         mapCrosshair.isHidden = true
+        // Resize add food button
         addFoodButton.resizeToOriginal()
     }
     
@@ -342,6 +343,8 @@ class MainMapView: MKMapView, AddProductViewDelegate, AddFoodButtonDelegate, Can
             
             // Resize button
             self.addFoodButton.resizeToOriginal()
+            // Dismiss the crosshair
+            self.dismissCrosshair()
             
             switch state {
             case .addProduct:

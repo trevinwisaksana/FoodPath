@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ProductDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout, TopSpaceViewDelegate {
+class ProductDetailCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, TopSpaceViewDelegate {
     
     // MARK: Fileprivate Variables
     

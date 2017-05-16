@@ -165,7 +165,7 @@ class AddProductView: UIView {
             size: frame.height * 0.04
         )
         pleaseInsertTitleLabel.font = font
-        pleaseInsertTitleLabel.text = "Please insert the product name"
+        pleaseInsertTitleLabel.text = "Please insert the food name"
         
     }
     
@@ -273,21 +273,21 @@ class AddProductView: UIView {
     
     
     @objc fileprivate func addProductButtonHandler() {
-        // Reveal the top bar view again
-        let notificationName = NSNotification.Name("RevealTopBarNotification")
-        NotificationCenter.default.post(
-            name: notificationName,
-            object: nil
-        )
         
         // Check if the text field is empty
         if productNameTextField.text == "" {
-            
-            productNameTextField.placeholder = "Product title missing"
+            // Displays warning
+            pleaseInsertTitleLabel.text = "Product title missing"
+            pleaseInsertTitleLabel.textColor = .red
             
         } else {
-            // Dismiss the view
-            dismissAddProductView(for: .addProduct)
+            
+            // Reveal the top bar view again
+            let notificationName = NSNotification.Name("RevealTopBarNotification")
+            NotificationCenter.default.post(
+                name: notificationName,
+                object: nil
+            )
             
             guard let productTitle = productNameTextField.text else {
                 return
@@ -306,6 +306,9 @@ class AddProductView: UIView {
                 description: productDescription,
                 image: nil
             )
+            
+            // Dismiss the view
+            dismissAddProductView(for: .addProduct)
         }
     }
     
